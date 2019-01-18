@@ -4,6 +4,6 @@
 
 Päivämäärä       | Käytetty aika | Tehtyä |
 -----------|------|--------|
-16.1. | 1,5h | Perehtyminen kurssimateriaaliin, suoritustapaan, aiheisiin ja aikatauluun |
-18.1. | 2h   | Repositorion luominen, projektin alustus NetBeansissä, dokumentaation aloittaminen. Lisäksi tutustuin paremmin harjoitustyön malliaiheisiin |
+16.1. | 1,5h | Perehtyminen kurssimateriaaliin, kurssin suoritustapaan, harjoitustyöaiheisiin ja aikatauluun |
+18.1. | 2h   | Repositorion luominen, projektin alustus NetBeansissä, dokumentaation aloittaminen. Lisäksi tutustuin paremmin harjoitustyön malliaiheisiin ja valitsin muutaman minua kiinnostavan aiheen. Huomenna on tarkoitus tarkastella paremmin minua kiinnostavia aiheita ja valita niistä yksi. |
 19.1. | ?h   | Dokumentaatiota |
