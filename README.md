@@ -5,4 +5,4 @@ T채m채 projekti on osa Helsingin yliopistossa kev채채ll채 2019 j채rjestett채v채�
 ## Dokumentaatio
 
 ### Viikkoraportit
-[Viikkoraportti 1](https://github.com/heidihas/Kaukokaipuu/blob/master/documentation/asennusohjeet.md)
+[Viikkoraportti 1](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Viikkoraportti1.md)
