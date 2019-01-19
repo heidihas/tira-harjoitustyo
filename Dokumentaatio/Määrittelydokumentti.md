@@ -9,6 +9,8 @@ Tyyppiesimerkki ristinollapelin tekoälyn toteuttamiseksi on käyttää min-max-
 
 Min-max-algoritmia voidaan nopeuttaa käyttämällä alfa-beeta-karsintaa, joka vähentää läpikäytävien hakupuun haarojen määrää. Vaikka alfa-beeta-karsinta nopeuttaa käytännössä huomattavasti algoritmin suoritusta, se ei poista kokonaisaikavaativuuden eksponentiaalisuutta.
 
+Nopeampien ratkaisualgoritmien löytämiseksi on harjoitustyökurssin aikana toteutettava lisää tutkimusta. Tällä hetkellä Monte Carlo Tree Search -menetelmä näyttää lupaavalta - nettilähteiden mukaan algoritmin käyttäminen nopeuttaa ohjelman suoritusta jopa enemmän kuin alfa-beeta-karsinta.
+
 ## Käytettävät tietorakenteet
 Sovellus tarvitsee kahdenlaisia tietorakenteita. Yhtäältä käytössä on oltava taulukko, johon jokaista peliruutua vastaavaan kohtaan täytetään pelin edetessä ruudussa oleva merkki. Toisaalta läpikäynnin helpottamiseksi tarvitaan listoista koostuva taulukko, jonka jokainen lista-alkio kuvaa peliruudukon riviä, saraketta tai viistosuuntaista linjaa. Jos valitun peliruudukon sivun pituus on m ruutua, vie koko ruudukkoa vastaava taulukko tilaa O(mm)=O(m^2), rivilista O(m) ja listoista koostuva taulukko O((2m + 2)m)=O(m^2).
 
