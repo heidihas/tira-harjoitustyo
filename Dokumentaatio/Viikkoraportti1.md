@@ -21,3 +21,4 @@ Koin haastavaksi muiden kuin min-max-algoritmin löytämisen ristinollapeliin li
 Seuraavalla viikolla aion aloittaa sovelluksen rungon koodaamisen niin, että käyttöliittymä toimii ja sovellus hyödyntää aluksi valmiita tietorakenteita. Algoritmeista ensimmäisenä ryhdyn laatimaan min-max-algoritmia.
 
 ## Kysymyksiä ja palautetta ohjaajalle
+Haluaisin tiedustella, onko ristinollapelin tapauksessa min-max-algoritmi ja siihen yhdistettävä alfa-beeta-karsinta tarpeeksi hyvä toteutustapa, vaikka aikavaativuudeltaan se on eksponentiaalinen. Olisiko jotain ehdotusta tai vinkkiä, millä muulla mahdollisesti nopeammalla algoritmilla tätä harjoitustyötä voisi lähestyä?
