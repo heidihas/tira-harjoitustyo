@@ -27,3 +27,5 @@ Pelin aikana sovellus saa syötteenä käyttäjän kulloinkin tekemän siirron (
 Tira-kurssin luentomateriaali (sivut 394-400, Pelipuu)
 
 https://courses.cs.washington.edu/courses/cse573/12au/slides/04-minmax.pdf
+
+[Monte Carlo Tree Search, Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search)
