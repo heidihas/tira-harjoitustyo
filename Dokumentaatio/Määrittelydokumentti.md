@@ -21,3 +21,5 @@ Pelin aikana sovellus saa syötteenä käyttäjän kulloinkin tekemät siirrot (
 [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe) sisältää tietoa ristinollapelin ratkaisustrategioista
 
 Tira-kurssin luentomateriaali (sivut 394-400, Pelipuu)
+
+https://cis.temple.edu/~vasilis/Courses/CIS603/Lectures/l7.html
