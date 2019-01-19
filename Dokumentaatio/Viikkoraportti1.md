@@ -1,6 +1,7 @@
 # Viikkoraportti 1
 
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
+Tunteja yhteensä tällä viikolla: 11,5
 
 ## Viikolla tehtyä
 - Kurssimateriaaliin ja aikatauluun perehtyminen
