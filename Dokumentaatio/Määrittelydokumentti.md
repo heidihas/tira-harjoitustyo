@@ -5,7 +5,7 @@ Työssä toteutetaan laajennettu ristinollapeli ja sen tekoäly. Javalla ohjelmo
 Koska ristinollapeli on laajennettu eli pelialueen koon voi valita perinteistä 3x3-ruudukkoa isommaksi, on optimaalisen suoritusajan taatakseen sovelluksen hyödynnettävä eri algoritmeja peliruudukon koosta riippuen. Sovelluksella siis verrataan myös erilaisia ratkaisutapoja ja algoritmeja.
 
 ## Käytettävät algoritmit
-Tyyppiesimerkki ristinollapelin tekoälyn toteuttamiseksi on käyttää min-max-algoritmia, jonka aikavaativuus on eksponentiaalinen eli O(s^n), missä s kuvaa siirtomahdollisuuksia ja n puun hakusyvyyttä. Vastaavasti algoritmin tilavaativuus on O(sn). Min-max-algoritmin hyödyntäminen on perusteltua pienillä peliruudukoilla.
+Tyyppiesimerkki ristinollapelin tekoälyn toteuttamiseksi on käyttää min-max-algoritmia, jonka aikavaativuus on eksponentiaalinen eli O(s^n), missä s kuvaa siirtomahdollisuuksia ja n hakupuun syvyyttä. Vastaavasti algoritmin tilavaativuus on O(sn). Min-max-algoritmin hyödyntäminen on perusteltua pienillä peliruudukoilla.
 
 Min-max-algoritmia voidaan nopeuttaa käyttämällä alfa-beeta-karsintaa, joka vähentää läpikäytävien hakupuun haarojen määrää. Vaikka alfa-beeta-karsinta nopeuttaa käytännössä huomattavasti algoritmin suoritusta, se ei poista kokonaisaikavaativuuden eksponentiaalisuutta.
 
