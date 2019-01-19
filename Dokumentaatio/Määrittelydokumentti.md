@@ -12,4 +12,5 @@ Mitä syötteitä ohjelma saa, miten näitä käytetään
 
 Tavoitteena olevat aika- ja tilavaativuudet
 
-Lähteet
+## Lähteet
+[Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe) sisältää tietoa ristinollapelin ratkaisustrategioista
