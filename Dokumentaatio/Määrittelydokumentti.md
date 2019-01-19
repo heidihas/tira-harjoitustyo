@@ -12,6 +12,8 @@ Min-max-algoritmia voidaan nopeuttaa käyttämällä alfa-beeta-karsintaa, joka 
 ## Käytettävät tietorakenteet
 Sovellus tarvitsee kahdenlaisia tietorakenteita. Yhtäältä käytössä on oltava taulukko, johon jokaista peliruutua vastaavaan kohtaan täytetään pelin edetessä ruudussa oleva merkki. Toisaalta läpikäynnin helpottamiseksi tarvitaan listoista koostuva taulukko, jonka jokainen lista-alkio kuvaa peliruudukon riviä, saraketta tai viistosuuntaista linjaa. Jos valitun peliruudukon sivun pituus on m ruutua, vie koko ruudukkoa vastaava taulukko tilaa O(mm)=O(m^2), rivilista O(m) ja listoista koostuva taulukko O((2m + 2)m)=O(m^2).
 
+Ohjelman suorituksessa näiden aputietorakenteiden läpikäynnillä ei ole merkittävää vaikutusta kokonaisaikavaativuuteen, kun min-max-algoritmin aikavaativuus on eksponentiaalinen.
+
 ## Syötteet
 Ennen peliä sovellus saa syötteenä käyttäjän määrittelemän pelitavan ja peliruudukon koon. Valittu pelitapa määrittelee, pelaako käyttäjä tietokonetta vastaan vai katsooko hän tekoälyn pelaavan itse itseään vastaan. Peliruudukon koko puolestaan vaikuttaa siihen, millaisella algoritmilla tekoäly pyrkii ratkaisemaan siirrot.
 
