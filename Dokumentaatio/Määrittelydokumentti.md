@@ -16,4 +16,5 @@ Pelin aikana sovellus saa syötteenä käyttäjän kulloinkin tekemät siirrot (
 
 ## Lähteet
 [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe) sisältää tietoa ristinollapelin ratkaisustrategioista
+
 Tira-kurssin luentomateriaali
