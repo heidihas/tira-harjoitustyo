@@ -22,4 +22,4 @@ Pelin aikana sovellus saa syötteenä käyttäjän kulloinkin tekemät siirrot (
 
 Tira-kurssin luentomateriaali (sivut 394-400, Pelipuu)
 
-https://cis.temple.edu/~vasilis/Courses/CIS603/Lectures/l7.html
+https://courses.cs.washington.edu/courses/cse573/12au/slides/04-minmax.pdf
