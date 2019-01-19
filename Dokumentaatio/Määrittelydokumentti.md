@@ -19,7 +19,7 @@ Ohjelman suorituksessa näiden aputietorakenteiden läpikäynnillä ei ole merki
 ## Syötteet
 Ennen peliä sovellus saa syötteenä käyttäjän määrittelemän pelitavan ja peliruudukon koon. Valittu pelitapa määrittelee, pelaako käyttäjä tietokonetta vastaan vai katsooko hän tekoälyn pelaavan itse itseään vastaan. Peliruudukon koko puolestaan vaikuttaa siihen, millaisella algoritmilla tekoäly pyrkii ratkaisemaan siirrot.
 
-Pelin aikana sovellus saa syötteenä käyttäjän kulloinkin tekemät siirrot (tekoälyn pelatessa itse itseään vastaan jokaisen pelivuoron siirrot). Tämän tiedon pohjalta tekoäly laskee pelikierrokseen valitsemaansa algoritmia hyödyntäen, mikä siirto olisi tietokoneelle edullisin, ja suorittaa ratkaisuksi saamansa siirron.
+Pelin aikana sovellus saa syötteenä käyttäjän kulloinkin tekemän siirron (tekoälyn pelatessa itse itseään vastaan jokaisen pelivuoron siirron). Tämän tiedon pohjalta tekoäly laskee pelikierrokseen valitsemaansa algoritmia hyödyntäen, mikä siirto olisi tietokoneelle edullisin, ja suorittaa ratkaisuksi saamansa siirron.
 
 ## Lähteet
 [Wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe) sisältää tietoa ristinollapelin ratkaisustrategioista
