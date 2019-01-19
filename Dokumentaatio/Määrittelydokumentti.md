@@ -1,6 +1,6 @@
 # Määrittelydokumentti
 
-Työssä toteutetaan laajennettu ristinollapeli ja sen tekoäly. Sovelluksen on tarkoitus tarjota käyttäjälle mahdollisuus haastaa tietokone ristinollapelissä, ja peliin kehitetyn tekoälyn on kyettävä pelaamaan myös itse itseään vastaan.
+Työssä toteutetaan Javalla laajennettu ristinollapeli ja sen tekoäly. Sovelluksen on tarkoitus tarjota käyttäjälle mahdollisuus haastaa tietokone ristinollapelissä, ja peliin kehitetyn tekoälyn on kyettävä pelaamaan myös itse itseään vastaan.
 
 Koska ristinollapeli on laajennettu eli pelialueen koon voi valita perinteistä 3x3-ruudukkoa isommaksi, on optimaalisen suoritusajan taatakseen sovelluksen hyödynnettävä eri algoritmeja peliruudukon koosta riippuen. Sovelluksella siis verrataan myös erilaisia ratkaisutapoja ja algoritmeja.
 
