@@ -25,3 +25,4 @@ Koin haastavaksi JavaFX:llä toteuttamani käyttöliittymän muokkaamisen laajen
 Seuraavalla viikolla pyrin yhdistämään luomani käyttöliittymän ja pelilogiikan. Koitan saada tekoälyn toimimaan osana käyttöliittymässä kuvattua peliä. Lisäksi koitan uudemman kerran saada toimimaan sen, että käyttäjän valitsema peliruudukon koko toteutuu ongelmitta.
 
 ## Kysymyksiä ja palautetta ohjaajalle
+Haluaisin tiedustella, millainen käyttöliittymä on harjoitustyön osalta tavoitteellinen. Mistä voisin saada lisätietoa siitä, miten JavaFX:ssä käyttäjältä saatua syötettä käytetään osana peliruudukon toteuttamista (valittu koko)? Olisiko käytettävä jonkinlaista AnimationTimeriin rinnastuvaa menetelmää?
