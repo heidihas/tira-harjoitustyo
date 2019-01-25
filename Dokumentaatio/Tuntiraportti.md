@@ -13,7 +13,7 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 
 Päivämäärä       | Käytetty aika | Tehtyä |
 -----------|------|--------|
-22.1. | 9h | Kirjoita |
-23.1. | 11h | Kirjoita |
-24.1. | 10h   | Kirjoita |
-25.1. | 8h   | Kirjoita |
+22.1. | 9h | Käyttöliittymän rakentaminen JavaFX:llä, valikko-ominaisuus ja peliruudukko nappielementeillä |
+23.1. | 11h | Laajennetun ristinollaruudukon kehittely, JavaFX:n syntaksiin perehtyminen |
+24.1. | 10h   | Pelilogiikan eriyttäminen, Sijainti-objektin määrittely, minmax-algoritmin ensimmäinen versio |
+25.1. | 8h   | JavaDoc-kommenttien kirjoittaminen, yksikkötestien kirjoittaminen, viikkoraportin laatiminen |
