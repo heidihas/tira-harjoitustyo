@@ -17,3 +17,12 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 23.1. | 11h | Laajennetun ristinollaruudukon kehittely, JavaFX:n syntaksiin perehtyminen, toimiva 3x3-ristinolla ilman tekoälyä |
 24.1. | 10h   | Pelilogiikan eriyttäminen, Sijainti-luokan määrittely, minmax-algoritmin ensimmäinen versio |
 25.1. | 8h   | Minmax-algoritmin ensimmäisen version jatkaminen, JavaDoc-kommenttien kirjoittaminen, yksikkötestien kirjoittaminen, viikkoraportin laatiminen |
+
+
+## Viikko 3
+
+Päivämäärä       | Käytetty aika | Tehtyä |
+-----------|------|--------|
+30.1. | ?h | Kirjoita |
+31.1. | ?h | Kirjoita |
+1.2. | ?h   | Kirjoita |
