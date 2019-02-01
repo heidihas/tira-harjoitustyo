@@ -23,6 +23,6 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 
 Päivämäärä       | Käytetty aika | Tehtyä |
 -----------|------|--------|
-30.1. | ?h | Kirjoita |
-31.1. | ?h | Kirjoita |
-1.2. | ?h   | Kirjoita |
+30.1. | 3h | Kirjoita |
+31.1. | 3h | Kirjoita |
+1.2. | 9h   | viikkoraportin laatiminen |
