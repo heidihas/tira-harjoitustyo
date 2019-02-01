@@ -17,6 +17,7 @@ Tunteja yhteensä tällä viikolla: 15
 ## Mikä oli haastavaa
 
 ## Seuraavan viikon tavoitteet
+Minmax-algoritmin parantaminen, laajennetun ristinollan toteuttamisen jatkaminen (käyttäjän valitsema koko), alfa-beeta- toteuttamiseen tarkempi tutustuminen.
 
 ## Kysymyksiä ja palautetta ohjaajalle
 Mistä voisin saada lisätietoa siitä, miten JavaFX:ssä käyttäjältä saatua syötettä käytetään osana peliruudukon toteuttamista (ensimmäisessä näkymässä valittu koko toteutuu nappien lisäämisen osalta mutta napit eivät reagoi - start-metodissa pelinäkymälle valmiiksi määritelty nappien toiminta ei toimi, kun nappien määrä muuttuu)? Olisiko käytettävä jonkinlaista AnimationTimeriin rinnastuvaa menetelmää? Millä vinkillä voisin lähestyä minmax-algoritmia? Tällä hetkellä kaikkia mahdollisia siirtoja ei käydä läpi ja toisaalta tekoäly laittaa merkin ruutuun, jossa on jo jokin pelimerkki, vaikka tämän tulisi olla mahdotonta.
