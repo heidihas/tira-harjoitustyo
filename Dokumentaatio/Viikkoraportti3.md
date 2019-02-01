@@ -13,7 +13,7 @@ Tunteja yhteensä tällä viikolla: 15
 - Yksikkötestien muokkaaminen
 
 ## Mitä opin tällä viikolla
-Etsin tällä viikolla lisätietoa JavaFX:n 
+Opin pelilogiikan ja käyttöliittymän yhdistämisestä. Sovelluksen toiminnassa havaitsemani virheellisen toiminnan vuoksi jouduin perehtymään vielä tarkemmin minmax-algoritmin toimintaan. Tutustuin tapahtuvaan lisäämällä monia tulostuksia koodiin ja onnistuin löytämään virheen. Opin lisää toteuttamastani minmax-algoritmista, vaikka en onnistunut vielä selvittämään virheitä.
 
 ## Mikä oli haastavaa
 Minmax-algoritmissa olevien virheiden löytäminen osoittautui hankalaksi. Yhdistin tällä viikolla pelilogiikan aiemmin luomaani 3x3-peliruudun tuottavaan käyttöliittymään. Huomasin peliä testatessani, ettei tekoäly toimi halutulla tavalla: tietokone ei valitse parasta mahdollista peliruutua, ei estä käyttäjää voittamasta ja joissain tapauksissa laittaa merkin samaan ruutuun peliruudukossa jo olemassa olevan merkin kanssa. Lisäsin monia tulostuksia ja huomasin, ettei minmax-algoritmi käy läpi kaikkia mahdollisia siirtoja. Yritin selvittää virheen korjaamista, mutta en saanut koodia toimimaan.
