@@ -6,7 +6,7 @@ Tunteja yhteensä tällä viikolla: 15
 
 ## Viikolla tehtyä
 - JavaFX:stä lukeminen
-- Minmax-algoritmin toimintaan tarkempi perehtyminen
+- Minmax-algoritmin toimintaan ja toteuttamiseen tarkempi perehtyminen
 - Pelilogiikan ja käyttöliittymän yhdistäminen
 - Minmax-algoritmin muokkaaminen
 - Virheiden etsiminen
