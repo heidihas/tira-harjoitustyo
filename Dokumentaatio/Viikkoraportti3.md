@@ -19,4 +19,4 @@ Tunteja yhteensä tällä viikolla: 15
 ## Seuraavan viikon tavoitteet
 
 ## Kysymyksiä ja palautetta ohjaajalle
-Haluaisin tiedustella, millainen käyttöliittymä on harjoitustyön osalta tavoitteellinen. Mistä voisin saada lisätietoa siitä, miten JavaFX:ssä käyttäjältä saatua syötettä käytetään osana peliruudukon toteuttamista (valittu koko)? Olisiko käytettävä jonkinlaista AnimationTimeriin rinnastuvaa menetelmää?
+Mistä voisin saada lisätietoa siitä, miten JavaFX:ssä käyttäjältä saatua syötettä käytetään osana peliruudukon toteuttamista (ensimmäisessä näkymässä valittu koko toteutuu nappien lisäämisen osalta mutta napit eivät reagoi - start-metodissa pelinäkymälle valmiiksi määritelty nappien toiminta ei toimi, kun nappien määrä muuttuu)? Olisiko käytettävä jonkinlaista AnimationTimeriin rinnastuvaa menetelmää? Millä vinkillä voisin lähestyä minmax-algoritmia? Tällä hetkellä kaikkia mahdollisia siirtoja ei käydä läpi ja toisaalta tekoäly laittaa merkin ruutuun, jossa on jo jokin pelimerkki, vaikka tämän tulisi olla mahdotonta.
