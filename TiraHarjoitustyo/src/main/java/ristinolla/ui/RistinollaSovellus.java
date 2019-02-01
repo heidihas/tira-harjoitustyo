@@ -7,6 +7,8 @@ package ristinolla.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -23,6 +25,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import ristinolla.domain.Sijainti;
+import ristinolla.domain.Vuoro;
+import ristinolla.logics.Logiikka;
 
 /**
  *
@@ -32,6 +36,13 @@ import ristinolla.domain.Sijainti;
  * Luokka vastaa pelisovelluksen käyttöliittymästä, sen tapahtumista ja näkymistä.
  */
 public class RistinollaSovellus extends Application {
+    
+    // pelilogiikan alustaminen
+    Logiikka logiikka = new Logiikka();
+    
+    // vuoro-objektin alustaminen
+    Vuoro peliVuoro = new Vuoro();
+        
     /**
      * Sovelluksen käynnistävä komento.
      * 
@@ -156,7 +167,7 @@ public class RistinollaSovellus extends Application {
         asetteluPeli.setBottom(paneeli);
 
 	Scene nakymaPeli = new Scene(asetteluPeli, 640, 480);
-
+        
         // nappien toiminta
         aloitusNappi.setOnAction((event) -> {    
             // tulostaa error-viestit
@@ -192,11 +203,13 @@ public class RistinollaSovellus extends Application {
         
         tyhjennaNappi.setOnAction((event) -> {
             tyhjenna(teksti, napit);
+            logiikka.tyhjennäPeliruudukko();
             ikkuna.setScene(nakymaPeli);
         });
         
         uusiPeliNappi.setOnAction((event) -> {
             tyhjenna(teksti, napit);
+            logiikka.tyhjennäPeliruudukko();
             merkkiValinta.setValue(null);
             kokoValinta.setValue(null);
             pelimuoto.setValue(null);
@@ -206,51 +219,123 @@ public class RistinollaSovellus extends Application {
             ikkuna.setScene(nakymaAlku);
         });
         
-        // pelin eteneminen
+        // pelivuoron alustaminen
+        peliVuoro.seuraava = Vuoro.SeuraavaSiirto.O;
+        
+        // pelin eteneminen ai
         for(int n = 0; n < napit.size(); n++) {
             Button nappi = napit.get(n);
             nappi.setOnAction((event) -> {
             
-            Sijainti paikka = (Sijainti) nappi.getUserData();
-            int x = paikka.getX();
-            int y = paikka.getY();
+                Sijainti paikka = (Sijainti) nappi.getUserData();
+                int x = paikka.getX();
+                int y = paikka.getY();
             
-            if (!nappi.getText().equals(" ")) {
+                if (!nappi.getText().equals(" ")) {
             
-            } else if (teksti.getText().equals("Vuoro: X")) {
-                nappi.setText("X");
-                //nappi.setBackground(Background.EMPTY);
-                nappi.setMouseTransparent(true);
-                teksti.setText("Vuoro: O");
+                /*} else if (teksti.getText().equals("Vuoro: X")) {
+                    nappi.setText("X");
+                    //nappi.setBackground(Background.EMPTY);
+                    nappi.setMouseTransparent(true);
+                    teksti.setText("Vuoro: O");*/
             
-            } else {
-                nappi.setText("O");
-                //nappi.setBackground(Background.EMPTY);
-                nappi.setMouseTransparent(true);
-                teksti.setText("Vuoro: X");
-            }
-            
-            long taydet = napit.stream()
-                .filter(p -> !p.getText().equals(" "))
-                .count();
-            
-            if(voitto(napit)) {
-                if(teksti.getText().equals("Vuoro: X")) {
-                    teksti.setText("Pelaaja O voitti!");
                 } else {
-                    teksti.setText("Pelaaja X voitti!");
+                    nappi.setText("O");
+                    //nappi.setBackground(Background.EMPTY);
+                    nappi.setMouseTransparent(true);
+                    //teksti.setText("Vuoro: X");
+                    logiikka.asetaSiirto(x-1, y-1, 2);
+                    logiikka.näytäPeliruudukko();
+                    System.out.println("Asetettiin siirto: " + x + ", " + y);
+                    int seuraava = logiikka.pelaaIlmanVuoroa();
+                            
+                    if (seuraava != -1) {
+                        Button pelattavaNappi = napit.get(seuraava);
+                        Sijainti pelattavanPaikka = (Sijainti) pelattavaNappi.getUserData();
+                        int pelattavaX = pelattavanPaikka.getX();
+                        int pelattavaY = pelattavanPaikka.getY();
+                        
+                        pelattavaNappi.setText("X");
+                        pelattavaNappi.setMouseTransparent(true);
+                        logiikka.asetaSiirto(pelattavaX-1, pelattavaY-1, 1);
+                        logiikka.näytäPeliruudukko();
+                        System.out.println("Tekoäly pelasi: " + seuraava);
+                    }
+                    
+                    if (logiikka.peliOhi()) {
+                       for(int i = 0; i < napit.size(); i++) {
+                            napit.get(i).setDisable(true);
+                        } 
+                    }
                 }
-                for(int i = 0; i < napit.size(); i++) {
-                    napit.get(i).setDisable(true);
-                }
-            } else if(taydet == napit.size()) {
-                teksti.setText("Peli päättyi!");
-                for(int i = 0; i < napit.size(); i++) {
-                    napit.get(i).setDisable(true);
-                }
-            }
-        });
+            
+                /*long taydet = napit.stream()
+                    .filter(p -> !p.getText().equals(" "))
+                    .count();
+            
+                if(voitto(napit)) {
+                    if(teksti.getText().equals("Vuoro: X")) {
+                        teksti.setText("Pelaaja O voitti!");
+                    } else {
+                        teksti.setText("Pelaaja X voitti!");
+                    }
+                    for(int i = 0; i < napit.size(); i++) {
+                        napit.get(i).setDisable(true);
+                    }
+                } else if(taydet == napit.size()) {
+                    teksti.setText("Peli päättyi!");
+                    for(int i = 0; i < napit.size(); i++) {
+                        napit.get(i).setDisable(true);
+                    }
+                }*/
+            });
         }
+        
+        /* pelin eteneminen
+        for(int n = 0; n < napit.size(); n++) {
+            Button nappi = napit.get(n);
+            nappi.setOnAction((event) -> {
+            
+                Sijainti paikka = (Sijainti) nappi.getUserData();
+                int x = paikka.getX();
+                int y = paikka.getY();
+            
+                if (!nappi.getText().equals(" ")) {
+            
+                } else if (teksti.getText().equals("Vuoro: X")) {
+                    nappi.setText("X");
+                    //nappi.setBackground(Background.EMPTY);
+                    nappi.setMouseTransparent(true);
+                    teksti.setText("Vuoro: O");
+            
+                } else {
+                    nappi.setText("O");
+                    //nappi.setBackground(Background.EMPTY);
+                    nappi.setMouseTransparent(true);
+                    teksti.setText("Vuoro: X");
+                }
+            
+                long taydet = napit.stream()
+                    .filter(p -> !p.getText().equals(" "))
+                    .count();
+            
+                if(voitto(napit)) {
+                    if(teksti.getText().equals("Vuoro: X")) {
+                        teksti.setText("Pelaaja O voitti!");
+                    } else {
+                        teksti.setText("Pelaaja X voitti!");
+                    }
+                    for(int i = 0; i < napit.size(); i++) {
+                        napit.get(i).setDisable(true);
+                    }
+                } else if(taydet == napit.size()) {
+                    teksti.setText("Peli päättyi!");
+                    for(int i = 0; i < napit.size(); i++) {
+                        napit.get(i).setDisable(true);
+                    }
+                }
+            });
+        }*/
         
 	ikkuna.show();
     }
