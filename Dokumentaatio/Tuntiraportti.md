@@ -26,3 +26,13 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 30.1. | 3h | JavaFX:stä lukeminen (nappien alustaminen ja muuttaminen, käyttäjän syötteen ottaminen, pelilogiikan toteuttaminen) |
 31.1. | 3h | Minmaxin ja ristinollan periaatteista lukeminen |
 1.2. | 9h   | Pelilogiikan yhdistäminen käyttöliittymään, käyttäjän syötteen oikeanlainen tulkinta, tekoälyn hyödyntäminen, minmax-algoritmin muokkaaminen, virheen etsiminen, minmax-algoritmista lukeminen, yksikkötestien muokkaaminen, viikkoraportin laatiminen |
+
+
+## Viikko 4
+
+Päivämäärä       | Käytetty aika | Tehtyä |
+-----------|------|--------|
+4.2. | 9h | Minmaxista 4 versiota, minmax-algoritmin debuggaus ja korjaaminen toimivaksi, parhaimman polun laskeminen syvyyden perusteella, Sijainti-olioita sisältävistä listoista eroon pääseminen, Logiikka-luokan selkeyttäminen ja turhista metodeista luopuminen, yksikkötestien muokkaaminen |
+6.2. | ??h | Kirjoita |
+7.2. | ??h   | Kirjoita |
+8.2. | ??h   | Kirjoita |
