@@ -2,7 +2,7 @@
 
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
 
-Tunteja yhteensä tällä viikolla: 19
+Tunteja yhteensä tällä viikolla: 20
 
 ## Viikolla tehtyä
 - Minmax-algoritmin 4 versiota ja toimivan löytäminen
