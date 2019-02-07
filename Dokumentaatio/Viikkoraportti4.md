@@ -5,7 +5,7 @@
 Tunteja yhteensä tällä viikolla: 20
 
 ## Viikolla tehtyä
-- Minmax-algoritmin 4 versiota ja toimivan löytäminen
+- Minmax-algoritmin 4 versiota ja toimivan version löytäminen
 - Parhaimman polun laskeminen voittosyvyyden perusteella
 - Sijainti-olioita sisältävistä listoista luopuminen
 - Onnistunut laajennetun ristinollan käyttöönotto
