@@ -33,6 +33,6 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 Päivämäärä       | Käytetty aika | Tehtyä |
 -----------|------|--------|
 4.2. | 9h | Minmaxista 4 versiota, minmax-algoritmin debuggaus ja korjaaminen toimivaksi, parhaimman polun laskeminen syvyyden perusteella, Sijainti-olioita sisältävistä listoista eroon pääseminen, Logiikka-luokan selkeyttäminen ja turhista metodeista luopuminen, yksikkötestien muokkaaminen |
-6.2. | ??h | Kirjoita |
-7.2. | ??h   | Kirjoita |
-8.2. | ??h   | Kirjoita |
+6.2. | 9h | Laajennetun ristinollan käyttöönotto, Logiikka-luokan metodien muokkaaminen erikokoisilla peliruudukoilla toimiviksi, Logiikka-luokan toteutus rivien/sarakkeiden/viistorivien seuraamiseen, mahdollisuus valita pelimerkki ja logiikan toimiminen moitteettomasti kummassakin tapauksessa, mahdollisuus valita tietokone pelaamaan tietokonetta vastaan, JavaFX:n delayhin perehtyminen |
+7.2. | 1h   | JavaFX:n delayhin perehtyminen, koodin tarvittavat kommentoinnit, koodin siivoaminen, yksikkötestien muokkaaminen |
+8.2. | ??h   | Viikkoraportin laatiminen |
