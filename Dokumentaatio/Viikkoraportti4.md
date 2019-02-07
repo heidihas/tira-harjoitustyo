@@ -18,10 +18,11 @@ Tunteja yhteensä tällä viikolla: 19
 - Yksikkötestien muokkaaminen
 
 ## Mitä opin tällä viikolla
+Koska jouduin laatimaan useamman version minmax-algoritmista, opin eri tapoja lähestyä samaa ongelmaa. Aloin hahmottaa paremmin algoritmin toimintaa erityisesti välitulostuksia seuraamalla. Vaikka edellisen viikon palautuksessa ollut toimintavirhe johtui luultavasti havaitsemistani ja korjaamistani indeksointiongelmista, minmax-algoritmin perinpohjainen tarkastelu oli hyvin opettavaista. Sain toteutettua algoritmiin tekoälyn "älykkyyttä" lisäävän tavan laskea paras polku mahdollisen voiton syvyyden perusteella. Opin myös JavaFX:n menettelytavoista reagoida käyttäjän syötteenä antamiin arvoihin peliruudukon ja -kierroksen tuottamista varten. Pelilogiikan muokkaaminen erikokoisilla peliruudukoilla toimivaksi sai havahtumaan siihen, miten merkittävästi enemmän aikaa kuluu jo 4x4-peliruudukon laskentaan verrattuna tyypilliseen (ja aiemmin kovakoodattuun) 3x3-peliruudukkoon.
 
 ## Mikä oli haastavaa
 
 ## Seuraavan viikon tavoitteet
-Seuraavalla viikolla tavoitteenani on muokata pelilogiikkaa ja minmax-algoritmin toimintaa tehokkaammaksi niin, ettei 3x3-peliruudukkoa suuremmalla ruudukolla pelattaessa laskentaan kuluisi niin paljon aikaa. Mahdollisesti alfa-beeta-karsinnan mukaan ottaminen. Koitan lisätä tietokone vastaan tietokone -peliin viiveen, jotta jokaisen napin painaminen nähtäisiin erillisenä tapahtumana. 
+Seuraavalla viikolla tavoitteenani on muokata pelilogiikkaa ja minmax-algoritmin toimintaa tehokkaammaksi niin, ettei 3x3-peliruudukkoa suuremmalla ruudukolla pelattaessa laskentaan kuluisi niin paljon aikaa. Mahdollisesti alfa-beeta-karsinnan mukaan ottaminen. Koitan lisätä tietokone vastaan tietokone -peliin viiveen, jotta jokaisen napin painaminen nähtäisiin erillisenä tapahtumana. Valmiiden tietorakenteiden korvaaminen omilla ja dokumentoinnin jatkaminen.
 
 ## Kysymyksiä ja palautetta ohjaajalle
