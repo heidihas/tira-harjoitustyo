@@ -84,19 +84,19 @@ public class LogiikkaTesti {
     }
     
     @Test 
-    public void siirtojaOnJäljellä1() {
+    public void siirtojaOnJaljella1() {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(2, 0, 2);
         assertTrue(logiikka.onSiirtojaJaljella(logiikka.getRuudukko()));
     }
     
     @Test 
-    public void siirtojaOnJäljellä2() {
+    public void siirtojaOnJaljella2() {
         assertTrue(logiikka.onSiirtojaJaljella(logiikka.getRuudukko()));
     }
     
     @Test 
-    public void siirtojaEiOleJäljellä() {
+    public void siirtojaEiOleJaljella() {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(1, 0, 2);
         logiikka.asetaSiirto(2, 0, 1);
