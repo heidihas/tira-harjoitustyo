@@ -6,17 +6,17 @@ Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUniti
 
 ### Sovelluslogiikka
 
-Huomattava enemmistö luoduista automatisoiduista testeistä koskee sovelluslogiikkaa edustavia pakkauksia _pong.domain_ ja _pong.logics_. Testiluokat [BallTest](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/test/java/pong/tests/domain/BallTest.java), [MovementTest](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/test/java/pong/tests/domain/MovementTest.java), [PaddleTest](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/test/java/pong/tests/domain/PaddleTest.java), [PlayerTest](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/test/java/pong/tests/domain/PlayerTest.java) ja [ScoreTest](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/test/java/pong/tests/domain/ScoreTest.java) käsittävät kukin nimensä osoittaman pelielementtiluokan yksikkötestejä, joiden tarkoituksena on varmistaa yksikkötason testien läpäisy. Sen sijaan pakkaukseen _pong.logics_ liittyvä testiluokka [PongLogicsTest](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/test/java/pong/tests/logics/PongLogicsTest.java) toimii kokoavana integraatiotestinä: testiluokka yhdistää eri pelielementtejä monimutkaisemmiksi toimintayksiköiksi ja seuraa niiden yhteistoiminnan onnistumista. Koska nimenomaan sovelluksen luokka [PongLogics](https://github.com/heidihas/otm-harjoitustyo/blob/master/Pong/src/main/java/pong/logics/PongLogics.java) vastaa pelin sovelluslogiikan toimivuudesta ja tapahtumien yhdistämisestä, on menettelytapa mielekäs.
+Automatisoidut testit koskevat sovelluslogiikkaa edustavia pakkauksia _ristinolla.domain_ ja _ristinolla.logics_. Testiluokka [SijaintiTesti](https://github.com/heidihas/tira-harjoitustyo/blob/master/TiraHarjoitustyo/src/test/java/ristinolla/tests/domain/SijaintiTesti.java) koskee peliruutujen ja merkkien sijainteja tallentavan Sijainti-luokan yksikkötestejä, joiden tarkoituksena on varmistaa yksikkötason testien läpäisy. Sen sijaan pakkaukseen _ristinolla.logics_ liittyvä testiluokka [LogiikkaTesti](https://github.com/heidihas/tira-harjoitustyo/blob/master/TiraHarjoitustyo/src/test/java/ristinolla/tests/logics/LogiikkaTesti.java) toimii kokoavana integraatiotestinä: testiluokka yhdistää eri pelielementtejä monimutkaisemmiksi toimintayksiköiksi ja seuraa niiden yhteistoiminnan onnistumista.
 
 ### Testikattavuus
 
-Sovelluksen käyttöliittymäpakkausta ja siihen kuuluvaa RistinollaSovellus-luokkaa lukuun ottamatta testauksen rivi- ja haarautumakattavuus on vastaavanlainen:
+Sovelluksen käyttöliittymäpakkausta ja siihen kuuluvaa [RistinollaSovellus](https://github.com/heidihas/tira-harjoitustyo/blob/master/TiraHarjoitustyo/src/main/java/ristinolla/ui/RistinollaSovellus.java)-luokkaa lukuun ottamatta testauksen rivi- ja haarautumakattavuus on vastaavanlainen:
 
 <img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Testikattavuus_8_2.png">
 
 ## Järjestelmätestaus
 
-Sovelluksen järjestelmätestaus suoritetaan manuaalisesti seuraamalla sovelluksen asennus- ja käyttöohjeita sekä ?? tietoja ohjelman tarjoamasta sovelluslogiikasta.
+Sovelluksen järjestelmätestaus suoritetaan manuaalisesti seuraamalla sovelluksen asennus- ja käyttöohjeita sekä [Määrittelydokumentin](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/M%C3%A4%C3%A4rittelydokumentti.md) tietoja suunnitellusta ohjelman tarjoamasta sovelluslogiikasta.
 
 ### Asennus ja konfigurointi
 
