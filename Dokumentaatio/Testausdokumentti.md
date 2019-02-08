@@ -2,8 +2,6 @@
 
 Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä. Lisäksi testataan sovelluksen suorituskykyä ja koodin laatua.
 
-Miten testit voidaan toistaa???
-
 ## Yksikkö- ja integraatiotestaus
 
 ### Sovelluslogiikka
@@ -40,14 +38,17 @@ Sovelluksen käyttöönottoa testataan sekä OSX- että Linux-pohjaisessa ympär
 
 ### Toiminnallisuudet
 
-Määrittelydokumentissa ilmoitetut ja sovellukseen toteutetut toiminnallisuudet rakennetaan ohessa aktiivisesti kaikkea luotavaa testaten. Aloitussivulta käydään läpi kaikki mieleen tulevat tilanteet ja syötevaihtoehdot. Samalla varmistetaan, ettei virheellistä syötettä - kuten peliruudukon valitun koon puuttumista - ole mahdollista tarjota ja päästä onnistuneesti jatkamaan pelinäkymään. Virheellisille syötteille luodaan kolme virheviestiä: _Valitse pelattava merkki_, _Valitse peliruudukon koko_ ja _Valitse pelimuoto_. Ainoa poikkeus on tilanne, jossa käyttäjä valitsee pelimuodoksi tietokoneen ohjaaman mallipelin, jolloin pelattavaa merkkiä ei vaadita valittavaksi. 
+Määrittelydokumentissa ilmoitetut ja sovellukseen toteutetut toiminnallisuudet rakennetaan ohessa aktiivisesti kaikkea luotavaa testaten. 
+
+Aloitussivulta käydään läpi kaikki mieleen tulevat tilanteet ja syötevaihtoehdot. Samalla varmistetaan, ettei virheellistä syötettä - kuten peliruudukon valitun koon puuttumista - ole mahdollista tarjota ja päästä onnistuneesti jatkamaan pelinäkymään. Virheellisille syötteille luodaan kolme virheviestiä: _Valitse pelattava merkki_, _Valitse peliruudukon koko_ ja _Valitse pelimuoto_. Ainoa poikkeus on tilanne, jossa käyttäjä valitsee pelimuodoksi tietokoneen ohjaaman mallipelin, jolloin pelattavaa merkkiä ei vaadita valittavaksi. 
+
 Vastaavasti pelinäkymässä testataan, että kaikki pelin säännöt pelin etenemisestä tai päättymisestä toimivat moitteettomasti. Lisäksi tarkistetaan, että pelinäkymän napit _Tyhjennä_ ja _Uusi peli_ toimivat oletetusti. Esimerkiksi siten, että käyttäjän tyhjentäessä peliruudukon uusi pelikierros alkaa käyttäjän pelivuorolla vain, jos aiemmin aloitussivulla käyttäjä valitsi pelimerkikseen X.
 
 ## Suorituskyvyn testaus
 
 Tulossa...
 
-(Miten? Mitkä syötteet? Graafinen kuvaus?)
+(Miten? Mitkä syötteet? Graafinen kuvaus? Miten testit voi toistaa?)
 
 ## Koodin laadun testaus
 
