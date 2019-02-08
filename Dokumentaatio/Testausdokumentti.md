@@ -52,7 +52,15 @@ Tulossa...
 
 ## Koodin laadun testaus
 
-Tulossa...
+## Checkstyle
+
+Koodin laatua ja kirjoitusasua testataan Checkstyle-pluginilla. Tiedostoon [checkstyle.xml](https://github.com/heidihas/tira-harjoitustyo/blob/master/TiraHarjoitustyo/checkstyle.xml) määritellyt tarkistukset suoritetaan komennolla
+
+```
+ mvn jxr:jxr checkstyle:checkstyle
+```
+
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedoston _target/site/checkstyle.html_
 
 ## Testauksen tulos jatkokehittelystä
 
