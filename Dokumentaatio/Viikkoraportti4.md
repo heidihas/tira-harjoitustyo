@@ -2,7 +2,7 @@
 
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
 
-Tunteja yhteensä tällä viikolla: 20
+Tunteja yhteensä tällä viikolla: 25
 
 ## Viikolla tehtyä
 - Minmax-algoritmin 4 versiota ja toimivan version löytäminen
@@ -16,6 +16,7 @@ Tunteja yhteensä tällä viikolla: 20
 - JavaFX:n delayhin perehtyminen
 - Koodin siivoaminen ja kommentointi
 - Yksikkötestien muokkaaminen
+- Toteutus- ja Testausdokumenttien laatiminen
 
 ## Mitä opin tällä viikolla
 Koska jouduin laatimaan useamman version minmax-algoritmista, opin eri tapoja lähestyä samaa ongelmaa. Aloin hahmottaa paremmin algoritmin toimintaa erityisesti välitulostuksia seuraamalla. Vaikka edellisen viikon palautuksessa ollut toimintavirhe johtui luultavasti havaitsemistani ja korjaamistani indeksointiongelmista, minmax-algoritmin perinpohjainen tarkastelu oli hyvin opettavaista. Sain toteutettua algoritmiin tekoälyn "älykkyyttä" lisäävän tavan laskea paras polku mahdollisen voiton syvyyden perusteella. Opin myös JavaFX:n menettelytavoista reagoida käyttäjän syötteenä antamiin arvoihin peliruudukon ja -kierroksen tuottamista varten. Pelilogiikan muokkaaminen erikokoisilla peliruudukoilla toimivaksi sai havahtumaan siihen, miten merkittävästi enemmän aikaa kuluu jo 4x4-peliruudukon laskentaan verrattuna tyypilliseen (ja aiemmin kovakoodattuun) 3x3-peliruudukkoon.
@@ -27,4 +28,7 @@ Aluksi minmax-algoritmin korjaaminen tuntui haastavalta, sillä painin saman ong
 Seuraavalla viikolla tavoitteenani on muokata pelilogiikkaa ja minmax-algoritmin toimintaa tehokkaammaksi niin, ettei 3x3-peliruudukkoa suuremmalla ruudukolla pelattaessa laskentaan kuluisi niin paljon aikaa. Mahdollisesti alfa-beeta-karsinnan mukaan ottaminen. Koitan lisätä tietokone vastaan tietokone -peliin viiveen, jotta jokaisen napin painaminen nähtäisiin erillisenä tapahtumana. Valmiiden tietorakenteiden korvaaminen omilla ja dokumentoinnin jatkaminen.
 
 ## Kysymyksiä ja palautetta ohjaajalle
-Mitkä kaikki tietorakenteet on toteutettava itse? Onko esimerkiksi mahdollista säilyttää käyttöliittymän napeista koostuva ArrayList, joka liittyy puhtaasti vain JavaFX:n visuaaliseen toteutukseen, ei varsinaiseen pelilogiikkaan ja kurssin sisältöön? Minkätyyppinen testaus olisi ristinollapelin kannalta mielekäs? Varmasti algoritmin suorituskykyä ja nopeutta on hyvä testata, mutta en keksi itse tämän ja yksikkötestien lisäksi muuta. Millä keinoin minun kannattaisi muokata pelilogiikkaa/minmax-algoritmin läpikäyntiä, jotta suuremmilla peliruudukoilla laskenta nopeutuisi?
+1) Mitkä kaikki tietorakenteet on toteutettava itse? Onko esimerkiksi mahdollista säilyttää käyttöliittymän napeista koostuva ArrayList, joka liittyy puhtaasti vain JavaFX:n visuaaliseen toteutukseen, ei varsinaiseen pelilogiikkaan ja kurssin sisältöön? 
+2) Tarkoitetaanko tietorakenteiden omalla toteutuksella sitä, että niistä tulisi luoda omat luokat vai riittääkö taulukkojen käyttäminen?
+3) Miten voisin mitata ja testata ristinollapelin suorituskykyä ja -nopeutta? Onko tätä varten olemassa jokin plugin? 
+4) Millä keinoin minun kannattaisi muokata pelilogiikkaa/minmax-algoritmin läpikäyntiä, jotta suuremmilla peliruudukoilla laskenta nopeutuisi? Suunnitelmissani on toteuttaa minmaxin lisäksi alfa-beeta-karsinta, mutta luultavasti minmax-toteutukseni kaipaa myös hiomista.
