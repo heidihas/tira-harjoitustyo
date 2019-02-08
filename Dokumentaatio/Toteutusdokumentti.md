@@ -1,11 +1,11 @@
 # Toteutusdokumentti
 
-##Sovelluksen yleisrakenne
+## Sovelluksen yleisrakenne
 
-##Saavutetut aika- ja tilavaativuudet
+## Saavutetut aika- ja tilavaativuudet
 
-##Saavutettu suorituskyky
+## Saavutettu suorituskyky
 
-##Työn puutteet ja parannusehdotukset
+## Työn puutteet ja parannusehdotukset
 
-##Lähteet
+## Lähteet
