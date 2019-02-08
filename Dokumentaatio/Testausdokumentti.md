@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä.
+Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä. Lisäksi testataan sovelluksen suorituskykyä.
 
 ## Yksikkö- ja integraatiotestaus
 
@@ -25,6 +25,10 @@ Sovelluksen käyttöönottoa testataan sekä OSX- että Linux-pohjaisessa ympär
 ### Toiminnallisuudet
 
 Vaatimusmäärittelyssä ilmoitetut ja sovellukseen toteutetut toiminnallisuudet rakennettiin ohessa aktiivisesti kaikkea luotavaa testaten. Aloitussivulta käytiin läpi kaikki mieleen tulleet tilanteet ja syötevaihtoehdot. Samalla varmistettiin, ettei virheellistä syötettä - kuten tyhjää, vain välilyönneistä koostuvaa tai merkkimäärällisesti liian pitkää käyttäjänimeä - ole mahdollista tarjota ja päästä onnistuneesti jatkamaan pelinäkymään. Virheellisille syötteille luotiin kolme virheviestiä: _Maximum 8 characters_, _Choose different names_ ja _Choose level_. Vastaavasti pelinäkymässä testattiin, että kaikki pelin säännöt pallon kimpoamisesta pelin voittamiseen toimivat moitteettomasti. Lopetussivun osalta tarkistettiin, että kolme nappia _Re-start_, _New game_ ja _End game_ toimivat kukin oletetusti. Esimerkiksi siten, että uuden pelikierroksen alkaessa pallon etenemisnopeus on taas alustettu valitun vaikeustason mukaisesti eikä pallo jatka sillä nopeudella, jonka se edellisellä pelikierroksella ehti saavuttaa.
+
+## Suorituskyvyn testaus
+
+Tulossa...
 
 ## Testauksen tulos jatkokehittelystä
 
