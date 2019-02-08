@@ -2,6 +2,8 @@
 
 Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä. Lisäksi testataan sovelluksen suorituskykyä.
 
+Miten testit voidaan toistaa???
+
 ## Yksikkö- ja integraatiotestaus
 
 ### Sovelluslogiikka
@@ -30,6 +32,8 @@ Vastaavasti pelinäkymässä testataan, että kaikki pelin säännöt pelin eten
 ## Suorituskyvyn testaus
 
 Tulossa...
+
+(Miten? Mitkä syötteet? Graafinen kuvaus?)
 
 ## Testauksen tulos jatkokehittelystä
 
