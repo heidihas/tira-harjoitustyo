@@ -16,14 +16,16 @@ Sovelluksen käyttöliittymäpakkausta ja siihen kuuluvaa RistinollaSovellus-luo
 
 ## Järjestelmätestaus
 
-Sovelluksen järjestelmätestaus suoritettiin manuaalisesti seuraamalla sovelluksen asennus- ja käyttöohjeita sekä vaatimusmäärittelyn tietoja ohjelman tarjoamasta sovelluslogiikasta.
+Sovelluksen järjestelmätestaus suoritetaan manuaalisesti seuraamalla sovelluksen asennus- ja käyttöohjeita sekä ?? tietoja ohjelman tarjoamasta sovelluslogiikasta.
 
 ### Asennus ja konfigurointi
 
-Sovelluksen käyttöönottoa testattiin sekä OSX- että Linux-pohjaisessa ympäristössä noudattamalla sovelluksesta esitettyjä asennus- ja käyttöohjeita. Alun perin ohjelman suorittamisen edellytyksenä oli, että suoritettavan ohjelman käynnistyshakemistossa oli oltava valmis tietokantatiedosto ja aloitussivulla näytettävä kuvatiedosto. Lopullisessa versiossa tietokantatiedoston olemassaolo ei ole enää vaatimuksena, vaan sovellus luo ja alustaa sen tarvittaessa. Käyttöönottoa testattiin molemmissa edellä mainituissa tapauksissa.
+Sovelluksen käyttöönottoa testataan sekä OSX- että Linux-pohjaisessa ympäristössä noudattamalla sovelluksesta esitettyjä asennus- ja käyttöohjeita.
 
 ### Toiminnallisuudet
 
 Vaatimusmäärittelyssä ilmoitetut ja sovellukseen toteutetut toiminnallisuudet rakennettiin ohessa aktiivisesti kaikkea luotavaa testaten. Aloitussivulta käytiin läpi kaikki mieleen tulleet tilanteet ja syötevaihtoehdot. Samalla varmistettiin, ettei virheellistä syötettä - kuten tyhjää, vain välilyönneistä koostuvaa tai merkkimäärällisesti liian pitkää käyttäjänimeä - ole mahdollista tarjota ja päästä onnistuneesti jatkamaan pelinäkymään. Virheellisille syötteille luotiin kolme virheviestiä: _Maximum 8 characters_, _Choose different names_ ja _Choose level_. Vastaavasti pelinäkymässä testattiin, että kaikki pelin säännöt pallon kimpoamisesta pelin voittamiseen toimivat moitteettomasti. Lopetussivun osalta tarkistettiin, että kolme nappia _Re-start_, _New game_ ja _End game_ toimivat kukin oletetusti. Esimerkiksi siten, että uuden pelikierroksen alkaessa pallon etenemisnopeus on taas alustettu valitun vaikeustason mukaisesti eikä pallo jatka sillä nopeudella, jonka se edellisellä pelikierroksella ehti saavuttaa.
 
 ## Testauksen tulos jatkokehittelystä
+
+Tulossa...
