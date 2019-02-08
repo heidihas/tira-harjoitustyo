@@ -16,6 +16,14 @@ Sovelluksen käyttöliittymäpakkausta ja siihen kuuluvaa [RistinollaSovellus](h
 
 <img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Testikattavuus_8_2.png" width="600">
 
+Testikattavuusraportti voidaan luoda komennolla
+
+```
+mvn org.pitest:pitest-maven:mutationCoverage
+```
+
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston _target/pit-reports/201902081251/index.html_
+
 ## Järjestelmätestaus
 
 Sovelluksen järjestelmätestaus suoritetaan manuaalisesti seuraamalla sovelluksen asennus- ja käyttöohjeita sekä [Määrittelydokumentin](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/M%C3%A4%C3%A4rittelydokumentti.md) tietoja suunnitellusta ohjelman tarjoamasta sovelluslogiikasta.
