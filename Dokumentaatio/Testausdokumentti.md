@@ -1,6 +1,6 @@
 # Testausdokumentti
 
-Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä. Lisäksi testataan sovelluksen suorituskykyä.
+Sovellusta testataan niin automatisoiduin yksikkö- ja integraatiotestein JUnitilla kuin manuaalisesti järjestelmätason testeillä. Lisäksi testataan sovelluksen suorituskykyä ja koodin laatua.
 
 Miten testit voidaan toistaa???
 
@@ -34,6 +34,10 @@ Vastaavasti pelinäkymässä testataan, että kaikki pelin säännöt pelin eten
 Tulossa...
 
 (Miten? Mitkä syötteet? Graafinen kuvaus?)
+
+## Koodin laadun testaus
+
+Tulossa...
 
 ## Testauksen tulos jatkokehittelystä
 
