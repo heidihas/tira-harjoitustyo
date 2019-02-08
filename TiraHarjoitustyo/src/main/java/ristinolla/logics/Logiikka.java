@@ -20,11 +20,11 @@ public class Logiikka {
     
     private int[][] ruudukko;
     private int koko;
-    private List <int []> rivit;
-    private List <int []> sarakkeet;
+    private List<int[]> rivit;
+    private List<int[]> sarakkeet;
     private int[] diag1;
     private int[] diag2;
-    private Sijainti tekoälynSiirto;
+    private Sijainti tekoalynSiirto;
     
     public Logiikka(int koko) {
         this.koko = koko;
@@ -54,7 +54,7 @@ public class Logiikka {
      * @param ruudukko peliruudukon ruutuja kuvaava taulukko
      *
      */
-    public void näytäPeliruudukko(int[][] ruudukko) {
+    public void naytaPeliruudukko(int[][] ruudukko) {
         System.out.println();
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
@@ -72,7 +72,7 @@ public class Logiikka {
      * Metodi tyhjentää peliruudukon uutta peliä varten.
      *
      */
-    public void tyhjennäPeliruudukko() {
+    public void tyhjennaPeliruudukko() {
         for (int i = 0; i < koko; i++) {
             diag1[i] = 0;
             diag2[i] = 0;
@@ -111,7 +111,7 @@ public class Logiikka {
      * 
      * @return true, mikäli peliruudukossa on vielä vapaita ruutuja
      */
-    public boolean onSiirtojaJäljellä(int[][] ruudukko) {
+    public boolean onSiirtojaJaljella(int[][] ruudukko) {
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 if (ruudukko[i][j] == 0) {
@@ -128,7 +128,7 @@ public class Logiikka {
      * @return true, mikäli jompikumpi pelaajista on saanut kolmen suoran tai peliruudukko on täysi
      */
     public boolean peliOhi() {
-        return this.xVoitti() || this.oVoitti() || !this.onSiirtojaJäljellä(ruudukko);
+        return this.xVoitti() || this.oVoitti() || !this.onSiirtojaJaljella(ruudukko);
     }
     
     /**
@@ -286,7 +286,7 @@ public class Logiikka {
         } else if (tilanne == -10) {
             return tilanne + syvyys;
         }
-        if (!onSiirtojaJäljellä(r)) {
+        if (!onSiirtojaJaljella(r)) {
             return 0;
         }
         int[][] ruudukko = r;
@@ -331,7 +331,7 @@ public class Logiikka {
             return -1;
         }
         
-        tekoälynSiirto = new Sijainti(-1, -1);
+        tekoalynSiirto = new Sijainti(-1, -1);
         int[][] lahtoTilanne = ruudukko;
         int paras = Integer.MIN_VALUE;
         
@@ -344,13 +344,13 @@ public class Logiikka {
                     System.out.println("Siirto: " + j + ", " + i + " saa tuloksen " + valinta);
                     if (valinta > paras) {
                         paras = valinta;
-                        tekoälynSiirto = new Sijainti(j, i);
+                        tekoalynSiirto = new Sijainti(j, i);
                     }
                 }
             }
         }
              
-        return tekoälynSiirto.getX() + tekoälynSiirto.getY() * 3;
+        return tekoalynSiirto.getX() + tekoalynSiirto.getY() * 3;
     }
     
     /**
@@ -367,7 +367,7 @@ public class Logiikka {
             return -1;
         }
         
-        tekoälynSiirto = new Sijainti(-1, -1);
+        tekoalynSiirto = new Sijainti(-1, -1);
         int[][] lahtoTilanne = ruudukko;
         int paras = Integer.MIN_VALUE;
         int toinen;
@@ -387,16 +387,16 @@ public class Logiikka {
                     System.out.println("Siirto: " + j + ", " + i + " saa tuloksen " + valinta);
                     if (valinta > paras && pelivuoro == 1) {
                         paras = valinta;
-                        tekoälynSiirto = new Sijainti(j, i);
+                        tekoalynSiirto = new Sijainti(j, i);
                     }
                     if (valinta < paras && pelivuoro == 2) {
                         paras = valinta;
-                        tekoälynSiirto = new Sijainti(j, i);
+                        tekoalynSiirto = new Sijainti(j, i);
                     }
                 }
             }
         }
              
-        return tekoälynSiirto.getX() + tekoälynSiirto.getY() * 3;
+        return tekoalynSiirto.getX() + tekoalynSiirto.getY() * 3;
     }
 }

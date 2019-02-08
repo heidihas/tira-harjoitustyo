@@ -37,7 +37,7 @@ public class LogiikkaTesti {
     public void tyhjennaPeliruudukko1() {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(2, 0, 2);
-        logiikka.tyhjennäPeliruudukko();
+        logiikka.tyhjennaPeliruudukko();
         assertTrue(logiikka.getRuudukko()[0][2] == 0 && logiikka.getRuudukko()[0][0] == 0);
     }
     
@@ -46,7 +46,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 2);
         logiikka.asetaSiirto(1, 1, 2);
         logiikka.asetaSiirto(2, 2, 2);
-        logiikka.tyhjennäPeliruudukko();
+        logiikka.tyhjennaPeliruudukko();
         assertFalse(logiikka.oVoitti());
     }
     
@@ -55,7 +55,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(0, 1, 1);
         logiikka.asetaSiirto(0, 2, 1);
-        logiikka.tyhjennäPeliruudukko();
+        logiikka.tyhjennaPeliruudukko();
         assertFalse(logiikka.xVoitti());
     }
     
@@ -87,12 +87,12 @@ public class LogiikkaTesti {
     public void siirtojaOnJäljellä1() {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.onSiirtojaJäljellä(logiikka.getRuudukko()));
+        assertTrue(logiikka.onSiirtojaJaljella(logiikka.getRuudukko()));
     }
     
     @Test 
     public void siirtojaOnJäljellä2() {
-        assertTrue(logiikka.onSiirtojaJäljellä(logiikka.getRuudukko()));
+        assertTrue(logiikka.onSiirtojaJaljella(logiikka.getRuudukko()));
     }
     
     @Test 
@@ -106,7 +106,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 2, 1);
         logiikka.asetaSiirto(1, 2, 1);
         logiikka.asetaSiirto(2, 2, 2);
-        assertFalse(logiikka.onSiirtojaJäljellä(logiikka.getRuudukko()));
+        assertFalse(logiikka.onSiirtojaJaljella(logiikka.getRuudukko()));
     }
     
     @Test 

@@ -195,7 +195,7 @@ public class RistinollaSovellus extends Application {
         
         tyhjennaNappi.setOnAction((event) -> {
             tyhjenna(teksti, napit);
-            logiikka.tyhjennäPeliruudukko();
+            logiikka.tyhjennaPeliruudukko();
             int koko = Integer.parseInt(kokoValinta.getValue().toString());
                 int valittuVuoro;
                 int valittuPelimuoto;
@@ -217,7 +217,7 @@ public class RistinollaSovellus extends Application {
         
         uusiPeliNappi.setOnAction((event) -> {
             tyhjenna(teksti, napit);
-            logiikka.tyhjennäPeliruudukko();
+            logiikka.tyhjennaPeliruudukko();
             merkkiValinta.setValue(null);
             kokoValinta.setValue(null);
             pelimuoto.setValue(null);
