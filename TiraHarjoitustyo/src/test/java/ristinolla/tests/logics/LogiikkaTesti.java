@@ -347,25 +347,6 @@ public class LogiikkaTesti {
     }
     
     @Test 
-    public void pelataanIlmanVuoroa() {
-        assertTrue(logiikka.pelaaIlmanVuoroa() != -1);
-    }
-    
-    @Test 
-    public void eiPelataIlmanVuoroa() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.pelaaIlmanVuoroa() == -1);
-    }
-    
-    @Test 
     public void pelataan() {
         assertTrue(logiikka.pelaa(1) != -1);
     }
