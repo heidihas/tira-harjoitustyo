@@ -2,10 +2,13 @@
 
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
 
-Tunteja yhteensä tällä viikolla: ??
+Tunteja yhteensä tällä viikolla: 3
 
 ## Viikolla tehtyä
-- 
+- Alfa-beeta-karsinnan toteutus
+- Peliruudukon rivien tallentaminen yhteen taulukkoon
+- Nopeampi tapa tarkistaa mahdollinen voitto rivitaulukon avulla
+- Koodin siistiminen
 
 ## Mitä opin tällä viikolla
 
