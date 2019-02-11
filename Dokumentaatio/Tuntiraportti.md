@@ -36,3 +36,14 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 6.2. | 9h | Laajennetun ristinollan käyttöönotto, Logiikka-luokan metodien muokkaaminen erikokoisilla peliruudukoilla toimiviksi, Logiikka-luokan toteutus rivien/sarakkeiden/viistorivien seuraamiseen, mahdollisuus valita pelimerkki ja logiikan toimiminen moitteettomasti kummassakin tapauksessa, mahdollisuus valita tietokone pelaamaan tietokonetta vastaan, JavaFX:n delayhin perehtyminen |
 7.2. | 2h   | JavaFX:n delayhin perehtyminen, koodin tarvittavat kommentoinnit, koodin siivoaminen, yksikkötestien muokkaaminen, dokumentaatio |
 8.2. | 5h   | Dokumentaatio, viikkoraportin laatiminen |
+
+
+
+## Viikko 5
+
+Päivämäärä       | Käytetty aika | Tehtyä |
+-----------|------|--------|
+11.2. | 3h | Alfa-beeta-karsinnan toteutus, peliruudukon rivien tarkistaminen yhdellä taulukolla, koodin siistiminen |
+12.2. | ?h | Kirjoita... |
+13.2. | ?h   | Kirjoita... |
+14.2. | ?h   | Kirjoita... |
