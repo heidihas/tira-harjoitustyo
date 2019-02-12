@@ -33,12 +33,17 @@ public class LogiikkaTesti {
         assertTrue(logiikka.getRuudukko()!=null);      
     }
     
+    @Test
+    public void luotuRiviTaulukkoOnOlemassa() {
+        assertTrue(logiikka.getRivit()!=null);      
+    }
+    
     @Test 
     public void tyhjennaPeliruudukko1() {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(2, 0, 2);
         logiikka.tyhjennaPeliruudukko();
-        assertTrue(logiikka.getRuudukko()[0][2] == 0 && logiikka.getRuudukko()[0][0] == 0);
+        assertTrue(logiikka.getRuudukko()[0] == 0 && logiikka.getRuudukko()[2] == 0);
     }
     
     @Test 
@@ -62,25 +67,25 @@ public class LogiikkaTesti {
     @Test 
     public void asetaSiirtoX() {
         logiikka.asetaSiirto(0, 0, 1);
-        assertTrue(logiikka.getRuudukko()[0][0] == 1);
+        assertTrue(logiikka.getRuudukko()[0] == 1);
     }
     
     @Test 
-    public void asetaSiirtoY() {
+    public void asetaSiirtoO() {
         logiikka.asetaSiirto(0, 0, 2);
-        assertTrue(logiikka.getRuudukko()[0][0] == 2);
+        assertTrue(logiikka.getRuudukko()[0] == 2);
     }
     
     @Test 
     public void eiAsetaSiirtoX() {
         logiikka.asetaSiirto(0, 1, 1);
-        assertTrue(logiikka.getRuudukko()[0][1] == 0);
+        assertTrue(logiikka.getRuudukko()[1] == 0);
     }
     
     @Test 
-    public void eiAsetaSiirtoY() {
+    public void eiAsetaSiirtoO() {
         logiikka.asetaSiirto(0, 1, 2);
-        assertTrue(logiikka.getRuudukko()[0][1] == 0);
+        assertTrue(logiikka.getRuudukko()[1] == 0);
     }
     
     @Test 
@@ -230,7 +235,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(0, 1, 1);
         logiikka.asetaSiirto(0, 2, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == 10);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == 10);
     }
     
     @Test 
@@ -238,7 +243,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(1, 0, 1);
         logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == 10);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == 10);
     }
     
     @Test 
@@ -246,7 +251,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(1, 1, 1);
         logiikka.asetaSiirto(2, 2, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == 10);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == 10);
     }
     
     @Test 
@@ -254,7 +259,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(1, 1, 1);
         logiikka.asetaSiirto(1, 2, 1);
-        assertFalse(logiikka.arvioi(logiikka.getRuudukko()) == 10);
+        assertFalse(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == 10);
     }
     
     @Test 
@@ -262,7 +267,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 2);
         logiikka.asetaSiirto(0, 1, 2);
         logiikka.asetaSiirto(0, 2, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == -10);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == -10);
     }
     
     @Test 
@@ -270,7 +275,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 2);
         logiikka.asetaSiirto(1, 0, 2);
         logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == -10);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == -10);
     }
     
     @Test 
@@ -278,7 +283,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 2);
         logiikka.asetaSiirto(1, 1, 2);
         logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == -10);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == -10);
     }
     
     @Test 
@@ -286,12 +291,12 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 0, 2);
         logiikka.asetaSiirto(1, 1, 2);
         logiikka.asetaSiirto(1, 2, 2);
-        assertFalse(logiikka.arvioi(logiikka.getRuudukko()) == -10);
+        assertFalse(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == -10);
     }
     
     @Test 
     public void kukaanEiVoittanutArvioi() {
-        assertTrue(logiikka.arvioi(logiikka.getRuudukko()) == 0);
+        assertTrue(logiikka.arvioiAlfaBeeta(logiikka.getRivit()) == 0);
     }
     
     @Test 
@@ -305,7 +310,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 2, 1);
         logiikka.asetaSiirto(1, 2, 1);
         logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmax(logiikka.getRuudukko(), 0, 1) == 10);
+        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko(), logiikka.getRivit(), 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE) == 10);
     }
     
     @Test 
@@ -319,7 +324,7 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 2, 1);
         logiikka.asetaSiirto(1, 2, 2);
         logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmax(logiikka.getRuudukko(), 0, 1) == -10);
+        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko(), logiikka.getRivit(), 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE) == -10);
     }
     
     @Test 
@@ -333,17 +338,17 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(0, 2, 1);
         logiikka.asetaSiirto(1, 2, 1);
         logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmax(logiikka.getRuudukko(), 0, 1) == 0);
+        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko(), logiikka.getRivit(), 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE) == 0);
     }
     
     @Test 
     public void minmax4() {
-        assertTrue(logiikka.minmax(logiikka.getRuudukko(), 0, 1) != Integer.MAX_VALUE);
+        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko(), logiikka.getRivit(), 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE) != Integer.MAX_VALUE);
     }
     
     @Test 
     public void minmax5() {
-        assertTrue(logiikka.minmax(logiikka.getRuudukko(), 0, 1) != Integer.MIN_VALUE);
+        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko(), logiikka.getRivit(), 0, 1, Integer.MIN_VALUE, Integer.MAX_VALUE) != Integer.MIN_VALUE);
     }
     
     @Test 

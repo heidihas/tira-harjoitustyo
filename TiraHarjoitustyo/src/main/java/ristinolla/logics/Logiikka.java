@@ -30,10 +30,19 @@ public class Logiikka {
     /**
      * Metodi palauttaa peliruudukon.
      *
-     * @return palauttaa int[][]-muotoisen taulukon eli peliruudukon
+     * @return palauttaa int[]-muotoisen taulukon eli peliruudukon
      */
     public int[] getRuudukko() {
         return ruudukko;
+    }
+    
+    /**
+     * Metodi palauttaa peliruudukon riveistä vastaavan taulukon.
+     *
+     * @return palauttaa int[]-muotoisen taulukon eli peliruudukon rivit
+     */
+    public int[] getRivit() {
+        return rivit;
     }
     
     /**
@@ -42,20 +51,19 @@ public class Logiikka {
      * @param ruudukko peliruudukon ruutuja kuvaava taulukko
      *
      */
-    /*
-    public void naytaPeliruudukko(int[][] ruudukko) {
+    public void naytaPeliruudukko(int[] ruudukko) {
         System.out.println();
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 if (j == koko - 1) {
-                    System.out.print(ruudukko[i][j] + "\n");
+                    System.out.print(ruudukko[3*i+j] + "\n");
                 } else {
-                    System.out.print(ruudukko[i][j] + " ");
+                    System.out.print(ruudukko[3*i+j] + " ");
                 }  
             }
         }
         System.out.println();
-    }*/
+    }
     
     /**
      * Metodi tyhjentää peliruudukon uutta peliä varten.
@@ -127,7 +135,7 @@ public class Logiikka {
     /**
      * Metodi tarkistaa, onko merkillä X pelannut pelaaja voittanut pelikierroksen.
      * 
-     * @return true, mikäli X-merkin pelaaja (nro 1) on saanut peliruudukon rivin verran vierekkäistä merkkiä joko pystysuoraan, vaakasuoraan tai viistosti
+     * @return true, mikäli X-merkin pelaaja (nro 1) on saanut peliruudukon rivin verran vierekkäisiä merkkejä joko pystysuoraan, vaakasuoraan tai viistosti
      */
     public boolean xVoitti() {
         for (int i = 0; i < (koko*2 + 2); i++) {
@@ -141,7 +149,7 @@ public class Logiikka {
     /**
      * Metodi tarkistaa, onko merkillä O pelannut pelaaja voittanut pelikierroksen.
      * 
-     * @return true, mikäli O-merkin pelaaja (nro 2) on saanut peliruudukon rivin verran vierekkäistä merkkiä joko pystysuoraan, vaakasuoraan tai viistosti
+     * @return true, mikäli O-merkin pelaaja (nro 2) on saanut peliruudukon rivin verran vierekkäisiä merkkejä joko pystysuoraan, vaakasuoraan tai viistosti
      */
     public boolean oVoitti() {
         for (int i = 0; i < (koko*2 + 2); i++) {
