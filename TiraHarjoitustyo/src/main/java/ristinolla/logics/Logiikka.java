@@ -16,14 +16,14 @@ import ristinolla.domain.Sijainti;
  */
 public class Logiikka {
     
-    private int[][] ruudukko;
+    private int[] ruudukko;
     private int koko;
     private int [] rivit;
     private Sijainti tekoalynSiirto;
     
     public Logiikka(int koko) {
         this.koko = koko;
-        this.ruudukko = new int[koko][koko];
+        this.ruudukko = new int[koko*koko];
         this.rivit = new int[2*koko + 2];
     }
     
@@ -32,7 +32,7 @@ public class Logiikka {
      *
      * @return palauttaa int[][]-muotoisen taulukon eli peliruudukon
      */
-    public int[][] getRuudukko() {
+    public int[] getRuudukko() {
         return ruudukko;
     }
     
@@ -42,6 +42,7 @@ public class Logiikka {
      * @param ruudukko peliruudukon ruutuja kuvaava taulukko
      *
      */
+    /*
     public void naytaPeliruudukko(int[][] ruudukko) {
         System.out.println();
         for (int i = 0; i < koko; i++) {
@@ -54,17 +55,15 @@ public class Logiikka {
             }
         }
         System.out.println();
-    }
+    }*/
     
     /**
      * Metodi tyhjentää peliruudukon uutta peliä varten.
      *
      */
     public void tyhjennaPeliruudukko() {
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                ruudukko[i][j] = 0;
-            }
+        for (int i = 0; i < koko*koko; i++) {
+            ruudukko[i] = 0;
         }
         for (int i = 0; i < (koko*2 + 2); i++) {
             rivit[i] = 0;
@@ -80,7 +79,7 @@ public class Logiikka {
      * 
      */
     public void asetaSiirto(int x, int y, int pelaaja) {
-        ruudukko[y][x] = pelaaja;
+        ruudukko[x + (koko * y)] = pelaaja;
         
         int lisattava;
         if (pelaaja == 1) {
@@ -107,12 +106,10 @@ public class Logiikka {
      * 
      * @return true, mikäli peliruudukossa on vielä vapaita ruutuja
      */
-    public boolean onSiirtojaJaljella(int[][] ruudukko) {
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                if (ruudukko[i][j] == 0) {
-                    return true;
-                }
+    public boolean onSiirtojaJaljella(int[] ruudukko) {
+        for (int i = 0; i < koko*koko; i++) {
+            if (ruudukko[i] == 0) {
+                return true;
             }
         }
         return false;
@@ -162,7 +159,7 @@ public class Logiikka {
      * 
      * @return palauttaa pistetilannetta kuvaavan kokonaislukuarvon
      */
-    public int arvioi(int[][] ruudukko) {
+    /*public int arvioi(int[][] ruudukko) {
         for (int i = 0; i < koko; i++) {
             int riviX = 0;
             int riviO = 0;
@@ -215,7 +212,7 @@ public class Logiikka {
             return -10;
         }
         return 0;
-    }
+    }*/
     
     /**
      * Metodi arvioi, onko jompikumpi pelaajista voittanut pelin.
@@ -244,7 +241,7 @@ public class Logiikka {
      * 
      * @return palauttaa kunkin polun pistetilannetta kuvaavan kokonaislukuarvon
      */
-    public int minmax(int[][] r, int syvyys, int vuoro) {
+    /*public int minmax(int[][] r, int syvyys, int vuoro) {
         int tilanne = arvioi(r);
         
         if (tilanne == 10) {
@@ -283,12 +280,12 @@ public class Logiikka {
             }
             return paras;
         }
-    }
+    }*/
     
     /**
      * Metodi toteuttaa tekoälyn siirron valitsemisesta vastaavan minmax-algoritmin alfa-beeta-karsinnalla.
      * 
-     * @param r taulukko, joka koostuu peliruudukon ruuduista
+     * @param ruudukko taulukko, joka koostuu peliruudukon ruuduista
      * @param rivit taulukko, joka kuvaa peliruudukon rivejä
      * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
      * @param vuoro kokonaisluku, joka kertoo siirtovuorossa olevan pelaajan
@@ -297,7 +294,7 @@ public class Logiikka {
      * 
      * @return palauttaa kunkin polun pistetilannetta kuvaavan kokonaislukuarvon
      */
-    public int minmaxAlfaBeeta(int[][] r, int[] rivit, int syvyys, int vuoro, int a, int b) {
+    public int minmaxAlfaBeeta(int[] ruudukko, int[] rivit, int syvyys, int vuoro, int a, int b) {
         int tilanne = arvioiAlfaBeeta(rivit);
         
         if (tilanne == 10) {
@@ -305,28 +302,32 @@ public class Logiikka {
         } else if (tilanne == -10) {
             return tilanne + syvyys;
         }
-        if (!onSiirtojaJaljella(r)) {
+        if (!onSiirtojaJaljella(ruudukko)) {
             return 0;
         }
         
         if (vuoro == 1) {
             int paras = Integer.MIN_VALUE;
             
-            for (int i = 0; i < koko; i++) {
-                for (int j = 0; j < koko; j++) {
-                    if (r[i][j] == 0) {
-                        r[i][j] = 1;
-                        asetaSiirtoMinMax(rivit, j, i, 1);
-                        int seuraava = minmaxAlfaBeeta(r, rivit, syvyys + 1, 2, a, b);
-                        r[i][j] = 0;
-                        poistaSiirtoMinMax(rivit, j, i, 1);
-                        paras = Math.max(paras, seuraava);
-                        if (seuraava >= b) {
-                            return paras;
-                        }
-                        if (seuraava > a) {
-                            a = seuraava;
-                        }
+            for (int i = 0; i < koko*koko; i++) {
+                if (ruudukko[i] == 0) {
+                    ruudukko[i] = 1;
+                    
+                    int x = i % koko;
+                    int y = (int) Math.floor(i/koko);
+                    asetaSiirtoMinMax(rivit, x, y, 1);
+                    
+                    int seuraava = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 2, a, b);
+                    
+                    ruudukko[i] = 0;
+                    poistaSiirtoMinMax(rivit, x, y, 1);
+                    paras = Math.max(paras, seuraava);
+                    
+                    if (seuraava >= b) {
+                        return paras;
+                    }
+                    if (seuraava > a) {
+                        a = seuraava;
                     }
                 }
             }
@@ -334,21 +335,25 @@ public class Logiikka {
         } else {
             int paras = Integer.MAX_VALUE;
             
-            for (int i = 0; i < koko; i++) {
-                for (int j = 0; j < koko; j++) {
-                    if (r[i][j] == 0) {
-                        r[i][j] = 2;
-                        asetaSiirtoMinMax(rivit, j, i, 2);
-                        int seuraava = minmaxAlfaBeeta(r, rivit, syvyys + 1, 1, a, b);
-                        r[i][j] = 0;
-                        poistaSiirtoMinMax(rivit, j, i, 2);
-                        paras = Math.min(paras, seuraava);
-                        if (seuraava <= a) {
-                            return paras;
-                        }
-                        if (seuraava < b) {
-                            b = seuraava;
-                        }
+            for (int i = 0; i < koko*koko; i++) {
+                if (ruudukko[i] == 0) {
+                    ruudukko[i] = 2;
+                    
+                    int x = i % koko;
+                    int y = (int) Math.floor(i/koko);
+                    asetaSiirtoMinMax(rivit, x, y, 2);
+                    
+                    int seuraava = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 1, a, b);
+                    
+                    ruudukko[i] = 0;
+                    poistaSiirtoMinMax(rivit, x, y, 2);
+                    paras = Math.min(paras, seuraava);
+                    
+                    if (seuraava <= a) {
+                        return paras;
+                    }
+                    if (seuraava < b) {
+                        b = seuraava;
                     }
                 }
             }
@@ -430,7 +435,7 @@ public class Logiikka {
         
         tekoalynSiirto = new Sijainti(-1, -1);
         
-        int[][] lahtoTilanne = ruudukko;
+        int[] lahtoTilanne = ruudukko;
         int[] lahtoRivit = rivit;
   
         int paras = Integer.MIN_VALUE;
@@ -443,27 +448,28 @@ public class Logiikka {
             paras = Integer.MAX_VALUE;
         }
         
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                if (lahtoTilanne[i][j] == 0) {
-                    lahtoTilanne[i][j] = pelivuoro;
-                    asetaSiirtoMinMax(lahtoRivit, j, i, pelivuoro);
+        for (int i = 0; i < koko*koko; i++) {
+            if (lahtoTilanne[i] == 0) {
+                lahtoTilanne[i] = pelivuoro;
+                
+                int x = i % koko;
+                int y = (int) Math.floor(i/koko);
+                asetaSiirtoMinMax(lahtoRivit, x, y, pelivuoro);
                     
-                    int valinta = minmaxAlfaBeeta(lahtoTilanne, lahtoRivit, 0, toinen, Integer.MIN_VALUE, Integer.MAX_VALUE);
+                int valinta = minmaxAlfaBeeta(lahtoTilanne, lahtoRivit, 0, toinen, Integer.MIN_VALUE, Integer.MAX_VALUE);
                     
-                    lahtoTilanne[i][j] = 0;
-                    poistaSiirtoMinMax(lahtoRivit, j, i, pelivuoro);
+                lahtoTilanne[i] = 0;
+                poistaSiirtoMinMax(lahtoRivit, x, y, pelivuoro);
                     
-                    System.out.println("Siirto: " + j + ", " + i + " saa tuloksen " + valinta);
+                System.out.println("Siirto: " + x + ", " + y + " saa tuloksen " + valinta);
                     
-                    if (valinta > paras && pelivuoro == 1) {
-                        paras = valinta;
-                        tekoalynSiirto = new Sijainti(j, i);
-                    }
-                    if (valinta < paras && pelivuoro == 2) {
-                        paras = valinta;
-                        tekoalynSiirto = new Sijainti(j, i);
-                    }
+                if (valinta > paras && pelivuoro == 1) {
+                    paras = valinta;
+                    tekoalynSiirto = new Sijainti(x, y);
+                }
+                if (valinta < paras && pelivuoro == 2) {
+                    paras = valinta;
+                    tekoalynSiirto = new Sijainti(x, y);
                 }
             }
         }
