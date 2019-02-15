@@ -9,8 +9,15 @@ Tunteja yhteensä tällä viikolla: 18
 - Peliruudukon rivien tallentaminen yhteen taulukkoon
 - Nopeampi tapa tarkistaa mahdollinen voitto rivitaulukon avulla
 - Peliruudukon muuttaminen lineaariseksi taulukoksi
+- Oman tietorakenteen Ruudukko luominen
+- Algoritmin debuggaaminen, eri versioiden laatiminen ja alfa-beeta-karsinnasta lukeminen
+- Algoritmin pilkkominen ja muokkaaminen
+- AlfaBeeta-luokan ja sitä vastaavan RuudukkoAlfaBeeta-luokan luominen
+- Suorituskykytestauksen suorittaminen
+- Testausdokumentin päivittäminen
 - Testien muokkaaminen
-- Koodin siistiminen
+- Koodin siistiminen ja kommentointi
+- Vertaisarvio
 
 ## Mitä opin tällä viikolla
 
