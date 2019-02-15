@@ -33,5 +33,6 @@ Olen tähän mennessä toteuttanut minmax-algoritmin ja alfa-beeta-karsinnan laa
 1) Olisiko suuremmilla peliruudukoilla mahdollista, että tekoälyn ensimmäinen/pari ensimmäistä siirtoa olisivat satunnaisia ja vasta sitten alettaisiin käyttää algoritmia siirtojen selvittämiseen? 
 2) Eräs vaihtoehto olisi myös laittaa aikaraja algoritmille ja aikarajan umpeuduttua valita siihen mennessä paras löydetty siirto. En tosin tiedä, olisiko tämä tarkoituksenomaista. 
 3) Mahtaisiko laskentaa nopeuttaa se, että suuremmissa peliruudukoissa vaaditaan vain 3 vierekkäistä merkkiä voittoon? Tällä hetkellä 4x4-ruudukossa vaaditaan 4 merkkiä, 5x5-ruudukossa vaaditaan 5 merkkiä jne.
+4) Olisiko siitä hyötyä, että läpikäytäville syvyyksille annetaan jokin maksimiarvo?
 
 Olen muokannut läpikäytävän peliruudukkotaulukon lineaariseksi, pistetilanteen tarkistamisen peliruudukon riveistä koostuvan taulukon läpikäymiseksi ja siirtojen läpikäynnin ottamaan huomioon vain kulloinkin vapaana olevat ruudut (turhat karsittu). Silti alfa-beeta-karsinnan toteuttamisen jälkeenkin algoritmi ei toimi 4x4-peliruudukkoa isommilla ruudukoilla. Parannusideani alkavat olla vähissä, vaikka olen lukenut paljon lisätietoa aiheesta. Suurimmassa osassa lähteitä käsitellään vain tapausta 3x3-kokoinen peliruudukko.
