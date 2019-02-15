@@ -46,4 +46,4 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 11.2. | 3h | Alfa-beeta-karsinnan toteutus, peliruudukon rivien tarkistaminen yhdellä taulukolla, koodin siistiminen |
 12.2. | 3h | Peliruudukon muuttaminen lineaariseksi taulukoksi, testien muokkaus |
 14.2. | 4h   | Oman tietorakenteen luominen, vertaisarvio |
-15.2. | 2h   | Yrityksiä muokata algoritmi tehokkaammaksi, alfa-beeta-karsinnasta lukeminen |
+15.2. | 8h   | Yrityksiä muokata algoritmi tehokkaammaksi, alfa-beeta-karsinnasta lukeminen, algoritmin pilkkominen ja muokkaaminen, AlfaBeeta-luokan ja sitä vastaavan RuudukkoAlfaBeeta-luokan luominen, algoritmin koodin debuggaaminen, suorituskykytestauksen suorittaminen, Testausdokumentin päivittäminen, yksikkötestien muokkaaminen, koodin kommentointi, viikkoraportin kirjoittaminen |
