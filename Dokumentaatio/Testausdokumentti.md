@@ -52,7 +52,12 @@ Kun pelataan 3x3- tai 4x4-ruudukossa niin merkillä X kuin merkillä O eli joko 
 
 Toisaalta huomataan, että 4x4-ruudukkoa isommilla peliruudukoilla algoritmin haluttua toimintaa ei päästä testaamaan, sillä peli jumittuu tietokoneen ensimmäiseen algoritmilla haettuun siirtoon.
 
-
+Valittu pelimerkki       | Peliruudukon koko | Ensimmäisen siirron keskiarvo (ms) |
+-----------|------|--------|
+X | 3x3 | 2 |
+O | 3x3 | 1,9 |
+X | 4x4 | 10 629 |
+O | 4x4 | 5470 |
 
 Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 3x3, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
 
