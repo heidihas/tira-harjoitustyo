@@ -46,9 +46,17 @@ Vastaavasti pelinäkymässä testataan, että kaikki pelin säännöt pelin eten
 
 ## Suorituskyvyn testaus
 
-Tulossa...
+Suorituskykytestaus kohdistuu tekoälyn toteuttamiseen tarkoitettuun algoritmiin ja sen laskutehoon. Algoritmin toimintaa testataan erilaisilla syötteillä, peliasetelmilla ja peliruudukon ko'oilla. Suorituskykytestaus pitää sisällään niin algoritmin oikeanlaisen toiminnan testaamisen kuin algoritmin suoritusnopeuden testaamisen. Algoritmin suoritusnopeutta testataan Javan System.currentTimeMillis()-komennon avulla.
 
-(Miten? Mitkä syötteet? Graafinen kuvaus? Miten testit voi toistaa?)
+Kun pelataan 3x3- tai 4x4-ruudukossa niin merkillä X kuin merkillä O eli joko käyttäjä aloittaa tai tietokone aloittaa, algoritmin nähdään toimivan oikein ja tehokkaasti. Tekoälyn ohjaama tietokonepelaaja ei anna kertaakaan käyttäjän voittaa, vaan lopputulos on joko tasapeli tai tietokoneen voitto. Algoritmin halutunlainen toiminta havaitaan myös silloin, kun valitaan 3x3- tai 4x4-ruudukkoon mallipeli eli tietokone pelaamaan tietokonetta vastaan. Joka pelikierroksella päädytään tasapeliin.
+
+Toisaalta huomataan, että 4x4-ruudukkoa isommilla peliruudukoilla algoritmin haluttua toimintaa ei päästä testaamaan, sillä peli jumittuu tietokoneen ensimmäiseen algoritmilla haettuun siirtoon.
+
+
+
+Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 3x3, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
+
+(Graafinen kuvaus?)
 
 ## Koodin laadun testaus
 
