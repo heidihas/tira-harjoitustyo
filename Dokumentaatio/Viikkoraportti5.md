@@ -23,9 +23,10 @@ Tunteja yhteensä tällä viikolla: 18
 Opin tällä viikolla alfa-beeta-karsinnan toteuttamisesta ja algoritmin suorituskyvyn testaamisesta. Luin eri lähteistä alfa-beeta-karsinnan toteuttamisesta eri konteksteissa ja opin hahmottamaan, mikä ero toteutustavoilla on. Opin myös uutta tekemällä toisen opiskelijan työstä vertaisarvion. Koska työn aihe oli hyvin erilainen kuin omani, käytin paljon aikaa siihen perehtymiseen.
 
 ## Mikä oli haastavaa
-
+Koin haastavaksi algoritmin tehokkuuden hiomisen ja osittain myös vertaisarvion laatimisen. Käytin hyvin paljon tunteja alfa-beeta-karsinnan hiomiseen, siitä lukemiseen ja sen muokkaamiseen. Silti edelleen 4x4-ruudukkoa isommilla peliruudukoilla pelaaminen ei onnistu. Parannusideani alkavat loppua.. Vertaisarvion laatiminen puolestaan tuntui hieman haastavalta siksi, että arvioitava työ oli hyvin laaja ja tehty eri aiheesta kuin omani. Jouduin käyttämään useamman tunnin työhön perehtymiseen, jotta sain kirjoitettua tarkoituksenomaista palautetta.
 
 ## Seuraavan viikon tavoitteet
 Koodia tällä viikolla muokatessani jouduin lisäämään valmiin List-tietorakenteen, josta pyrin pääsemään eroon ensi viikolla. Lisäksi aion jatkaa algoritmini tehokkuuden hiomisen parissa.
 
 ## Kysymyksiä ja palautetta ohjaajalle
+
