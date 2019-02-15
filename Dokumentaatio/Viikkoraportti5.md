@@ -2,7 +2,7 @@
 
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
 
-Tunteja yhteensä tällä viikolla: 18
+Tunteja yhteensä tällä viikolla: 19
 
 ## Viikolla tehtyä
 - Alfa-beeta-karsinnan toteutus
