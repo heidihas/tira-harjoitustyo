@@ -52,12 +52,20 @@ Kun pelataan 3x3- tai 4x4-ruudukossa niin merkillä X kuin merkillä O eli joko 
 
 Toisaalta huomataan, että 4x4-ruudukkoa isommilla peliruudukoilla algoritmin haluttua toimintaa ei päästä testaamaan, sillä peli jumittuu tietokoneen ensimmäiseen algoritmilla haettuun siirtoon.
 
+Kun pelin tekoälyn toteuttavaa algoritmia testataan eri pelitilantein, saadaan tuloksista alla oleva taulukko. Taulukossa kerrotaan käyttäjän valitsema merkki (X pelaa ensin), peliruudukon koko ja laskettu keskiarvo tietokonepelaajan ensimmäiseen siirtoon valitussa pelitilanteessa kuluvasta ajasta millisekunteina. Keskiarvo on laskettu suorittamalla tietokonepelaajan ensimmäinen siirto valitussa pelitilanteessa 10 kertaa ja vertaamalla saatuja lukuja.
+
 Valittu pelimerkki       | Peliruudukon koko | Ensimmäisen siirron keskiarvo (ms) |
 -----------|------|--------|
 X | 3x3 | 2 |
 O | 3x3 | 1,9 |
 X | 4x4 | 10 629 |
 O | 4x4 | 5470 |
+
+Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tietokonepelaajan siirtoon kuluva aika on ilmaistu ainoastaan tietokonepelaajan ensimmäisestä siirrosta, sillä toisesta siirrosta eteenpäin kaikissa tapauksissa aikaa kuluu alle sekunti eli algoritmi toimii nopeasti. Tapauksissa, joissa tietokonepelaaja pelaa ensin eli tietokonepelaajalla on pelimerkki X, keskiarvo on laskettu tietokonepelaajan toisesta siirrosta, sillä ensimmäinen siirto tyhjään peliruudukkoon toteutetaan sattumanvaraisesti eikä algoritmilla.
+
+Kun testataan algoritmin nopeutta mallipelin tapauksessa, nähdään, että 3x3-peliruudukossa algoritmin suoritusnopeus on välillä 0-2ms. Algoritmin suoritusnopeus 4x4-peliruudukossa puolestaan pienenee merkittävästi suoritettujen siirtojen kasvaessa. Esimerkiksi sarja {12902, 9642, 1104, 347, 23, 13, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0} kuvaa erästä mallipelikierrosta.
+
+Kuten algoritmin oikeanlaista toimintaa testaessa huomattiin, myös algoritmin suoritustehokkuutta ei voida testata 4x4-ruudukkoa suuremmilla peliruudukoilla.
 
 Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 3x3, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
 
