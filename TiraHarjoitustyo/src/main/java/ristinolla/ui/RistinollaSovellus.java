@@ -188,7 +188,7 @@ public class RistinollaSovellus extends Application {
                 } else {
                     valittuPelimuoto = 2;
                 }
-                luoRuudukko(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
+                pelaa(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
                 ikkuna.setScene(nakymaPeli);
             } 
         });
@@ -211,7 +211,7 @@ public class RistinollaSovellus extends Application {
                 } else {
                     valittuPelimuoto = 2;
                 }
-            luoRuudukko(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
+            pelaa(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
             ikkuna.setScene(nakymaPeli);
         });
         
@@ -230,7 +230,7 @@ public class RistinollaSovellus extends Application {
     }
     
     /**
-     * Metodi luo uuden peliruudukon käyttäjän ilmoittaman koon perusteella.
+     * Metodi alustaa uuden pelin ja vastaa pelinäkymän muutoksista.
      * 
      * @param koko kokonaisluku, joka kertoo uuden peliruudukon rivin pituuden
      * @param valittuVuoro kokonaisluku, joka kertoo käyttäjä valitseman pelimerkin X (= 1) tai O (= 2)
@@ -242,24 +242,12 @@ public class RistinollaSovellus extends Application {
      * @see ristinolla.domain.Sijainti
      * 
      */
-    private void luoRuudukko(int koko, int valittuVuoro, int valittuPelimuoto, List <Button> napit, BorderPane asetteluPeli, Label teksti) {
+    private void pelaa(int koko, int valittuVuoro, int valittuPelimuoto, List <Button> napit, BorderPane asetteluPeli, Label teksti) {
         // pelilogiikan alustaminen valitulla koolla
         logiikka = new Logiikka(koko);
         
         napit.clear();
-        
-        // nappien luominen
-        GridPane ruudukko = new GridPane();
-        for (int y = 1; y <= koko; y++) {
-            for (int x = 1; x <= koko; x++) {
-                Button nappi = new Button();
-                nappi.setFont(Font.font("Monospaced", 20));
-                nappi.setText(" ");
-                nappi.setUserData(new Sijainti(x, y));
-                napit.add(nappi);
-                ruudukko.add(nappi, x, y);
-            }
-        }
+        GridPane ruudukko = luoRuudukko(koko, napit);
         
         // tekoälyn ensimmäinen satunnainen siirto
         if (valittuVuoro == 2 || valittuPelimuoto == 2) {
@@ -301,8 +289,11 @@ public class RistinollaSovellus extends Application {
                         int vastustaja = 1;
                         if (valittuVuoro == 1) {
                             vastustaja = 2;
-                        } 
+                        }
+                        long aikaAlussa = System.currentTimeMillis();
                         int seuraava = logiikka.pelaa(vastustaja);
+                        long aikaLopussa = System.currentTimeMillis();
+                        System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
                             
                         if (seuraava != -1) {
                             Button pelattavaNappi = napit.get(seuraava);
@@ -340,7 +331,12 @@ public class RistinollaSovellus extends Application {
             int vuoro = 2;
             
             while (!logiikka.peliOhi()) {
+                logiikka.getRuudukko().tulosta();
+                
+                long aikaAlussa = System.currentTimeMillis();
                 int seuraava = logiikka.pelaa(vuoro);
+                long aikaLopussa = System.currentTimeMillis();
+                System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
                 
                 Button pelattavaNappi = napit.get(seuraava);
                 Sijainti pelattavanPaikka = (Sijainti) pelattavaNappi.getUserData();
@@ -377,6 +373,33 @@ public class RistinollaSovellus extends Application {
         }
         ruudukko.setAlignment(Pos.CENTER);
         asetteluPeli.setCenter(ruudukko);
+    }
+    
+    /**
+     * Metodi luo uuden peliruudukon käyttäjän ilmoittaman koon perusteella.
+     * 
+     * @param koko kokonaisluku, joka kertoo uuden peliruudukon rivin pituuden
+     * @param napit peliruudukon ruutuja edustavista napeista koostuva lista
+     * 
+     * @see ristinolla.domain.Sijainti
+     * 
+     * @return palauttaa uuden luodun ruudukon
+     * 
+     */
+    private GridPane luoRuudukko(int koko, List <Button> napit) {
+        // nappien luominen
+        GridPane ruudukko = new GridPane();
+        for (int y = 1; y <= koko; y++) {
+            for (int x = 1; x <= koko; x++) {
+                Button nappi = new Button();
+                nappi.setFont(Font.font("Monospaced", 20));
+                nappi.setText(" ");
+                nappi.setUserData(new Sijainti(x, y));
+                napit.add(nappi);
+                ruudukko.add(nappi, x, y);
+            }
+        }
+        return ruudukko;
     }
     
     /**

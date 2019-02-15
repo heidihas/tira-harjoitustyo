@@ -42,8 +42,9 @@
                 <artifactId>pitest-maven</artifactId>
                 <configuration>
                     <targetClasses>
-                        <param>ristinolla.domain*</param>
-                        <param>ristinolla.logics*</param>
+                        <param>ristinolla.domain.Ruudukko</param>
+                        <param>ristinolla.domain.Sijainti</param>
+                        <param>ristinolla.logics.Logiikka</param>
                     </targetClasses>
                     <targetTests>
                         <param>ristinolla.tests.domain*</param>

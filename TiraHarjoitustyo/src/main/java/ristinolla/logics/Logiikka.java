@@ -5,7 +5,9 @@
  */
 package ristinolla.logics;
 
-import ristinolla.domain.Sijainti;
+import java.util.ArrayList;
+import java.util.List;
+import ristinolla.domain.Ruudukko;
 
 /**
  *
@@ -16,23 +18,22 @@ import ristinolla.domain.Sijainti;
  */
 public class Logiikka {
     
-    private int[] ruudukko;
     private int koko;
-    private int [] rivit;
-    private Sijainti tekoalynSiirto;
+    private int[] rivit;
+    private Ruudukko ruudukko;
     
     public Logiikka(int koko) {
         this.koko = koko;
-        this.ruudukko = new int[koko*koko];
         this.rivit = new int[2*koko + 2];
+        this.ruudukko = new Ruudukko(koko);
     }
     
     /**
-     * Metodi palauttaa peliruudukon.
+     * Metodi palauttaa peliruudukosta vastaavan Ruudukko-objektin.
      *
-     * @return palauttaa int[]-muotoisen taulukon eli peliruudukon
+     * @return palauttaa Ruudukko-objektin eli peliruudukon
      */
-    public int[] getRuudukko() {
+    public Ruudukko getRuudukko() {
         return ruudukko;
     }
     
@@ -46,40 +47,7 @@ public class Logiikka {
     }
     
     /**
-     * Metodi tulostaa peliruudukon konsoliin. 
-     * 
-     * @param ruudukko peliruudukon ruutuja kuvaava taulukko
-     *
-     */
-    public void naytaPeliruudukko(int[] ruudukko) {
-        System.out.println();
-        for (int i = 0; i < koko; i++) {
-            for (int j = 0; j < koko; j++) {
-                if (j == koko - 1) {
-                    System.out.print(ruudukko[3*i+j] + "\n");
-                } else {
-                    System.out.print(ruudukko[3*i+j] + " ");
-                }  
-            }
-        }
-        System.out.println();
-    }
-    
-    /**
-     * Metodi tyhjentää peliruudukon uutta peliä varten.
-     *
-     */
-    public void tyhjennaPeliruudukko() {
-        for (int i = 0; i < koko*koko; i++) {
-            ruudukko[i] = 0;
-        }
-        for (int i = 0; i < (koko*2 + 2); i++) {
-            rivit[i] = 0;
-        }
-    }
-    
-    /**
-     * Metodi tallentaa ruudukosta ja riveistä vastaaviin taulukoihin tehdyn siirron.
+     * Metodi tallentaa tehdyn siirron.
      *
      * @param x joko käyttäjän toiminnan tai sovelluslogiikan määrittelemä sijainnin x-koordinaatti
      * @param y joko käyttäjän toiminnan tai sovelluslogiikan määrittelemä sijainnin y-koordinaatti
@@ -87,7 +55,7 @@ public class Logiikka {
      * 
      */
     public void asetaSiirto(int x, int y, int pelaaja) {
-        ruudukko[x + (koko * y)] = pelaaja;
+        this.ruudukko.aseta(x, y, pelaaja);
         
         int lisattava;
         if (pelaaja == 1) {
@@ -108,19 +76,14 @@ public class Logiikka {
     }
     
     /**
-     * Metodi kertoo, onko peliruudukossa mahdollisia siirtoja jäljellä.
-     * 
-     * @param ruudukko taulukko, joka kuvaa peliruudukkoa
-     * 
-     * @return true, mikäli peliruudukossa on vielä vapaita ruutuja
+     * Metodi tyhjentää peliruudukon uutta peliä varten.
+     *
      */
-    public boolean onSiirtojaJaljella(int[] ruudukko) {
-        for (int i = 0; i < koko*koko; i++) {
-            if (ruudukko[i] == 0) {
-                return true;
-            }
+    public void tyhjennaPeliruudukko() {
+        this.ruudukko.tyhjenna();
+        for (int i = 0; i < (koko*2 + 2); i++) {
+            rivit[i] = 0;
         }
-        return false;
     }
     
     /**
@@ -129,7 +92,19 @@ public class Logiikka {
      * @return true, mikäli jompikumpi pelaajista on saanut peliruudukon rivin pituisen suoran tai peliruudukko on täysi
      */
     public boolean peliOhi() {
-        return this.xVoitti() || this.oVoitti() || !this.onSiirtojaJaljella(ruudukko);
+        return this.xVoitti() || this.oVoitti() || !this.ruudukko.onVapaita();
+    }
+    
+    /**
+     * Metodi tarkistaa, onko jokin pelin päättävistä tapahtumista toteutunut.
+     *
+     * @param rivit peliruudukon riveistä koostuva taulukko
+     * @param siirrot jäljellä olevista siirroista koostuva lista
+     * 
+     * @return true, mikäli jompikumpi pelaajista on saanut peliruudukon rivin pituisen suoran tai peliruudukko on täysi
+     */
+    public boolean peliOhi(int[] rivit, List<Integer> siirrot) {
+        return this.xVoitti(rivit) || this.oVoitti(rivit) || siirrot.isEmpty();
     }
     
     /**
@@ -138,6 +113,22 @@ public class Logiikka {
      * @return true, mikäli X-merkin pelaaja (nro 1) on saanut peliruudukon rivin verran vierekkäisiä merkkejä joko pystysuoraan, vaakasuoraan tai viistosti
      */
     public boolean xVoitti() {
+        for (int i = 0; i < (koko*2 + 2); i++) {
+            if (rivit[i] == koko) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * Metodi tarkistaa, onko merkillä X pelannut pelaaja voittanut pelikierroksen.
+     * 
+     * @param rivit peliruudukon riveistä koostuva taulukko
+     * 
+     * @return true, mikäli X-merkin pelaaja (nro 1) on saanut peliruudukon rivin verran vierekkäisiä merkkejä joko pystysuoraan, vaakasuoraan tai viistosti
+     */
+    public boolean xVoitti(int[] rivit) {
         for (int i = 0; i < (koko*2 + 2); i++) {
             if (rivit[i] == koko) {
                 return true;
@@ -161,134 +152,88 @@ public class Logiikka {
     }
     
     /**
-     * Metodi arvioi, onko jompikumpi pelaajista voittanut pelin.
+     * Metodi tarkistaa, onko merkillä O pelannut pelaaja voittanut pelikierroksen.
      * 
-     * @param ruudukko taulukko, joka kuvaa peliruudukkoa
+     * @param rivit peliruudukon riveistä koostuva taulukko
      * 
-     * @return palauttaa pistetilannetta kuvaavan kokonaislukuarvon
+     * @return true, mikäli O-merkin pelaaja (nro 2) on saanut peliruudukon rivin verran vierekkäisiä merkkejä joko pystysuoraan, vaakasuoraan tai viistosti
      */
-    /*public int arvioi(int[][] ruudukko) {
-        for (int i = 0; i < koko; i++) {
-            int riviX = 0;
-            int riviO = 0;
-            int sarakeX = 0;
-            int sarakeO = 0;
-            for (int j = 0; j < koko; j++) {
-                if (ruudukko[i][j] == 1) {
-                    riviX++;
-                }
-                if (ruudukko[i][j] == 2) {
-                    riviO++;
-                }
-                if (ruudukko[j][i] == 1) {
-                    sarakeX++;
-                }
-                if (ruudukko[j][i] == 2) {
-                    sarakeO++;
-                }
-            }
-            if (riviX == koko || sarakeX == koko) {
-                return 10;
-            }
-            if (riviO == koko || sarakeO == koko) {
-                return -10;
+    public boolean oVoitti(int[] rivit) {
+        for (int i = 0; i < (koko*2 + 2); i++) {
+            if (rivit[i] == -koko) {
+                return true;
             }
         }
-        
-        int diag1X = 0;
-        int diag1O = 0;
-        int diag2X = 0;
-        int diag2O = 0;
-        for (int i = 0; i < koko; i++) {
-            if (ruudukko[i][i] == 1) {
-                diag1X++;
-            }
-            if (ruudukko[i][i] == 2) {
-                diag1O++;
-            }
-            if (ruudukko[i][koko - 1 - i] == 1) {
-                diag2X++;
-            }
-            if (ruudukko[i][koko - 1 - i] == 2) {
-                diag2O++;
-            }
-        }
-        if (diag1X == koko || diag2X == koko) {
-            return 10;
-        }
-        if (diag1O == koko || diag2O == koko) {
-            return -10;
-        }
-        return 0;
-    }*/
+        return false;
+    }
     
     /**
-     * Metodi arvioi, onko jompikumpi pelaajista voittanut pelin.
+     * Metodi laskee sovelluksen tekoälytoteutuksella annetun pelivuoron seuraavan siirron.
      * 
-     * @param riv taulukko, joka kuvaa peliruudukon rivejä
+     * @param pelivuoro kokonaisluku, joka kertoo siirtovuorossa olevan pelaajan
      * 
-     * @return palauttaa pistetilannetta kuvaavan kokonaislukuarvon
+     * @return palauttaa luvun -1, mikäli peli on päättynyt, tai tekoälyn suorittaman siirron
      */
-    public int arvioiAlfaBeeta(int[] riv) {
-        for (int i = 0; i < (koko*2 + 2); i++) {
-            if (riv[i] == koko) {
-                return 10;
-            } else if (riv[i] == -koko) {
-                return -10;
-            }
+    public int pelaa(int pelivuoro) {
+        if (peliOhi()) {
+            return -1;
         }
-        return 0;
+        int[] lahtoTilanne = ruudukko.getRuudukko();
+        int[] lahtoRivit = rivit;
+        
+        return minmaxAlfaBeeta(lahtoTilanne, lahtoRivit, 0, pelivuoro, Integer.MIN_VALUE, Integer.MAX_VALUE)[1];
     }
     
     /**
      * Metodi toteuttaa tekoälyn siirron valitsemisesta vastaavan minmax-algoritmin.
      * 
      * @param r taulukko, joka koostuu peliruudukon ruuduista
+     * @param rivit taulukko, joka koostuu peliruudukon riveistä
      * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
      * @param vuoro kokonaisluku, joka kertoo siirtovuorossa olevan pelaajan
      * 
      * @return palauttaa kunkin polun pistetilannetta kuvaavan kokonaislukuarvon
      */
-    /*public int minmax(int[][] r, int syvyys, int vuoro) {
-        int tilanne = arvioi(r);
+    public int minmax(int[] r, int[] rivit, int syvyys, int vuoro) {
+        int tilanne = arvioi(rivit);
         
         if (tilanne == 10) {
             return 10 - syvyys;
         } else if (tilanne == -10) {
             return tilanne + syvyys;
         }
-        if (!onSiirtojaJaljella(r)) {
+        if (getVapaat(r).isEmpty()) {
             return 0;
         }
-        int[][] ruudukko = r;
+        int[] ruudukko = r;
         if (vuoro == 1) {
             int paras = Integer.MIN_VALUE;
             
-            for (int i = 0; i < koko; i++) {
-                for (int j = 0; j < koko; j++) {
-                    if (ruudukko[i][j] == 0) {
-                        ruudukko[i][j] = 1;
-                        paras = Math.max(paras, minmax(ruudukko, syvyys + 1, 2));
-                        ruudukko[i][j] = 0;
-                    }
+            for (int i = 0; i < koko*koko; i++) {
+                if (ruudukko[i] == 0) {
+                    ruudukko[i] = 1;
+                    asetaSiirtoMinMax(rivit, i, 1);
+                    paras = Math.max(paras, minmax(ruudukko, rivit, syvyys + 1, 2));
+                    ruudukko[i] = 0;
+                    poistaSiirtoMinMax(rivit, i, 1);
                 }
             }
             return paras;
         } else {
             int paras = Integer.MAX_VALUE;
             
-            for (int i = 0; i < koko; i++) {
-                for (int j = 0; j < koko; j++) {
-                    if (ruudukko[i][j] == 0) {
-                        ruudukko[i][j] = 2;
-                        paras = Math.min(paras, minmax(ruudukko, syvyys + 1, 1));
-                        ruudukko[i][j] = 0;
-                    }
+            for (int i = 0; i < koko*koko; i++) {
+                if (ruudukko[i] == 0) {
+                    ruudukko[i] = 2;
+                    asetaSiirtoMinMax(rivit, i, 2);
+                    paras = Math.min(paras, minmax(ruudukko, rivit, syvyys + 1, 1));
+                    ruudukko[i] = 0;
+                    poistaSiirtoMinMax(rivit, i, 2);
                 }
             }
             return paras;
         }
-    }*/
+    }
     
     /**
      * Metodi toteuttaa tekoälyn siirron valitsemisesta vastaavan minmax-algoritmin alfa-beeta-karsinnalla.
@@ -300,85 +245,139 @@ public class Logiikka {
      * @param a kokonaisluku, joka kuvaa alfan arvoa
      * @param b kokonaisluku, joka kuvaa beetan arvoa
      * 
-     * @return palauttaa kunkin polun pistetilannetta kuvaavan kokonaislukuarvon
+     * @return palauttaa parhaasta pistetilanteesta ja sitä vastaavasta siirrosta koostuvan taulukon
      */
-    public int minmaxAlfaBeeta(int[] ruudukko, int[] rivit, int syvyys, int vuoro, int a, int b) {
-        int tilanne = arvioiAlfaBeeta(rivit);
+    public int[] minmaxAlfaBeeta(int[] ruudukko, int[] rivit, int syvyys, int vuoro, int a, int b) {
+        List<Integer> siirrot = getVapaat(ruudukko);
+        int parasSiirto = -1;
         
-        if (tilanne == 10) {
-            return 10 - syvyys;
-        } else if (tilanne == -10) {
-            return tilanne + syvyys;
-        }
-        if (!onSiirtojaJaljella(ruudukko)) {
-            return 0;
+        if (peliOhi(rivit, siirrot)) {
+            return new int[] {score(rivit, syvyys), parasSiirto};
         }
         
         if (vuoro == 1) {
-            int paras = Integer.MIN_VALUE;
-            
-            for (int i = 0; i < koko*koko; i++) {
-                if (ruudukko[i] == 0) {
-                    ruudukko[i] = 1;
-                    
-                    int x = i % koko;
-                    int y = (int) Math.floor(i/koko);
-                    asetaSiirtoMinMax(rivit, x, y, 1);
-                    
-                    int seuraava = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 2, a, b);
-                    
-                    ruudukko[i] = 0;
-                    poistaSiirtoMinMax(rivit, x, y, 1);
-                    paras = Math.max(paras, seuraava);
-                    
-                    if (seuraava >= b) {
-                        return paras;
-                    }
-                    if (seuraava > a) {
-                        a = seuraava;
-                    }
-                }
-            }
-            return paras;
+            return max(siirrot, parasSiirto, ruudukko, rivit, syvyys, a, b);
         } else {
-            int paras = Integer.MAX_VALUE;
-            
-            for (int i = 0; i < koko*koko; i++) {
-                if (ruudukko[i] == 0) {
-                    ruudukko[i] = 2;
-                    
-                    int x = i % koko;
-                    int y = (int) Math.floor(i/koko);
-                    asetaSiirtoMinMax(rivit, x, y, 2);
-                    
-                    int seuraava = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 1, a, b);
-                    
-                    ruudukko[i] = 0;
-                    poistaSiirtoMinMax(rivit, x, y, 2);
-                    paras = Math.min(paras, seuraava);
-                    
-                    if (seuraava <= a) {
-                        return paras;
-                    }
-                    if (seuraava < b) {
-                        b = seuraava;
-                    }
-                }
-            }
-            return paras;
+            return min(siirrot, parasSiirto, ruudukko, rivit, syvyys, a, b);
         }
     }
     
     /**
-     * Metodi tallentaa ruudukosta ja riveistä vastaaviin taulukoihin tehdyn siirron minmax-toteutuksessa.
+     * Metodi toteuttaa alfa-beeta-karsinnan max-haaran.
+     * 
+     * @param siirrot lista mahdollisista siirroista
+     * @param paras kokonaisluku, joka kuvaa tähän mennessä parasta löydettyä siirtoa
+     * @param ruudukko taulukko, joka koostuu peliruudukon ruuduista
+     * @param rivit taulukko, joka kuvaa peliruudukon rivejä
+     * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
+     * @param a kokonaisluku, joka kuvaa alfan arvoa
+     * @param b kokonaisluku, joka kuvaa beetan arvoa
+     * 
+     * @return palauttaa parhaasta pistetilanteesta ja sitä vastaavasta siirrosta koostuvan taulukon
+     */
+    private int[] max(List<Integer> siirrot, int paras, int[] ruudukko, int[] rivit, int syvyys, int a, int b) {    
+        for (int siirto : siirrot) {
+            ruudukko[siirto] = 1;
+            asetaSiirtoMinMax(rivit, siirto, 1);
+                    
+            int score = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 2, a, b)[0];
+                    
+            ruudukko[siirto] = 0;
+            poistaSiirtoMinMax(rivit, siirto, 1);
+                    
+            if (score > a) {
+                a = score;
+                paras = siirto;
+            }
+            if (a >= b) {
+                break;
+            }  
+        }
+        return new int[] {a, paras};
+    }
+    
+    /**
+     * Metodi toteuttaa alfa-beeta-karsinnan min-haaran.
+     * 
+     * @param siirrot lista mahdollisista siirroista
+     * @param paras kokonaisluku, joka kuvaa tähän mennessä parasta löydettyä siirtoa
+     * @param ruudukko taulukko, joka koostuu peliruudukon ruuduista
+     * @param rivit taulukko, joka kuvaa peliruudukon rivejä
+     * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
+     * @param a kokonaisluku, joka kuvaa alfan arvoa
+     * @param b kokonaisluku, joka kuvaa beetan arvoa
+     * 
+     * @return palauttaa parhaasta pistetilanteesta ja sitä vastaavasta siirrosta koostuvan taulukon
+     */
+    private int[] min(List<Integer> siirrot, int paras, int[] ruudukko, int[] rivit, int syvyys, int a, int b) {   
+        for (int siirto : siirrot) {
+            ruudukko[siirto] = 2;
+            asetaSiirtoMinMax(rivit, siirto, 2);
+                 
+            int score = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 1, a, b)[0];
+                    
+            ruudukko[siirto] = 0;
+            poistaSiirtoMinMax(rivit, siirto, 2);
+                 
+            if (score < b) {
+                b = score;
+                paras = siirto;
+            }
+            if (a >= b) {
+                break;
+            }
+        }
+        return new int [] {b, paras};
+    }
+    
+    /**
+     * Metodi laskee pistetilanteen pelin päättyessä.
+     * 
+     * @param rivit taulukko, joka kuvaa peliruudukon rivejä
+     * @param syvyys kokonaisluku, joka kuvaa suoritettujen uudelleenkutsujen määrän
+     * 
+     * @return palauttaa pistetilannetta kuvaavan kokonaislukuarvon
+     */
+    public int score(int[] rivit, int syvyys) {
+        int tilanne = arvioi(rivit);
+        
+        if (tilanne == (koko*koko + 1)) {
+            return (koko*koko + 1) - syvyys;
+        } else if (tilanne == -(koko*koko + 1)) {
+            return -(koko*koko + 1) + syvyys;
+        }
+        return 0;
+    }
+    
+    /**
+     * Metodi arvioi, onko jompikumpi pelaajista voittanut pelin.
+     * 
+     * @param riv taulukko, joka kuvaa peliruudukon rivejä
+     * 
+     * @return palauttaa pistetilannetta kuvaavan kokonaislukuarvon
+     */
+    public int arvioi(int[] riv) {
+        for (int i = 0; i < (koko*2 + 2); i++) {
+            if (riv[i] == koko) {
+                return (koko*koko + 1);
+            } else if (riv[i] == -koko) {
+                return -(koko*koko + 1);
+            }
+        }
+        return 0;
+    }
+    
+    /**
+     * Metodi tallentaa riveistä vastaavaan taulukkoon minmax-toteutuksessa tehdyn siirron.
      *
      * @param riv taulukko, joka kuvaa peliruudukon rivejä
-     * @param x minmax-algoritmin määrittelemä sijainnin x-koordinaatti
-     * @param y minmax-algoritmin määrittelemä sijainnin y-koordinaatti
+     * @param siirto kokonaisluku, joka kuvaa tehtävää siirtoa
      * @param pelaaja kokonaisluku, joka määrittelee siirron tehneen pelaajan
      * 
      */
-    public void asetaSiirtoMinMax(int[] riv, int x, int y, int pelaaja) {
+    public void asetaSiirtoMinMax(int[] riv, int siirto, int pelaaja) {
+        int x = siirto % koko;
+        int y = (int) Math.floor(siirto/koko);
         
         int lisattava;
         if (pelaaja == 1) {
@@ -399,15 +398,16 @@ public class Logiikka {
     }
     
     /**
-     * Metodi poistaa ruudukosta ja riveistä vastaaviin taulukoihin tehdyn siirron minmax-toteutuksessa.
+     * Metodi poistaa riveistä vastaavaan taulukkoon minmax-toteutuksessa tehdyn siirron.
      *
      * @param riv taulukko, joka kuvaa peliruudukon rivejä
-     * @param x minmax-algoritmin määrittelemä sijainnin x-koordinaatti
-     * @param y minmax-algoritmin määrittelemä sijainnin y-koordinaatti
+     * @param siirto kokonaisluku, joka kuvaa tehtävää siirtoa
      * @param pelaaja kokonaisluku, joka määrittelee siirron tehneen pelaajan
      * 
      */
-    public void poistaSiirtoMinMax(int[] riv, int x, int y, int pelaaja) {
+    public void poistaSiirtoMinMax(int[] riv, int siirto, int pelaaja) {
+        int x = siirto % koko;
+        int y = (int) Math.floor(siirto/koko);
         
         int lisattava;
         if (pelaaja == 1) {
@@ -428,60 +428,19 @@ public class Logiikka {
     }
     
     /**
-     * Metodi laskee sovelluksen tekoälytoteutuksella valitun merkin pelaajan seuraavan siirron.
+     * Metodi selvittää vapaina olevat ruudut.
      * 
-     * @param pelivuoro kokonaisluku, joka kertoo siirtovuorosso olevan pelaajan
+     * @param ruudukko taulukko, joka kuvaa peliruudukkoa
      * 
-     * @see ristinolla.domain.Sijainti
-     * 
-     * @return palauttaa luvun -1, mikäli peli on päättynyt, tai tekoälyn suorittaman siirron koordinaatit
+     * @return palauttaa vapaina olevista ruuduista koostuvan listan
      */
-    public int pelaa(int pelivuoro) {
-        if (peliOhi()) {
-            return -1;
-        }
-        
-        tekoalynSiirto = new Sijainti(-1, -1);
-        
-        int[] lahtoTilanne = ruudukko;
-        int[] lahtoRivit = rivit;
-  
-        int paras = Integer.MIN_VALUE;
-        
-        int toinen;
-        if (pelivuoro == 1) {
-            toinen = 2;
-        } else {
-            toinen = 1;
-            paras = Integer.MAX_VALUE;
-        }
-        
+    public List<Integer> getVapaat(int[]ruudukko) {
+        List<Integer> vapaat = new ArrayList<>();
         for (int i = 0; i < koko*koko; i++) {
-            if (lahtoTilanne[i] == 0) {
-                lahtoTilanne[i] = pelivuoro;
-                
-                int x = i % koko;
-                int y = (int) Math.floor(i/koko);
-                asetaSiirtoMinMax(lahtoRivit, x, y, pelivuoro);
-                    
-                int valinta = minmaxAlfaBeeta(lahtoTilanne, lahtoRivit, 0, toinen, Integer.MIN_VALUE, Integer.MAX_VALUE);
-                    
-                lahtoTilanne[i] = 0;
-                poistaSiirtoMinMax(lahtoRivit, x, y, pelivuoro);
-                    
-                System.out.println("Siirto: " + x + ", " + y + " saa tuloksen " + valinta);
-                    
-                if (valinta > paras && pelivuoro == 1) {
-                    paras = valinta;
-                    tekoalynSiirto = new Sijainti(x, y);
-                }
-                if (valinta < paras && pelivuoro == 2) {
-                    paras = valinta;
-                    tekoalynSiirto = new Sijainti(x, y);
-                }
+            if (ruudukko[i] == 0) {
+                vapaat.add(i);
             }
         }
-             
-        return tekoalynSiirto.getX() + tekoalynSiirto.getY() * koko;
+        return vapaat;
     }
 }
