@@ -20,9 +20,12 @@ Tunteja yhteensä tällä viikolla: 18
 - Vertaisarvio
 
 ## Mitä opin tällä viikolla
+Opin tällä viikolla alfa-beeta-karsinnan toteuttamisesta ja algoritmin suorituskyvyn testaamisesta. Luin eri lähteistä alfa-beeta-karsinnan toteuttamisesta eri konteksteissa ja opin hahmottamaan, mikä ero toteutustavoilla on. Opin myös uutta tekemällä toisen opiskelijan työstä vertaisarvion. Koska työn aihe oli hyvin erilainen kuin omani, käytin paljon aikaa siihen perehtymiseen.
 
 ## Mikä oli haastavaa
 
+
 ## Seuraavan viikon tavoitteet
+Koodia tällä viikolla muokatessani jouduin lisäämään valmiin List-tietorakenteen, josta pyrin pääsemään eroon ensi viikolla. Lisäksi aion jatkaa algoritmini tehokkuuden hiomisen parissa.
 
 ## Kysymyksiä ja palautetta ohjaajalle
