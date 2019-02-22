@@ -5,8 +5,7 @@
  */
 package ristinolla.logics;
 
-import java.util.ArrayList;
-import java.util.List;
+import ristinolla.domain.ArrayList;
 import ristinolla.domain.Ruudukko;
 
 /**
@@ -103,7 +102,7 @@ public class Logiikka {
      * 
      * @return true, mikäli jompikumpi pelaajista on saanut peliruudukon rivin pituisen suoran tai peliruudukko on täysi
      */
-    public boolean peliOhi(int[] rivit, List<Integer> siirrot) {
+    public boolean peliOhi(int[] rivit, ArrayList<Integer> siirrot) {
         return this.xVoitti(rivit) || this.oVoitti(rivit) || siirrot.isEmpty();
     }
     
@@ -181,7 +180,9 @@ public class Logiikka {
         int[] lahtoTilanne = ruudukko.getRuudukko();
         int[] lahtoRivit = rivit;
         
-        return minmaxAlfaBeeta(lahtoTilanne, lahtoRivit, 0, pelivuoro, Integer.MIN_VALUE, Integer.MAX_VALUE)[1];
+        int maxSyvyys = 6;
+        
+        return minmaxAlfaBeeta(lahtoTilanne, lahtoRivit, 0, maxSyvyys, pelivuoro, Integer.MIN_VALUE, Integer.MAX_VALUE)[1];
     }
     
     /**
@@ -194,7 +195,7 @@ public class Logiikka {
      * 
      * @return palauttaa kunkin polun pistetilannetta kuvaavan kokonaislukuarvon
      */
-    public int minmax(int[] r, int[] rivit, int syvyys, int vuoro) {
+    /*public int minmax(int[] r, int[] rivit, int syvyys, int vuoro) {
         int tilanne = arvioi(rivit);
         
         if (tilanne == 10) {
@@ -233,7 +234,7 @@ public class Logiikka {
             }
             return paras;
         }
-    }
+    }*/
     
     /**
      * Metodi toteuttaa tekoälyn siirron valitsemisesta vastaavan minmax-algoritmin alfa-beeta-karsinnalla.
@@ -241,24 +242,25 @@ public class Logiikka {
      * @param ruudukko taulukko, joka koostuu peliruudukon ruuduista
      * @param rivit taulukko, joka kuvaa peliruudukon rivejä
      * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
+     * @param maxSyvyys kokonaisluku, joka kuvaa syvyyshaun rajaa
      * @param vuoro kokonaisluku, joka kertoo siirtovuorossa olevan pelaajan
      * @param a kokonaisluku, joka kuvaa alfan arvoa
      * @param b kokonaisluku, joka kuvaa beetan arvoa
      * 
      * @return palauttaa parhaasta pistetilanteesta ja sitä vastaavasta siirrosta koostuvan taulukon
      */
-    public int[] minmaxAlfaBeeta(int[] ruudukko, int[] rivit, int syvyys, int vuoro, int a, int b) {
-        List<Integer> siirrot = getVapaat(ruudukko);
+    public int[] minmaxAlfaBeeta(int[] ruudukko, int[] rivit, int syvyys, int maxSyvyys, int vuoro, int a, int b) {
+        ArrayList<Integer> siirrot = getVapaat(ruudukko);
         int parasSiirto = -1;
         
-        if (peliOhi(rivit, siirrot)) {
+        if (peliOhi(rivit, siirrot) || syvyys == maxSyvyys) {
             return new int[] {score(rivit, syvyys), parasSiirto};
         }
         
         if (vuoro == 1) {
-            return max(siirrot, parasSiirto, ruudukko, rivit, syvyys, a, b);
+            return max(siirrot, parasSiirto, ruudukko, rivit, syvyys, maxSyvyys, a, b);
         } else {
-            return min(siirrot, parasSiirto, ruudukko, rivit, syvyys, a, b);
+            return min(siirrot, parasSiirto, ruudukko, rivit, syvyys, maxSyvyys, a, b);
         }
     }
     
@@ -270,17 +272,18 @@ public class Logiikka {
      * @param ruudukko taulukko, joka koostuu peliruudukon ruuduista
      * @param rivit taulukko, joka kuvaa peliruudukon rivejä
      * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
+     * @param maxSyvyys kokonaisluku, joka kuvaa syvyyshaun rajaa
      * @param a kokonaisluku, joka kuvaa alfan arvoa
      * @param b kokonaisluku, joka kuvaa beetan arvoa
      * 
      * @return palauttaa parhaasta pistetilanteesta ja sitä vastaavasta siirrosta koostuvan taulukon
      */
-    private int[] max(List<Integer> siirrot, int paras, int[] ruudukko, int[] rivit, int syvyys, int a, int b) {    
+    private int[] max(ArrayList<Integer> siirrot, int paras, int[] ruudukko, int[] rivit, int syvyys, int maxSyvyys, int a, int b) {    
         for (int siirto : siirrot) {
             ruudukko[siirto] = 1;
             asetaSiirtoMinMax(rivit, siirto, 1);
                     
-            int score = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 2, a, b)[0];
+            int score = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, maxSyvyys, 2, a, b)[0];
                     
             ruudukko[siirto] = 0;
             poistaSiirtoMinMax(rivit, siirto, 1);
@@ -304,17 +307,18 @@ public class Logiikka {
      * @param ruudukko taulukko, joka koostuu peliruudukon ruuduista
      * @param rivit taulukko, joka kuvaa peliruudukon rivejä
      * @param syvyys kokonaisluku, joka kertoo kunkin uudelleenkutsun syvyyden
+     * @param maxSyvyys kokonaisluku, joka kuvaa syvyyshaun rajaa
      * @param a kokonaisluku, joka kuvaa alfan arvoa
      * @param b kokonaisluku, joka kuvaa beetan arvoa
      * 
      * @return palauttaa parhaasta pistetilanteesta ja sitä vastaavasta siirrosta koostuvan taulukon
      */
-    private int[] min(List<Integer> siirrot, int paras, int[] ruudukko, int[] rivit, int syvyys, int a, int b) {   
+    private int[] min(ArrayList<Integer> siirrot, int paras, int[] ruudukko, int[] rivit, int syvyys, int maxSyvyys, int a, int b) {   
         for (int siirto : siirrot) {
             ruudukko[siirto] = 2;
             asetaSiirtoMinMax(rivit, siirto, 2);
                  
-            int score = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, 1, a, b)[0];
+            int score = minmaxAlfaBeeta(ruudukko, rivit, syvyys + 1, maxSyvyys, 1, a, b)[0];
                     
             ruudukko[siirto] = 0;
             poistaSiirtoMinMax(rivit, siirto, 2);
@@ -434,8 +438,8 @@ public class Logiikka {
      * 
      * @return palauttaa vapaina olevista ruuduista koostuvan listan
      */
-    public List<Integer> getVapaat(int[]ruudukko) {
-        List<Integer> vapaat = new ArrayList<>();
+    public ArrayList<Integer> getVapaat(int[]ruudukko) {
+        ArrayList<Integer> vapaat = new ArrayList<>();
         for (int i = 0; i < koko*koko; i++) {
             if (ruudukko[i] == 0) {
                 vapaat.add(i);

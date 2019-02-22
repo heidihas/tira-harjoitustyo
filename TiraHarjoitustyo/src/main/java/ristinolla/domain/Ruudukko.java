@@ -84,9 +84,9 @@ public class Ruudukko {
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 if (j == koko - 1) {
-                    System.out.print(ruudukko[3*i+j] + "\n");
+                    System.out.print(ruudukko[koko*i+j] + "\n");
                 } else {
-                    System.out.print(ruudukko[3*i+j] + " ");
+                    System.out.print(ruudukko[koko*i+j] + " ");
                 }  
             }
         }

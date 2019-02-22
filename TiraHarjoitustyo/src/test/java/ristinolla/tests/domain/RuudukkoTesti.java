@@ -5,6 +5,8 @@
  */
 package ristinolla.tests.domain;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -87,5 +89,18 @@ public class RuudukkoTesti {
         ruudukko.aseta(2, 2, 1);
         ruudukko.tyhjenna();
         assertTrue(ruudukko.getVapaita() == 9);      
+    }
+    
+    @Test
+    public void printtaa() throws Exception {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        ruudukko.tulosta();
+        String odotettuTulostus = "\n"
+                + "0 0 0\n"
+                + "0 0 0\n"
+                + "0 0 0\n"
+                + "\n";
+        assertEquals(odotettuTulostus, outContent.toString());
     }
 }

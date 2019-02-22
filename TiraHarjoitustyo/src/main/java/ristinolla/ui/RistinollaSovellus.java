@@ -5,8 +5,6 @@
  */
 package ristinolla.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -21,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import ristinolla.domain.ArrayList;
 import ristinolla.domain.Sijainti;
 import ristinolla.logics.Logiikka;
 
@@ -73,7 +72,7 @@ public class RistinollaSovellus extends Application {
         
         Label valinta2 = new Label("Ruudukon koko: ");
         ChoiceBox kokoValinta = new ChoiceBox(FXCollections.observableArrayList("3", 
-                "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"));
+                "4", "5", "6", "7", "8"));
         Label error2 = new Label("");
         error2.setTextFill(Color.INDIANRED);
         
@@ -123,7 +122,7 @@ public class RistinollaSovellus extends Application {
         tekstiPaneeli.setAlignment(Pos.CENTER);
         tekstiPaneeli.setPadding(new Insets(58, 20, 30, 20));
         
-        List <Button> napit = new ArrayList<>();
+        ArrayList <Button> napit = new ArrayList<>();
         
         Button tyhjennaNappi = new Button("Tyhjennä");
         Button uusiPeliNappi = new Button("Uusi peli");
@@ -188,7 +187,7 @@ public class RistinollaSovellus extends Application {
                 } else {
                     valittuPelimuoto = 2;
                 }
-                pelaa(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
+                ajaPeli(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
                 ikkuna.setScene(nakymaPeli);
             } 
         });
@@ -211,7 +210,7 @@ public class RistinollaSovellus extends Application {
                 } else {
                     valittuPelimuoto = 2;
                 }
-            pelaa(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
+            ajaPeli(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
             ikkuna.setScene(nakymaPeli);
         });
         
@@ -242,7 +241,7 @@ public class RistinollaSovellus extends Application {
      * @see ristinolla.domain.Sijainti
      * 
      */
-    private void pelaa(int koko, int valittuVuoro, int valittuPelimuoto, List <Button> napit, BorderPane asetteluPeli, Label teksti) {
+    private void ajaPeli(int koko, int valittuVuoro, int valittuPelimuoto, ArrayList <Button> napit, BorderPane asetteluPeli, Label teksti) {
         // pelilogiikan alustaminen valitulla koolla
         logiikka = new Logiikka(koko);
         
@@ -386,7 +385,7 @@ public class RistinollaSovellus extends Application {
      * @return palauttaa uuden luodun ruudukon
      * 
      */
-    private GridPane luoRuudukko(int koko, List <Button> napit) {
+    private GridPane luoRuudukko(int koko, ArrayList <Button> napit) {
         // nappien luominen
         GridPane ruudukko = new GridPane();
         for (int y = 1; y <= koko; y++) {
@@ -409,7 +408,7 @@ public class RistinollaSovellus extends Application {
      * @param napit peliruudukon ruutuja edustavista napeista koostuva lista
      * 
      */
-    private void tyhjenna(Label teksti, List <Button> napit) {
+    private void tyhjenna(Label teksti, ArrayList <Button> napit) {
         teksti.setText("");
         for (int i = 0; i < napit.size(); i++) {
             napit.get(i).setDisable(false);
