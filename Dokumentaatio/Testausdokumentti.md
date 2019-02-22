@@ -82,7 +82,3 @@ Koodin laatua ja kirjoitusasua testataan Checkstyle-pluginilla. Tiedostoon [chec
 ```
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedoston _target/site/checkstyle.html_
-
-## Testauksen tulos jatkokehittelystä
-
-Tulossa...
