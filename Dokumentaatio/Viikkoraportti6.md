@@ -2,9 +2,10 @@
 
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
 
-Tunteja yhteensä tällä viikolla: ??
+Tunteja yhteensä tällä viikolla: 15
 
 ## Viikolla tehtyä
+-
 
 ## Mitä opin tällä viikolla
 
