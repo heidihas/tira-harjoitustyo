@@ -26,7 +26,7 @@ Testikattavuusraportti voidaan luoda komennolla
 mvn org.pitest:pitest-maven:mutationCoverage
 ```
 
-Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston _target/pit-reports/201902081251/index.html_
+Kattavuusraporttia voi tarkastella avaamalla selaimella tiedoston _target/pit-reports/XXXXXXXXXXXX/index.html_, missä XXXXXXXXXXXX kuvaa automaattisesti luotua kattavuusraporttiin yhdistettävää numerosarjaa.
 
 ## Järjestelmätestaus
 
