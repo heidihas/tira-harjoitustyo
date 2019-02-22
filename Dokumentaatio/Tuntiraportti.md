@@ -52,7 +52,7 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 
 Päivämäärä       | Käytetty aika | Tehtyä |
 -----------|------|--------|
-17.2. | 2h | Kirjoita |
-19.2. | 5h | Kirjoita |
-21.2. | 2h   | Kirjoita |
-22.2. | 6h   | Kirjoita |
+17.2. | 2h | Tehokkaamman toteutuksen pohtiminen suuremmille peliruudukoille, debuggaaminen, aiheesta lukeminen |
+19.2. | 5h | ArrayList-tietorakenteen toteuttaminen, omaa työtä koskevaan vertaisarvioon tutustuminen |
+21.2. | 2h   | Hakusyvyyden rajoittaminen algoritmissa, suorituskyvyn testaaminen ja sovelluksen toiminnan seuraaminen |
+22.2. | 6h   | Vertaisarvio, omaa työtä koskevaan vertaisarvioon tutustuminen, yksikkötestien kirjoittaminen (testikattavuus >90%), Toteutusdokumentin jatkaminen, Testausdokumentin päivittäminen, viikkoraportin laatiminen |
