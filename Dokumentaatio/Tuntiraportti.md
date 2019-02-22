@@ -38,7 +38,6 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 8.2. | 5h   | Dokumentaatio, viikkoraportin laatiminen |
 
 
-
 ## Viikko 5
 
 Päivämäärä       | Käytetty aika | Tehtyä |
@@ -47,3 +46,13 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 12.2. | 3h | Peliruudukon muuttaminen lineaariseksi taulukoksi, testien muokkaus |
 14.2. | 4h   | Oman tietorakenteen luominen, vertaisarvio |
 15.2. | 9h   | Yrityksiä muokata algoritmi tehokkaammaksi, alfa-beeta-karsinnasta lukeminen, algoritmin pilkkominen ja muokkaaminen, AlfaBeeta-luokan ja sitä vastaavan RuudukkoAlfaBeeta-luokan luominen, algoritmin koodin debuggaaminen, suorituskykytestauksen suorittaminen, Testausdokumentin päivittäminen, yksikkötestien muokkaaminen, koodin kommentointi, viikkoraportin kirjoittaminen |
+
+
+## Viikko 6
+
+Päivämäärä       | Käytetty aika | Tehtyä |
+-----------|------|--------|
+17.2. | 2h | Kirjoita |
+19.2. | 5h | Kirjoita |
+21.2. | 2h   | Kirjoita |
+22.2. | 6h   | Kirjoita |
