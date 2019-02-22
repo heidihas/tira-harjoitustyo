@@ -24,5 +24,7 @@ T채m채 projekti on osa Helsingin yliopistossa kev채채ll채 2019 j채rjestett채v채�
 
 [Viikkoraportti 5](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Viikkoraportti5.md)
 
+[Viikkoraportti 6](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Viikkoraportti6.md)
+
 ### Tuntiraportti
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
