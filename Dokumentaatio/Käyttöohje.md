@@ -23,7 +23,7 @@ Peli etenee käyttäjän ja tietokoneen siirtovalintoja vuorotellen. Tavoitteena
 
 <img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Mallipeli.png" width="450">
 
-Mikäli sovellusta ajetaan NetBeansista käsin, tulostuu kukin suoritettu siirto pelikierroksen aikana konsoliin. Tulosteista näkyvät tehdyn siirron koordinaatit ja se, suorittiko siirron käyttäjä tai tekoäly. Lisäksi tulosteessa ilmoitetaan, miten kauan aikaa kului kunkin tietokonepelaajan siirron laskemiseen.
+Pelikierroksen aikana kukin suoritettu siirto tulostuu konsoliin. Tulosteista näkyvät tehdyn siirron koordinaatit ja se, suorittiko siirron käyttäjä tai tekoäly. Lisäksi tulosteessa ilmoitetaan, miten kauan aikaa kului kunkin tietokonepelaajan siirron laskemiseen.
 
 ## Pelikierroksen jälkeen
 Kun pelikierros on päättynyt, ilmoittaa sovellus pelikierroksen mahdollisen voittajan tai muussa tapauksessa ainoastaan pelikierroksen päättymisestä. Pelikierroksen päätyttyä kaikkien peliruudukon nappien klikkaaminen estetään alla olevan kuvan mukaisesti.
@@ -33,6 +33,6 @@ Kun pelikierros on päättynyt, ilmoittaa sovellus pelikierroksen mahdollisen vo
 Peliruudukon alla on kaksi nappia, joiden klikkaaminen on mahdollista niin pelikierroksen aikana kuin pelikierroksen päätyttyä. Tyhjennä-nappi tyhjentää pelinäkymässä olevan peliruudukon ja aloittaa pelin alusta samoilla pelivalinnoilla (käyttäjän merkki, ruudukon koko). Uusi peli -nappi puolestaan vie käyttäjän takaisin sovelluksen aloitusnäkymään, jossa käyttäjän on mahdollista tehdä uudet valinnat seuraavaa pelikierrosta varten.
 
 ## Mallipeli
-Käyttäjän on yksinpelin lisäksi mahdollista valita pelityypiksi mallipeli, jolloin tietokone pelaa itseään vastaan. Mallipelissä sovellusikkuna muistuttaa yksinpelin näkymää pelikierroksen jälkeen: kaikkien peliruudukon nappien klikkaaminen on estetty ja sovellus ilmoittaa pelikierroksen päättymisestä tai mahdollisesta voittajasta. Mikäli sovellusta suoritetaan NetBeansista käsin, tulostuu konsoliin mallipeli vaiheittain. Tulosteessa näkyvät tietokoneen suorittamat siirrot mallipelin aikana (niin koordinaatein kuin tulostettavassa peliruudukossa esitettynä) sekä niiden laskemiseen kuluneet ajat.
+Käyttäjän on yksinpelin lisäksi mahdollista valita pelityypiksi mallipeli, jolloin tietokone pelaa itseään vastaan. Mallipelissä sovellusikkuna muistuttaa yksinpelin näkymää pelikierroksen jälkeen: kaikkien peliruudukon nappien klikkaaminen on estetty ja sovellus ilmoittaa pelikierroksen päättymisestä tai mahdollisesta voittajasta. Konsoliin tulostuu mallipeli vaiheittain. Tulosteessa näkyvät tietokoneen suorittamat siirrot mallipelin aikana (niin koordinaatein kuin tulostettavassa peliruudukossa esitettynä) sekä niiden laskemiseen kuluneet ajat.
 
 Tyhjennä-nappia klikkaamalla käyttäjä voi laskea uuden mallipelin.
