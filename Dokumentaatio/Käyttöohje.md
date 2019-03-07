@@ -9,9 +9,9 @@ Sovellus käynnistyy ajamalla git-repositorion päähakemistosta löytyvä Jar-t
 
 Pelin käynnistyessä avautuu aloitusnäkymän käsittävä ikkuna (katso yllä), jolla käyttäjä voi päättää seuraavan pelikierroksen. Valmiista valikoista käyttäjän on mahdollista valita oma pelimerkkinsä ja peliruudukon koko. Lisäksi käyttäjän on mahdollista valita joko yksinpeli eli käyttäjä vastaan tietokone -muotoinen pelikierros tai mallipeli, jossa tietokone pelaa itse itseään vastaan. Valintojen jälkeen pelaamaan pääsee klikkaamalla Aloita-nappia.
 
-<img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Virheviestit.png" width="600">
+Mikäli käyttäjä yrittää päästä pelaamaan virheellisellä syötteellä, varoittaa sovellus tästä alla olevan kuvan mukaisilla virheviesteillä. Jokaista pelikierrosta varten on valittava peliruudukon koko ja pelityyppi. Käyttäjän pelimerkin valinta vaaditaan ainoastaan silloin, kun pelityypiksi on valittu yksinpeli.
 
-Mikäli käyttäjä yrittää päästä pelaamaan virheellisellä syötteellä, varoittaa sovellus tästä yllä olevan kuvan mukaisilla virheviesteillä. Jokaista pelikierrosta varten on valittava peliruudukon koko ja pelityyppi. Käyttäjän pelimerkin valinta vaaditaan ainoastaan silloin, kun pelityypiksi on valittu yksinpeli.
+<img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Virheviestit.png" width="600">
 
 ## Pelikierroksen eteneminen yksinpelissä
 Kun käyttäjä on klikannut Aloita-nappia onnistuneesti ja valittu pelityyppi on yksinpeli, avautuu alla olevan kuvan pelinäkymä sovellusikkunaan olettaen, että valittu peliruudukon koko on 3x3 ja käyttäjä haluaa aloittaa pelin (valittu pelimerkki on X). 
@@ -27,10 +27,9 @@ Peli etenee käyttäjän ja tietokoneen siirtovalintoja vuorotellen. Tavoitteena
 Mikäli sovellusta ajetaan NetBeansista käsin, tulostuu kukin suoritettu siirto pelikierroksen aikana konsoliin. Tulosteista näkyvät tehdyn siirron koordinaatit ja se, suorittiko siirron käyttäjä tai tekoäly. Lisäksi tulosteessa ilmoitetaan, miten kauan aikaa kului kunkin tietokonepelaajan siirron laskemiseen.
 
 ## Pelikierroksen jälkeen
+Kun pelikierros on päättynyt, ilmoittaa sovellus pelikierroksen mahdollisen voittajan tai muussa tapauksessa ainoastaan pelikierroksen päättymisestä. Pelikierroksen päätyttyä kaikkien peliruudukon nappien klikkaaminen estetään alla olevan kuvan mukaisesti.
 
 <img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/O-voitti.png" width="600">
-
-Kun pelikierros on päättynyt, ilmoittaa sovellus pelikierroksen mahdollisen voittajan tai muussa tapauksessa ainoastaan pelikierroksen päättymisestä. Pelikierroksen päätyttyä kaikkien peliruudukon nappien klikkaaminen estetään alla olevan kuvan mukaisesti.
 
 Peliruudukon alla on kaksi nappia, joiden klikkaaminen on mahdollista niin pelikierroksen aikana kuin pelikierroksen päätyttyä. Tyhjennä-nappi tyhjentää pelinäkymässä olevan peliruudukon ja aloittaa pelin alusta samoilla pelivalinnoilla (käyttäjän merkki, ruudukon koko). Uusi peli -nappi puolestaan vie käyttäjän takaisin sovelluksen aloitusnäkymään, jossa käyttäjän on mahdollista tehdä uudet valinnat seuraavaa pelikierrosta varten.
 
