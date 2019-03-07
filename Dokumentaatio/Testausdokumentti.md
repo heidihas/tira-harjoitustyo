@@ -63,7 +63,7 @@ Peliruudukon koko | Puolustavan siirron keskiarvo (ms) |
 7x7 | 474,3 |
 8x8 | 1 867,9 |
 
-Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen puolustavaan siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tämä aiheutuu algoritmin eksponentiaalisuudesta. Alla olevalla graafisella kuvaajalla on pisteet, joiden y-akselin arvo kuvaa yllä olevan taulukon esittämiä puolustavan siirron keskiarvoja peliruudukon kasvavan koon funktiona. Kuvaajasta huomataan, että sen muoto tosiaan muistuttaa eksponenttifunktion kuvaajan muotoa.
+Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen puolustavaan siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tämä aiheutuu algoritmin eksponentiaalisuudesta. Alla olevassa graafisessa esityksessä on pisteet, joiden y-akselin arvo kuvaa yllä olevan taulukon esittämiä puolustavan siirron keskiarvoja. Jos nämä pisteet yhdistettäisiin, saataisiin kasvava kuvaaja, joka esittäisi puolustavan siirron keskiarvoa peliruudukon koon funktiona. Kuvaajasta huomattaisiin, että sen muoto tosiaan muistuttaa eksponenttifunktion kuvaajan muotoa.
 
 <img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Suorituskyky_testaus_graafi.png" width="500">
 
