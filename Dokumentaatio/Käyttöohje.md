@@ -15,10 +15,14 @@ Kaikkia vapaina olevia peliruudukon ruutuja on mahdollista klikata, ja vapaiden 
 
 Peli etenee käyttäjän ja tietokoneen siirtovalintoja vuorotellen. Tavoitteena on muodostaa omalla pelimerkillä ruudukon sivun pituinen vaaka- pystysuora- tai viistorivi ja estää vastustajan voittaminen. Pelikierros päättyy, mikäli jompikumpi pelaajista on saanut voittorivin, peliruudukossa ei ole enää siirtoja jäljellä tai kummallakaan pelaajalla ei ole enää mahdollisuutta voittaa. Näistä jälkimmäisimmän tapauksen muodostaa sellainen peliruudukko, johon ei ole enää mahdollista muodostaa kummallakaan pelimerkillä voittoon tarvittavaa riviä. Esimerkki tällaisesta peliruudukosta on alla olevassa kuvassa.
 
+Mikäli sovellusta ajetaan NetBeansista käsin, tulostuu kukin suoritettu siirto pelikierroksen aikana konsoliin. Tulosteista näkyvät tehdyn siirron koordinaatit ja se, suorittiko siirron käyttäjä tai tekoäly. Lisäksi tulosteessa ilmoitetaan, miten kauan aikaa kului kunkin tietokonepelaajan siirron laskemiseen.
+
 ## Pelikierroksen jälkeen
 Kun pelikierros on päättynyt, ilmoittaa sovellus pelikierroksen mahdollisen voittajan tai muussa tapauksessa ainoastaan pelikierroksen päättymisestä. Pelikierroksen päätyttyä kaikkien peliruudukon nappien klikkaaminen estetään alla olevan kuvan mukaisesti.
 
 Peliruudukon alla on kaksi nappia, joiden klikkaaminen on mahdollista niin pelikierroksen aikana kuin pelikierroksen päätyttyä. Tyhjennä-nappi tyhjentää pelinäkymässä olevan peliruudukon ja aloittaa pelin alusta samoilla pelivalinnoilla (käyttäjän merkki, ruudukon koko). Uusi peli -nappi puolestaan vie käyttäjän takaisin sovelluksen aloitusnäkymään, jossa käyttäjän on mahdollista tehdä uudet valinnat seuraavaa pelikierrosta varten.
 
 ## Mallipeli
-Käyttäjän on yksinpelin lisäksi mahdollista valita pelityypiksi mallipeli, jolloin tietokone pelaa itseään vastaan.
+Käyttäjän on yksinpelin lisäksi mahdollista valita pelityypiksi mallipeli, jolloin tietokone pelaa itseään vastaan. Mallipelissä sovellusikkuna muistuttaa yksinpelin näkymää pelikierroksen jälkeen: kaikkien peliruudukon nappien klikkaaminen on estetty ja sovellus ilmoittaa pelikierroksen päättymisestä tai mahdollisesta voittajasta. Mikäli sovellusta suoritetaan NetBeansista käsin, tulostuu konsoliin mallipeli vaiheittain. Tulosteessa näkyvät tietokoneen suorittamat siirrot mallipelin aikana (niin koordinaatein kuin tulostettavassa peliruudukossa esitettynä) sekä niiden laskemiseen kuluneet ajat.
+
+Tyhjennä-nappia klikkaamalla käyttäjä voi laskea uuden mallipelin.
