@@ -65,6 +65,8 @@ Peliruudukon koko | Puolustavan siirron keskiarvo (ms) |
 
 Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen puolustavaan siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tämä aiheutuu algoritmin eksponentiaalisuudesta.
 
+<img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Suorituskyky_testaus_graafi.png" width="600">
+
 Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 4x4, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
 
 ## Koodin laadun testaus
