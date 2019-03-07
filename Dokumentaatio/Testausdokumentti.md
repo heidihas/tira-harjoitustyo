@@ -46,7 +46,7 @@ Vastaavasti pelinäkymässä testattiin, että kaikki pelin säännöt pelin ete
 
 ## Suorituskyvyn testaus
 
-Suorituskykytestaus kohdistui tekoälyn toteuttamiseen tarkoitettuun algoritmiin ja sen laskutehoon. Algoritmin toimintaa testattiin erilaisilla syötteillä, peliasetelmilla ja peliruudukon ko'oilla. Suorituskykytestaus pitää sisällään niin algoritmin oikeanlaisen toiminnan testaamisen kuin algoritmin suoritusnopeuden testaamisen. Algoritmin suoritusnopeutta testattiin Javan System.nanoTime()-komennon avulla.
+Suorituskykytestaus kohdistui tekoälyn toteuttamiseen tarkoitettuun algoritmiin ja sen laskutehoon. Algoritmin toimintaa testattiin erilaisilla syötteillä, peliasetelmilla ja peliruudukon ko'oilla. Suorituskykytestaus piti sisällään niin algoritmin oikeanlaisen toiminnan testaamisen kuin algoritmin suoritusnopeuden testaamisen. Algoritmin suoritusnopeutta testattiin Javan System.nanoTime()-komennon avulla.
 
 Kun pelattiin niin merkillä X kuin merkillä O eli joko käyttäjä aloittaa tai tietokone aloittaa, algoritmin nähtiin toimivan oikein ja laskenta-ajallisesti tehokkaasti. Tekoälyn ohjaama tietokonepelaaja ei anna kertaakaan käyttäjän voittaa, vaan lopputulos on joko tasapeli tai tietokoneen voitto. Algoritmin halutunlainen toiminta havaittiin myös silloin, kun valittiin mallipeli eli tietokone pelaamaan tietokonetta vastaan. Joka pelikierroksella päädyttiin tasapeliin.
 
@@ -57,7 +57,7 @@ Laskenta-ajan osalta tärkein kysymys on se, miten paljon aikaa kuluu niin sanot
 Oheisessa taulukossa kerrotaan peliruudukon koko ja laskettu keskiarvo millisekunteina tietokonepelaajan ensimmäiselle puolustavalle siirrolle valitussa pelitilanteessa. Keskiarvo on laskettu aiheuttamalla tietokonepelaajan ensimmäinen puolustava siirto valitussa pelitilanteessa 10 kertaa ja laskemalla saatujen lukujen avulla keskiarvo. Testauksessa ei otettu huomioon peliruudukkoja 3x3 ja 4x4, sillä niiden pieni koko sekä pienempi määrä vapaita ruutuja ennen mahdollista puolustavaa siirtoa estää suoritusajan merkittävän kasvamisen.
 
 Peliruudukon koko | Puolustavan siirron keskiarvo (ms) |
------------|------|--------|
+-----------|--------|
 5x5 | 14,6 |
 6x6 | 144,2 |
 7x7 | 474,3 |
@@ -66,8 +66,6 @@ Peliruudukon koko | Puolustavan siirron keskiarvo (ms) |
 Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen puolustavaan siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tämä aiheutuu algoritmin eksponentiaalisuudesta.
 
 Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 4x4, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
-
-(Graafinen kuvaus?)
 
 ## Koodin laadun testaus
 
