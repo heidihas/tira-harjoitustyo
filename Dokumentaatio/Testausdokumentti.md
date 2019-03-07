@@ -48,20 +48,24 @@ Vastaavasti pelinäkymässä testattiin, että kaikki pelin säännöt pelin ete
 
 Suorituskykytestaus kohdistui tekoälyn toteuttamiseen tarkoitettuun algoritmiin ja sen laskutehoon. Algoritmin toimintaa testattiin erilaisilla syötteillä, peliasetelmilla ja peliruudukon ko'oilla. Suorituskykytestaus pitää sisällään niin algoritmin oikeanlaisen toiminnan testaamisen kuin algoritmin suoritusnopeuden testaamisen. Algoritmin suoritusnopeutta testattiin Javan System.nanoTime()-komennon avulla.
 
-Kun pelattiin niin merkillä X kuin merkillä O eli joko käyttäjä aloittaa tai tietokone aloittaa, algoritmin nähtiin toimivan oikein ja tehokkaasti. Tekoälyn ohjaama tietokonepelaaja ei anna kertaakaan käyttäjän voittaa, vaan lopputulos on joko tasapeli tai tietokoneen voitto. Algoritmin halutunlainen toiminta havaittiin myös silloin, kun valittiin mallipeli eli tietokone pelaamaan tietokonetta vastaan. Joka pelikierroksella päädyttiin tasapeliin.
+Kun pelattiin niin merkillä X kuin merkillä O eli joko käyttäjä aloittaa tai tietokone aloittaa, algoritmin nähtiin toimivan oikein ja laskenta-ajallisesti tehokkaasti. Tekoälyn ohjaama tietokonepelaaja ei anna kertaakaan käyttäjän voittaa, vaan lopputulos on joko tasapeli tai tietokoneen voitto. Algoritmin halutunlainen toiminta havaittiin myös silloin, kun valittiin mallipeli eli tietokone pelaamaan tietokonetta vastaan. Joka pelikierroksella päädyttiin tasapeliin.
 
-Kun pelin tekoälyn toteuttavaa algoritmia testattiin eri pelitilantein, saatiin tuloksista alla oleva taulukko. Taulukossa kerrotaan käyttäjän valitsema merkki (X pelaa ensin), peliruudukon koko ja laskettu keskiarvo tietokonepelaajan ensimmäiseen siirtoon valitussa pelitilanteessa kuluvasta ajasta millisekunteina. Keskiarvo on laskettu suorittamalla tietokonepelaajan ensimmäinen siirto valitussa pelitilanteessa 10 kertaa ja vertaamalla saatuja lukuja.
+Kun pelin tekoälyn toteuttavaa algoritmia testattiin eri pelitilanteissa eli eri koko- ja pelimerkkiyhdistelmillä, nähtiin, että pääosin tekoälyn siirron laskemiseen kuluu aikaa välillä 0-1ms. Tämä johtuu siitä, että riippumatta peliruudukon todellisesta koosta laskenta suoritetaan 3x3-kokoisella aputaulukolla, mikä nopeuttaa suoritusta huomattavasti. 
 
-Valittu pelimerkki       | Peliruudukon koko | Ensimmäisen siirron keskiarvo (ms) |
+Laskenta-ajan osalta tärkein kysymys on se, miten paljon aikaa kuluu niin sanotun pelastavan siirron tekemiseen. Yleisesti tekoälyn siirto lasketaan edellisen X-pelimerkin siirron perusteella muodostettavasta 3x3-aputaulukosta. Kuitenkin pelissä, jossa käyttäjällä on pelimerkki O, hyödynnetään pelastavaa siirtoa. Nimittäin kun algoritmin aputaulukot muodostetaan tässä pelitilanteessa tekoälypelaajan omien siirtojen perusteella, on käyttäjällä suurempi vapaus luoda voittorivi (kyseessä ei ole tekoälyn puolustava pelitapa). Juuri ennen käyttäjän voittorivin saavuttamista tekoälypelaaja suorittaa pelastavan siirron eli selvittää siirtonsa koko peliruudukkoa läpikäyden. Tällöin läpikäytävien ruutujen määrä kasvaa.
+
+Oheisessa taulukossa kerrotaan peliruudukon koko ja laskettu keskiarvo millisekunteina tietokonepelaajan ensimmäiselle puolustavalle siirrolle valitussa pelitilanteessa. Keskiarvo on laskettu aiheuttamalla tietokonepelaajan ensimmäinen puolustava siirto valitussa pelitilanteessa 10 kertaa ja laskemalla saatujen lukujen avulla keskiarvo. Testauksessa ei otettu huomioon peliruudukkoja 3x3 ja 4x4, sillä niiden pieni koko sekä pienempi määrä vapaita ruutuja ennen mahdollista puolustavaa siirtoa estää suoritusajan merkittävän kasvamisen.
+
+Peliruudukon koko | Puolustavan siirron keskiarvo (ms) |
 -----------|------|--------|
-X | 3x3 | 2 |
-O | 3x3 | 1,9 |
-X | 4x4 | 10 629 |
-O | 4x4 | 5470 |
+5x5 | 13,6 |
+6x6 | 140 |
+7x7 | 271,2 |
+8x8 | 1 564,6 |
 
-Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tietokonepelaajan siirtoon kuluva aika on ilmaistu ainoastaan tietokonepelaajan ensimmäisestä siirrosta, sillä toisesta siirrosta eteenpäin kaikissa tapauksissa aikaa kuluu alle sekunti eli algoritmi toimii nopeasti. Tapauksissa, joissa tietokonepelaaja pelaa ensin eli tietokonepelaajalla on pelimerkki X, keskiarvo on laskettu tietokonepelaajan toisesta siirrosta, sillä ensimmäinen siirto tyhjään peliruudukkoon toteutetaan sattumanvaraisesti eikä algoritmilla.?????????
+Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen puolustavaan siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tämä aiheutuu algoritmin eksponentiaalisuudesta.
 
-Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 3x3, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
+Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanlainen toiminta havaitaan pelaamalla sovelluksen käyttöohjeita noudattamalla yllä kuvatuissa pelitilanteissa tietokonetta vastaan ja toteamalla, että tietokoneen voittaminen on mahdotonta. Samoin mallipelien nähdään aina johtavan tasapelitilanteeseen. Algoritmin suoritusnopeuden testaaminen voidaan toistaa seuraamalla pelikierroksen aikana konsoliin tulostuvia algoritmin suoritusaikaa kuvaavia lukuja. Voidaan esimerkiksi valita peliruudukon ko'oksi 4x4, käyttäjän pelimerkiksi X sekä pelimuodoksi yksinpeli (käyttäjä vastaan tietokone) ja testata 10 kertaa, miten paljon aikaa kuluu tietokonepelaajan ensimmäisen siirron selvittämiseen. Saaduista luvuista voidaan laskea suoritusnopeutta kuvaava keskiarvo.
 
 (Graafinen kuvaus?)
 
