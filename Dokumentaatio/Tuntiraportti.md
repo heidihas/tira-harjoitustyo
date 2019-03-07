@@ -56,3 +56,15 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 19.2. | 5h | ArrayList-tietorakenteen toteuttaminen, omaa työtä koskevaan vertaisarvioon tutustuminen |
 21.2. | 2h   | Hakusyvyyden rajoittaminen algoritmissa, suorituskyvyn testaaminen ja sovelluksen toiminnan seuraaminen |
 22.2. | 6h   | Vertaisarvio, omaa työtä koskevaan vertaisarvioon tutustuminen, yksikkötestien kirjoittaminen (testikattavuus >90%), Toteutusdokumentin jatkaminen, Testausdokumentin päivittäminen, viikkoraportin laatiminen |
+
+## Loput viikot
+
+Päivämäärä       | Käytetty aika | Tehtyä |
+-----------|------|--------|
+2.3. | 3h | Peliheurestiikan pohtiminen, pelilogiikan hahmottelu aliruudukkojen tapauksessa |
+5.3. | 6h | Peliheurestiikan lisääminen, koodin muokkaaminen, sovelluslogiikan hiominen |
+6.3. | 12h   | Yksikkötestien kirjoittaminen, koodin pilkkominen ja siivoaminen, kommentoinnin viimeistely, Algoritmi-luokan luominen, sovelluksen testaaminen |
+7.3. | 6h   | Suorituskykytestaus, Testausdokumentin viimeistely, Käyttöohjeiden kirjoittaminen, Määrittelydokumentin muokkaaminen, Jarin luominen, JavaDocin luominen |
+8.3. | 4h   | Toteutusdokumentin viimeistely, yksikkötestien lisäys, koodin ja sovelluksen tarkistaminen |
+
+## Yhteensä tunteja: 154,5h
