@@ -8,7 +8,6 @@ package ristinolla.tests.logics;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import ristinolla.domain.ArrayList;
 import ristinolla.logics.Logiikka;
 
 /**
@@ -39,30 +38,9 @@ public class LogiikkaTesti {
         assertTrue(logiikka.getRivit()!=null);      
     }
     
-    @Test 
-    public void tyhjennaPeliruudukko1() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(2, 0, 2);
-        logiikka.tyhjennaPeliruudukko();
-        assertTrue(logiikka.getRuudukko().getRuudukko()[0] == 0 && logiikka.getRuudukko().getRuudukko()[2] == 0);
-    }
-    
-    @Test 
-    public void tyhjennaPeliruudukko2() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        logiikka.tyhjennaPeliruudukko();
-        assertFalse(logiikka.oVoitti());
-    }
-    
-    @Test 
-    public void tyhjennaPeliruudukko3() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(0, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.tyhjennaPeliruudukko();
-        assertFalse(logiikka.xVoitti());
+    @Test
+    public void luotuRiviMaaraTaulukkoOnOlemassa() {
+        assertTrue(logiikka.getRiviMaarat()!=null);      
     }
     
     @Test 
@@ -87,6 +65,56 @@ public class LogiikkaTesti {
     public void eiAsetaSiirtoO() {
         logiikka.asetaSiirto(0, 1, 2);
         assertTrue(logiikka.getRuudukko().getRuudukko()[1] == 0);
+    }
+    
+    @Test 
+    public void asetaSiirto1() {
+        logiikka.asetaSiirto(0, 0, 1);
+        assertTrue(logiikka.getRiviMaarat()[6] == 1);
+    }
+    
+    @Test 
+    public void asetaSiirto2() {
+        logiikka.asetaSiirto(0, 0, 1);
+        assertTrue(logiikka.getRiviMaarat()[0] == 1);
+    }
+    
+    @Test 
+    public void asetaSiirto3() {
+        logiikka.asetaSiirto(0, 0, 1);
+        assertTrue(logiikka.getRiviMaarat()[3] == 1);
+    }
+    
+    @Test 
+    public void asetaSiirto4() {
+        logiikka.asetaSiirto(2, 0, 1);
+        assertTrue(logiikka.getRiviMaarat()[7] == 1);
+    }
+    
+    @Test 
+    public void tyhjennaPeliruudukko1() {
+        logiikka.asetaSiirto(0, 0, 1);
+        logiikka.asetaSiirto(2, 0, 2);
+        logiikka.tyhjennaPeliruudukko();
+        assertTrue(logiikka.getRuudukko().getRuudukko()[0] == 0 && logiikka.getRuudukko().getRuudukko()[2] == 0);
+    }
+    
+    @Test 
+    public void tyhjennaPeliruudukko2() {
+        logiikka.asetaSiirto(0, 0, 2);
+        logiikka.asetaSiirto(1, 1, 2);
+        logiikka.asetaSiirto(2, 2, 2);
+        logiikka.tyhjennaPeliruudukko();
+        assertFalse(logiikka.oVoitti());
+    }
+    
+    @Test 
+    public void tyhjennaPeliruudukko3() {
+        logiikka.asetaSiirto(0, 0, 1);
+        logiikka.asetaSiirto(0, 1, 1);
+        logiikka.asetaSiirto(0, 2, 1);
+        logiikka.tyhjennaPeliruudukko();
+        assertFalse(logiikka.xVoitti());
     }
     
     @Test 
@@ -162,6 +190,19 @@ public class LogiikkaTesti {
     }
     
     @Test 
+    public void peliOhiEiVoittomahdollisuutta() {
+        logiikka.asetaSiirto(0, 0, 1);
+        logiikka.asetaSiirto(1, 0, 2);
+        logiikka.asetaSiirto(2, 0, 1);
+        logiikka.asetaSiirto(0, 1, 1);
+        logiikka.asetaSiirto(1, 1, 2);
+        logiikka.asetaSiirto(2, 1, 2);
+        logiikka.asetaSiirto(0, 2, 2);
+        logiikka.asetaSiirto(1, 2, 1);
+        assertTrue(logiikka.peliOhi());
+    }
+    
+    @Test 
     public void peliEiOhi() {
         logiikka.asetaSiirto(0, 0, 2);
         assertFalse(logiikka.peliOhi());
@@ -208,46 +249,6 @@ public class LogiikkaTesti {
     }
     
     @Test 
-    public void xVoittiPystyRivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(0, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void xVoittiVaakaRivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void xVoittiViisto1Rivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(2, 2, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void xVoittiViisto2Rivit() {
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void xEiVoittanutRivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        assertFalse(logiikka.xVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
     public void oVoittiPysty() {
         logiikka.asetaSiirto(0, 0, 2);
         logiikka.asetaSiirto(0, 1, 2);
@@ -288,174 +289,79 @@ public class LogiikkaTesti {
     }
     
     @Test 
-    public void oVoittiPystyRivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(0, 2, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oVoittiVaakaRivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oVoittiViisto1Rivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oVoittiViisto2Rivit() {
-        logiikka.asetaSiirto(0, 2, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oEiVoittanutRivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(1, 2, 2);
-        assertFalse(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void xVoittiPystyArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(0, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void xVoittiVaakaArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void xVoittiViistoArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(2, 2, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void xEiVoittanutArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        assertFalse(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void oVoittiPystyArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(0, 2, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void oVoittiVaakaArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void oVoittiViistoArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void oEiVoittanutArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(1, 2, 2);
-        assertFalse(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void kukaanEiVoittanutArvioi() {
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 0);
-    }
-    
-    @Test 
-    public void minmax1() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 1);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] == 10);
-    }
-    
-    @Test 
-    public void minmax2() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] == -10);
-    }
-    
-    @Test 
-    public void minmax3() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] == 0);
-    }
-    
-    @Test 
-    public void minmax4() {
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] != Integer.MAX_VALUE);
-    }
-    
-    @Test 
-    public void minmax5() {
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] != Integer.MIN_VALUE);
-    }
-    
-    @Test 
     public void pelataan1() {
-        assertTrue(logiikka.pelaa(1) != -1);
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(0, 1, 1);
+        logiikka.asetaSiirto(0, 2, 1);
+        logiikka.asetaSiirto(1, 0, 1);
+        logiikka.asetaSiirto(1, 1, 1);
+        logiikka.asetaSiirto(1, 2, 1);
+        logiikka.asetaSiirto(2, 0, 1);
+        logiikka.asetaSiirto(2, 1, 1);
+        logiikka.asetaSiirto(2, 2, 1);
+        logiikka.asetaSiirto(0, 0, 1);
+        assertTrue(logiikka.pelaa(2) != -1);
     }
     
     @Test 
     public void pelataan2() {
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(1, 0, 1);
+        logiikka.asetaSiirto(2, 0, 1);
+        logiikka.asetaSiirto(3, 0, 1);
+        logiikka.asetaSiirto(1, 1, 1);
+        logiikka.asetaSiirto(2, 1, 1);
+        logiikka.asetaSiirto(1, 2, 1);
+        logiikka.asetaSiirto(2, 2, 1);
+        logiikka.asetaSiirto(3, 2, 1);
+        logiikka.asetaSiirto(3, 1, 1);
         assertTrue(logiikka.pelaa(1) == 0);
+    }
+    
+    @Test 
+    public void pelataan3() {
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(2, 0, 1);
+        logiikka.asetaSiirto(3, 0, 1);
+        assertTrue(logiikka.pelaa(2) == 1);
+    }
+    
+    @Test 
+    public void pelataan4() {
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(3, 0, 1);
+        logiikka.asetaSiirto(3, 1, 1);
+        assertTrue(logiikka.pelaa(1) == 11);
+    }
+    
+    @Test 
+    public void pelataan5() {
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(1, 3, 1);
+        logiikka.asetaSiirto(0, 3, 1);
+        assertTrue(logiikka.pelaa(1) == 14);
+    }
+    
+    @Test 
+    public void pelataan6() {
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(2, 0, 1);
+        logiikka.asetaSiirto(1, 0, 1);
+        assertTrue(logiikka.pelaa(2) == 0);
+    }
+    
+    @Test 
+    public void pelataan7() {
+        logiikka = new Logiikka(4);
+        logiikka.asetaSiirto(2, 2, 1);
+        logiikka.asetaSiirto(1, 2, 1);
+        assertTrue(logiikka.pelaa(1) == 8);
+    }
+    
+    @Test 
+    public void pelataan8() {
+        logiikka.asetaSiirto(0, 1, 1);
+        assertTrue(logiikka.pelaa(2) == 0);
     }
     
     @Test 
@@ -470,53 +376,5 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(1, 2, 1);
         logiikka.asetaSiirto(2, 2, 2);
         assertTrue(logiikka.pelaa(1) == -1);
-    }
-    
-    @Test
-    public void score1() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        int pisteet = logiikka.score(logiikka.getRivit(), 1);
-        assertTrue(pisteet == 9);
-    }
-    
-    @Test
-    public void score2() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        int pisteet = logiikka.score(logiikka.getRivit(), 1);
-        assertTrue(pisteet == -9);
-    }
-    
-    @Test
-    public void asetaSiirtoMinMaxViisto1() {
-        logiikka.asetaSiirtoMinMax(logiikka.getRivit(), 0, 1);
-        assertTrue(logiikka.getRivit()[6] == 1);
-    }
-    
-    @Test
-    public void asetaSiirtoMinMaxViisto2() {
-        logiikka.asetaSiirtoMinMax(logiikka.getRivit(), 2, 1);
-        assertTrue(logiikka.getRivit()[7] == 1);
-    }
-    
-    @Test
-    public void poistaSiirtoMinMaxViisto1() {
-        logiikka.poistaSiirtoMinMax(logiikka.getRivit(), 0, 1);
-        assertTrue(logiikka.getRivit()[6] == -1);
-    }
-    
-    @Test
-    public void poistaSiirtoMinMaxViisto2() {
-        logiikka.poistaSiirtoMinMax(logiikka.getRivit(), 2, 1);
-        assertTrue(logiikka.getRivit()[7] == -1);
-    }
-    
-    @Test
-    public void vapaat() {
-        ArrayList<Integer> vapaat = logiikka.getVapaat(logiikka.getRuudukko().getRuudukko());
-        assertTrue(vapaat.size() == 9);
     }
 }

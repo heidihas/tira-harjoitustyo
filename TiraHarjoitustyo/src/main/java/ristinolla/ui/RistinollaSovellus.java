@@ -31,9 +31,6 @@ import ristinolla.logics.Logiikka;
  * Luokka vastaa pelisovelluksen käyttöliittymästä, sen tapahtumista ja näkymistä.
  */
 public class RistinollaSovellus extends Application {
-    
-    // pelilogiikan alustaminen
-    Logiikka logiikka;
         
     /**
      * Sovelluksen käynnistävä komento.
@@ -43,13 +40,38 @@ public class RistinollaSovellus extends Application {
     public static void main(String[] args) {
         launch(RistinollaSovellus.class);
     }
-
+    
+    // pelilogiikan alustaminen
+    Logiikka logiikka;
+    
+    // pelimerkkien alustaminen
+    public enum Pelimerkki {
+        X (1),
+        O (2);
+        private final int value;
+        private Pelimerkki(final int value) {
+            this.value = value;
+        }
+    }
+    
+    // pelimuotojen alustaminen
+    public enum Pelimuoto {
+        Yksinpeli (1),
+        Mallipeli (2);
+        private final int value;
+        private Pelimuoto(final int value) {
+            this.value = value;
+        }
+    }
+    
     /**
      * Metodi koostaa sovelluksen näkymät, vastaa eri näkymien välillä liikkumisesta sekä kokoaa kaikki pelin palaset ja tapahtumat yhteen. 
      * 
      * @param ikkuna Stage-objekti joka määrittelee sovelluksen tämänhetkisen näkymän
      * 
+     * @see ristinolla.domain.ArrayList
      * @see ristinolla.domain.Sijainti
+     * @see ristinolla.logics.Logiikka
      */
     @Override
     public void start(Stage ikkuna) {
@@ -98,7 +120,7 @@ public class RistinollaSovellus extends Application {
         grid.add(error3, 2, 3);
         grid.add(aloitusNappi, 1, 5);
         
-        grid.setPrefSize(640, 80);
+        grid.setPrefSize(pelinLeveys, 80);
         grid.setAlignment(Pos.CENTER);
         grid.setVgap(6);
         grid.setHgap(10);
@@ -110,7 +132,7 @@ public class RistinollaSovellus extends Application {
         asetteluAlku.prefWidth(pelinLeveys);
         asetteluAlku.setCenter(grid);
         
-        Scene nakymaAlku = new Scene(asetteluAlku, 640, 480);
+        Scene nakymaAlku = new Scene(asetteluAlku, pelinLeveys, pelinKorkeus);
         ikkuna.setScene(nakymaAlku);
         
         // pelinäkymä
@@ -143,7 +165,7 @@ public class RistinollaSovellus extends Application {
 	asetteluPeli.setTop(tekstiPaneeli);
         asetteluPeli.setBottom(paneeli);
 
-	Scene nakymaPeli = new Scene(asetteluPeli, 640, 480);
+	Scene nakymaPeli = new Scene(asetteluPeli, pelinLeveys, pelinKorkeus);
         
         // nappien toiminta
         aloitusNappi.setOnAction((event) -> {    
@@ -178,14 +200,14 @@ public class RistinollaSovellus extends Application {
                 if (merkkiValinta.getValue() == null) {
                     valittuVuoro = 0;
                 } else if (merkkiValinta.getValue().toString().equals("X")) {
-                    valittuVuoro = 1;
+                    valittuVuoro = Pelimerkki.X.value;
                 } else {
-                    valittuVuoro = 2;
+                    valittuVuoro = Pelimerkki.O.value;
                 }
                 if (pelimuoto.getValue().toString().equals("Yksinpeli")) {
-                    valittuPelimuoto = 1;
+                    valittuPelimuoto = Pelimuoto.Yksinpeli.value;
                 } else {
-                    valittuPelimuoto = 2;
+                    valittuPelimuoto = Pelimuoto.Mallipeli.value;
                 }
                 ajaPeli(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
                 ikkuna.setScene(nakymaPeli);
@@ -201,14 +223,14 @@ public class RistinollaSovellus extends Application {
                 if (merkkiValinta.getValue() == null) {
                     valittuVuoro = 0;
                 } else if (merkkiValinta.getValue().toString().equals("X")) {
-                    valittuVuoro = 1;
+                    valittuVuoro = Pelimerkki.X.value;
                 } else {
-                    valittuVuoro = 2;
+                    valittuVuoro = Pelimerkki.O.value;
                 }
                 if (pelimuoto.getValue().toString().equals("Yksinpeli")) {
-                    valittuPelimuoto = 1;
+                    valittuPelimuoto = Pelimuoto.Yksinpeli.value;
                 } else {
-                    valittuPelimuoto = 2;
+                    valittuPelimuoto = Pelimuoto.Mallipeli.value;
                 }
             ajaPeli(koko, valittuVuoro, valittuPelimuoto, napit, asetteluPeli, teksti);
             ikkuna.setScene(nakymaPeli);
@@ -238,7 +260,9 @@ public class RistinollaSovellus extends Application {
      * @param asetteluPeli pelinäkymän asettelusta vastaava BorderPane-olio
      * @param teksti voittaneesta pelaajasta ilmoittava teksti
      * 
+     * @see ristinolla.domain.ArrayList
      * @see ristinolla.domain.Sijainti
+     * @see ristinolla.logics.Logiikka
      * 
      */
     private void ajaPeli(int koko, int valittuVuoro, int valittuPelimuoto, ArrayList <Button> napit, BorderPane asetteluPeli, Label teksti) {
@@ -249,126 +273,59 @@ public class RistinollaSovellus extends Application {
         GridPane ruudukko = luoRuudukko(koko, napit);
         
         // tekoälyn ensimmäinen satunnainen siirto
-        if (valittuVuoro == 2 || valittuPelimuoto == 2) {
+        if ((valittuVuoro == Pelimerkki.O.value) || (valittuPelimuoto == Pelimuoto.Mallipeli.value)) {
             int seuraava = (int) (Math.random() * (koko * koko));
-            
-            Button pelattavaNappi = napit.get(seuraava);
-            Sijainti pelattavanPaikka = (Sijainti) pelattavaNappi.getUserData();
-            int pelattavaX = pelattavanPaikka.getX();
-            int pelattavaY = pelattavanPaikka.getY();
-                        
-            pelattavaNappi.setText("X");
-            pelattavaNappi.setMouseTransparent(true);
-            logiikka.asetaSiirto(pelattavaX-1, pelattavaY-1, 1);
-            System.out.println("Tekoäly pelasi: " + seuraava);
+            tallennaTekoalynSiirto(seuraava, Pelimerkki.X.value, napit);
         }
         
         // pelin eteneminen ai
-        if (valittuPelimuoto == 1) {
+        if (valittuPelimuoto == Pelimuoto.Yksinpeli.value) {
             // käyttäjä vastaan tietokone
             for(int n = 0; n < napit.size(); n++) {
                 Button nappi = napit.get(n);
                 nappi.setOnAction((event) -> {
-            
-                    Sijainti paikka = (Sijainti) nappi.getUserData();
-                    int x = paikka.getX();
-                    int y = paikka.getY();
-            
                     if (nappi.getText().equals(" ")) {
-                        if (valittuVuoro == 2) {
-                            nappi.setText("O");
-                        } else {
-                            nappi.setText("X");
-                        }
-                        
-                        nappi.setMouseTransparent(true);
-                        logiikka.asetaSiirto(x-1, y-1, valittuVuoro);
+                        Sijainti paikka = (Sijainti) nappi.getUserData();
+                        int x = paikka.getX();
+                        int y = paikka.getY();
+                        tallennaSiirto(valittuVuoro, nappi, x, y);
                         System.out.println("Asetettiin siirto: " + x + ", " + y);
                         
-                        int vastustaja = 1;
-                        if (valittuVuoro == 1) {
-                            vastustaja = 2;
+                        int vastustaja = Pelimerkki.X.value;
+                        if (valittuVuoro == Pelimerkki.X.value) {
+                            vastustaja = Pelimerkki.O.value;
                         }
-                        long aikaAlussa = System.currentTimeMillis();
-                        int seuraava = logiikka.pelaa(vastustaja);
-                        long aikaLopussa = System.currentTimeMillis();
-                        System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
-                            
-                        if (seuraava != -1) {
-                            Button pelattavaNappi = napit.get(seuraava);
-                            Sijainti pelattavanPaikka = (Sijainti) pelattavaNappi.getUserData();
-                            int pelattavaX = pelattavanPaikka.getX();
-                            int pelattavaY = pelattavanPaikka.getY();
                         
-                            if (vastustaja == 1) {
-                                pelattavaNappi.setText("X");
-                            } else {
-                                pelattavaNappi.setText("O");
-                            }
-                            pelattavaNappi.setMouseTransparent(true);
-                            logiikka.asetaSiirto(pelattavaX-1, pelattavaY-1, vastustaja);
-                            System.out.println("Tekoäly pelasi: " + seuraava);
+                        int seuraava = ajaTekoaly(vastustaja);   
+                        
+                        if (seuraava != -1) {
+                            tallennaTekoalynSiirto(seuraava, vastustaja, napit);
                         }
                     
                         if (logiikka.peliOhi()) {
-                            for(int i = 0; i < napit.size(); i++) {
-                                napit.get(i).setDisable(true);
-                            } 
-                            if (logiikka.xVoitti()) {
-                                teksti.setText("Pelaaja X voitti!");
-                            } else if (logiikka.oVoitti()) {
-                                teksti.setText("Pelaaja O voitti!"); 
-                            } else {
-                                teksti.setText("Peli päättyi!");
-                            }
+                            peliPaattynyt(teksti, napit);
                         }
                     }
                 });
             }
-        } else if (valittuPelimuoto == 2) {
+        } else if (valittuPelimuoto == Pelimuoto.Mallipeli.value) {
             // tietokone vastaan tietokone
-            int vuoro = 2;
+            int vuoro = Pelimerkki.O.value;
             
             while (!logiikka.peliOhi()) {
                 logiikka.getRuudukko().tulosta();
                 
-                long aikaAlussa = System.currentTimeMillis();
-                int seuraava = logiikka.pelaa(vuoro);
-                long aikaLopussa = System.currentTimeMillis();
-                System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) + "ms.");
+                int seuraava = ajaTekoaly(vuoro);
+                tallennaTekoalynSiirto(seuraava, vuoro, napit);
                 
-                Button pelattavaNappi = napit.get(seuraava);
-                Sijainti pelattavanPaikka = (Sijainti) pelattavaNappi.getUserData();
-                int pelattavaX = pelattavanPaikka.getX();
-                int pelattavaY = pelattavanPaikka.getY();
-                
-                if (vuoro == 1) {
-                    pelattavaNappi.setText("X");
+                if (vuoro == Pelimerkki.X.value) {
+                    vuoro = Pelimerkki.O.value;
                 } else {
-                    pelattavaNappi.setText("O");
-                }
-                pelattavaNappi.setMouseTransparent(true);
-                
-                logiikka.asetaSiirto(pelattavaX-1, pelattavaY-1, vuoro);
-                System.out.println("Tekoäly pelasi: " + seuraava);
-                
-                if (vuoro == 1) {
-                    vuoro = 2;
-                } else {
-                    vuoro = 1;
+                    vuoro = Pelimerkki.X.value;
                 }
             }
                     
-            for(int i = 0; i < napit.size(); i++) {
-                napit.get(i).setDisable(true);
-            } 
-            if (logiikka.xVoitti()) {
-                teksti.setText("Pelaaja X voitti!");
-            } else if (logiikka.oVoitti()) {
-                teksti.setText("Pelaaja O voitti!"); 
-            } else {
-                teksti.setText("Peli päättyi!");
-            }       
+            peliPaattynyt(teksti, napit);       
         }
         ruudukko.setAlignment(Pos.CENTER);
         asetteluPeli.setCenter(ruudukko);
@@ -380,6 +337,7 @@ public class RistinollaSovellus extends Application {
      * @param koko kokonaisluku, joka kertoo uuden peliruudukon rivin pituuden
      * @param napit peliruudukon ruutuja edustavista napeista koostuva lista
      * 
+     * @see ristinolla.domain.ArrayList
      * @see ristinolla.domain.Sijainti
      * 
      * @return palauttaa uuden luodun ruudukon
@@ -407,6 +365,8 @@ public class RistinollaSovellus extends Application {
      * @param teksti voittaneesta pelaajasta ilmoittava teksti
      * @param napit peliruudukon ruutuja edustavista napeista koostuva lista
      * 
+     * @see ristinolla.domain.ArrayList
+     * 
      */
     private void tyhjenna(Label teksti, ArrayList <Button> napit) {
         teksti.setText("");
@@ -414,6 +374,88 @@ public class RistinollaSovellus extends Application {
             napit.get(i).setDisable(false);
             napit.get(i).setMouseTransparent(false);
             napit.get(i).setText(" ");
+        }
+    }
+    
+    /**
+     * Metodi tyhjentää peliruudukon uutta pelikierrosta varten.
+     * 
+     * @param vuoro kokonaisluku, joka kuvaa tekoälyn pelimerkkiä
+     * 
+     * @return palauttaa tekoälyn suorittamaan siirtoon liittyvän napin indeksin nappilistalla
+     */
+    private int ajaTekoaly(int vuoro) {
+        long aikaAlussa = System.nanoTime();
+        int seuraava = logiikka.pelaa(vuoro);
+        long aikaLopussa = System.nanoTime();
+        
+        System.out.println("Operaatioon kului aikaa: " + (aikaLopussa - aikaAlussa) / 1000000 + "ms.");
+        
+        return seuraava;
+    }
+    
+    /**
+     * Metodi tallentaa tehdyn siirron.
+     * 
+     * @param vuoro kokonaisluku, joka kuvaa vuorossa olevaa pelaajaa
+     * @param nappi siirtoon liittyvä nappi peliruudukossa
+     * @param x kokonaisluku, joka kuvaa siirron x-koordinaattia
+     * @param y kokonaisluku, joka kuvaa siirron y-koordinaattia
+     * 
+     * @see ristinolla.logics.Logiikka
+     * 
+     */
+    private void tallennaSiirto(int vuoro, Button nappi, int x, int y) {
+        if (vuoro == Pelimerkki.X.value) {
+            nappi.setText("X");
+        } else {
+            nappi.setText("O");
+        }                
+        nappi.setMouseTransparent(true);
+        logiikka.asetaSiirto(x - 1, y - 1, vuoro);
+    }
+    
+    /**
+     * Metodi tallentaa tekoälyn tekemän siirron.
+     * 
+     * @param seuraava kokonaisluku, joka kertoo siirtoon liittyvän napin indeksin nappilistalla
+     * @param vuoro kokonaisluku, joka kuvaa vuorossa olevaa pelaajaa
+     * @param napit peliruudukon ruutuja edustavista napeista koostuva lista
+     * 
+     * @see ristinolla.domain.ArrayList
+     * @see ristinolla.domain.Sijainti
+     * 
+     */
+    private void tallennaTekoalynSiirto(int seuraava, int vuoro, ArrayList <Button> napit) {
+        Button pelattavaNappi = napit.get(seuraava);
+        Sijainti pelattavanPaikka = (Sijainti) pelattavaNappi.getUserData();
+        int pelattavaX = pelattavanPaikka.getX();
+        int pelattavaY = pelattavanPaikka.getY();
+        
+        tallennaSiirto(vuoro, pelattavaNappi, pelattavaX, pelattavaY);
+        System.out.println("Tekoäly pelasi: " + pelattavaX + ", " + pelattavaY);
+    }
+    
+    /**
+     * Metodi tekee pelinäkymään tarvittavat muutokset pelin päätyttyä.
+     * 
+     * @param teksti voittaneesta pelaajasta ilmoittava teksti
+     * @param napit peliruudukon ruutuja edustavista napeista koostuva lista
+     * 
+     * @see ristinolla.domain.ArrayList
+     * @see ristinolla.logics.Logiikka
+     * 
+     */
+    private void peliPaattynyt(Label teksti, ArrayList <Button> napit) {
+        for (int i = 0; i < napit.size(); i++) {
+                napit.get(i).setDisable(true);
+        } 
+        if (logiikka.xVoitti()) {
+            teksti.setText("Pelaaja X voitti!");
+        } else if (logiikka.oVoitti()) {
+            teksti.setText("Pelaaja O voitti!"); 
+        } else {
+            teksti.setText("Peli päättyi!");
         }
     }
 }

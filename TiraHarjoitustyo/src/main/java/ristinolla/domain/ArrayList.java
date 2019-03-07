@@ -79,11 +79,14 @@ public class ArrayList<A> implements Iterable<A> {
     /**
      * Metodi palauttaa annetussa indeksissä olevan tiedon.
      * 
-     * @param i kokonaisluku, joka kuvaa toivottua tietoa listalla
+     * @param i kokonaisluku, joka kuvaa haettavaa tietoa listalla
      *
      * @return palauttaa toivotun tiedon listalta
      */
     public A get(int i) {
+        if ((this.koko == 0) || (i > (this.koko - 1))) {
+            return null;
+        }
         return (A) this.lista[i];
     }
     
@@ -132,10 +135,71 @@ public class ArrayList<A> implements Iterable<A> {
     }
     
     /**
+     * Metodi järjestää listan kasvavaan järjestykseen merge-sort-menetelmällä olettaen, että lista koostuu kokonaisluvuista. 
+     *
+     * @param alku kokonaisluku, joka kuvaa listan järjestettävän osan ensimmäistä indeksiä
+     * @param loppu kokonaisluku, joka kuvaa listan järjestettävän osan viimeistä indeksiä
+     * 
+     */
+    public void sort(int alku, int loppu) {
+        if (alku == loppu) {
+            return;
+        }
+        int keski = (alku + loppu) / 2;
+        
+        sort(alku, keski);
+        sort(keski + 1, loppu);
+        merge(alku, keski, loppu);
+    }
+    
+    /**
+     * Metodi käsittää merge-sort-menetelmän toteutuksen kokonaisluvuista koostuvalle listalle. 
+     *
+     * @param alku kokonaisluku, joka kuvaa listan järjestettävän osan ensimmäistä indeksiä
+     * @param keski kokonaisluku, joka kuvaa listan järjestettävän osan keskimmäistä indeksiä
+     * @param loppu kokonaisluku, joka kuvaa listan järjestettävän osan viimeistä indeksiä
+     * 
+     */
+    private void merge(int alku, int keski, int loppu) {
+        int n = loppu - alku + 1;
+        int[] apu = new int[n];
+        int i = alku;
+        int j = 0;
+        int k = keski + 1;
+       
+        while (i <= keski && k <= loppu) {
+            if ((int) this.lista[i] < (int) this.lista[k]) {
+                apu[j] = (int) this.lista[i];
+                i++;
+            } else {
+                apu[j] = (int) this.lista[k];
+                k++;
+            }
+            j++;
+        }
+        
+        while (i <= keski) {
+            apu[j] = (int) this.lista[i];
+            i++;
+            j++;
+        }
+        
+        while (k <= loppu) {
+            apu[j] = (int) this.lista[k];
+            k++;
+            j++;
+        }
+        
+        for (j = 0; j < n; j++) {
+            this.lista[alku + j] = apu[j];
+        }
+    }
+    
+    /**
      * Metodi kasvattaa listaa seuraavaksi lisättäviä tietoja varten.
      * 
      */
-    public void kasvata() {
+    private void kasvata() {
         Object uusiLista[] = new Object[this.kapasiteetti * 2];
         
         for (int i = 0; i < this.koko; i++) {

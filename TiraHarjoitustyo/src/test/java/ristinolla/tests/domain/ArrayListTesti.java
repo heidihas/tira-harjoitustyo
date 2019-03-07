@@ -133,13 +133,21 @@ public class ArrayListTesti {
     public void poista5() {
         lista.add(1);
         lista.add(2);
+        lista.remove(0);
+        assertTrue(lista.get(1) == null);      
+    }
+    
+    @Test
+    public void poista6() {
+        lista.add(1);
+        lista.add(2);
         lista.add(3);
         lista.remove(0);
         assertTrue((Integer) lista.get(0) == 2 && (Integer) lista.get(1) == 3);      
     }
     
     @Test
-    public void poista6() {
+    public void poista7() {
         lista.add(1);
         lista.add(2);
         lista.add(3);
@@ -148,7 +156,7 @@ public class ArrayListTesti {
     }
     
     @Test
-    public void poista7() {
+    public void poista8() {
         lista.add(1);
         lista.add(2);
         lista.add(3);
@@ -197,5 +205,35 @@ public class ArrayListTesti {
     public void eiSisalla() {
         lista.add(1);
         assertFalse(lista.contains(2));      
+    }
+    
+    @Test
+    public void jarjesta1() {
+        lista.add(4);
+        lista.add(0);
+        lista.add(9);
+        lista.add(1);
+        lista.sort(0, 3);
+        assertTrue((int) lista.get(0) == 0);
+    }
+    
+    @Test
+    public void jarjesta2() {
+        lista.add(4);
+        lista.add(0);
+        lista.add(9);
+        lista.add(1);
+        lista.sort(0, 3);
+        assertTrue((int) lista.get(3) == 9);
+    }
+    
+    @Test
+    public void jarjesta3() {
+        lista.add(4);
+        lista.add(0);
+        lista.add(9);
+        lista.add(1);
+        lista.sort(0, 3);
+        assertTrue((int) lista.get(1) == 1);
     }
 }

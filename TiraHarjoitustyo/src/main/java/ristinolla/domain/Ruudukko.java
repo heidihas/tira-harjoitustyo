@@ -20,8 +20,8 @@ public class Ruudukko {
     
     public Ruudukko(int koko) {
         this.koko = koko;
-        this.ruudukko = new int[koko*koko];
-        this.vapaana = koko*koko;
+        this.ruudukko = new int[koko * koko];
+        this.vapaana = koko * koko;
     }
     
     /**
@@ -69,10 +69,10 @@ public class Ruudukko {
      *
      */
     public void tyhjenna() {
-        for (int i = 0; i < koko*koko; i++) {
+        for (int i = 0; i < koko * koko; i++) {
             ruudukko[i] = 0;
         }
-        vapaana = koko*koko;
+        vapaana = koko * koko;
     }
     
     /**
@@ -84,9 +84,9 @@ public class Ruudukko {
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 if (j == koko - 1) {
-                    System.out.print(ruudukko[koko*i+j] + "\n");
+                    System.out.print(ruudukko[koko * i + j] + "\n");
                 } else {
-                    System.out.print(ruudukko[koko*i+j] + " ");
+                    System.out.print(ruudukko[koko * i + j] + " ");
                 }  
             }
         }

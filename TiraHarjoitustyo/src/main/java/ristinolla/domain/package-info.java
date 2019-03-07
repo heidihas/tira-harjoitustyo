@@ -1,4 +1,4 @@
 /**
- * Pakkaus sisältää pelielementtejä kuvaavia luokkia.
+ * Pakkaus sisältää sovelluksessa käytettäviä tietorakenteita.
  */
 package ristinolla.domain;

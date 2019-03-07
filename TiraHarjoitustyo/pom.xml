@@ -45,6 +45,7 @@
                         <param>ristinolla.domain.ArrayList</param>
                         <param>ristinolla.domain.Ruudukko</param>
                         <param>ristinolla.domain.Sijainti</param>
+                        <param>ristinolla.logics.Algoritmi</param>
                         <param>ristinolla.logics.Logiikka</param>
                     </targetClasses>
                     <targetTests>
