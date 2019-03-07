@@ -58,10 +58,10 @@ Oheisessa taulukossa kerrotaan peliruudukon koko ja laskettu keskiarvo milliseku
 
 Peliruudukon koko | Puolustavan siirron keskiarvo (ms) |
 -----------|------|--------|
-5x5 | 13,6 |
-6x6 | 140 |
-7x7 | 271,2 |
-8x8 | 1 564,6 |
+5x5 | 14,6 |
+6x6 | 144,2 |
+7x7 | 474,3 |
+8x8 | 1 867,9 |
 
 Kuten taulukosta huomataan, kasvaa tietokonepelaajalta ensimmäiseen puolustavaan siirtoon kuluva aika merkittävästi peliruudukon kasvamisen yhteydessä. Tämä aiheutuu algoritmin eksponentiaalisuudesta.
 
