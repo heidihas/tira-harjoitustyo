@@ -5,6 +5,8 @@
  */
 package ristinolla.tests.logics;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -18,264 +20,499 @@ import ristinolla.logics.Algoritmi;
 public class AlgoritmiTesti {
     
     Algoritmi algoritmi;
+    Class algo;
+    Method[] metodit;
     
     @Before
     public void setUp() {
         algoritmi = new Algoritmi();
+        algo = algoritmi.getClass();
     }
 
     @Test
     public void luotuAlgoritmiOnOlemassa() {
         assertTrue(algoritmi!=null);      
     }
+     
+    @Test
+    public void score1() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("score")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[0] = 3;
+        Object[] param = {rivit, 3, 1};
+        int score = (int) metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(score == 9);
+    }
     
-    /*@Test 
-    public void xVoittiPystyRivit() {
-        int[] rivit = new int[9];
+    @Test
+    public void score2() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("score")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[0] = -3;
+        Object[] param = {rivit, 3, 1};
+        int score = (int) metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(score == -9);
+    }
+    
+    @Test
+    public void score3() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("score")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        Object[] param = {rivit, 3, 1};
+        int score = (int) metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(score == 0);
+    }
+    
+    @Test
+    public void arvioiEiVoittoa() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("arvioi")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        Object[] param = {rivit, 3};
+        int luku = (int) metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(luku == 0);
+    }
+    
+    @Test
+    public void asetaSiirtoMinMaxViisto() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("asetaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 2, 1};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(rivit[7] == 1);
+    }
+    
+    @Test
+    public void asetaSiirtoMinMaxMaarat1() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("asetaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 0, 1};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[0] == 1);
+    }
+    
+    @Test
+    public void asetaSiirtoMinMaxMaarat2() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("asetaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 0, 1};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[3] == 1);
+    }
+    
+    @Test
+    public void asetaSiirtoMinMaxMaarat3() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("asetaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 0, 1};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[6] == 1);
+    }
+    
+    @Test
+    public void asetaSiirtoMinMaxMaarat4() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("asetaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 2, 1};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[7] == 1);
+    }
+    
+    @Test
+    public void poistaSiirtoMinMaxViisto() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("asetaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 2, 2};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(rivit[7] == -1);
+    }
+    
+    @Test
+    public void poistaSiirtoMinMaxMaarat1() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("poistaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 0, 2};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[0] == -1);
+    }
+    
+    @Test
+    public void poistaSiirtoMinMaxMaarat2() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("poistaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 0, 2};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[3] == -1);
+    }
+    
+    @Test
+    public void poistaSiirtoMinMaxMaarat3() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("poistaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 0, 2};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[6] == -1);
+    }
+    
+    @Test
+    public void poistaSiirtoMinMaxMaarat4() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("poistaSiirtoMinMax")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        int[] riviMaarat = new int[8];
+        Object[] param = {rivit, riviMaarat, 3, 2, 2};
+        metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(riviMaarat[7] == -1);
+    }
+    
+    @Test
+    public void vapaat() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("getVapaat")) {
+                indeksi = i;
+            }
+        }
+        int[] ruudukko = new int[9];
+        ruudukko[0] = 1;
+        Object[] param = {ruudukko, 3};
+        ArrayList<Integer> vapaat = (ArrayList<Integer>) metodit[indeksi].invoke(algo.newInstance(), param);
+        assertTrue(vapaat.size() == 8);
+    }
+    
+    @Test
+    public void peliOhiVoittomahdollisuus() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("peliOhi")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
         rivit[0] = 1;
-        rivit[3] = 1;
+        rivit[1] = -1;
+        rivit[2] = 0;
+        rivit[3] = 0;
+        rivit[4] = -1;
+        rivit[5] = 1;
+        rivit[6] = -1;
+        rivit[7] = 0;
+        int[] riviMaarat = new int[8];
+        riviMaarat[0] = 3;
+        riviMaarat[1] = 3;
+        riviMaarat[2] = 2;
+        riviMaarat[3] = 2;
+        riviMaarat[4] = 3;
+        riviMaarat[5] = 3;
+        riviMaarat[6] = 3;
+        riviMaarat[7] = 2;
+        ArrayList<Integer> siirrot = new ArrayList<>();
+        siirrot.add(6);
+        Object[] param = {rivit, riviMaarat, 3, siirrot};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
+    }
+    
+    @Test
+    public void peliEiOhiVoittomahdollisuus() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("peliOhi")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[0] = 1;
+        rivit[1] = -2;
+        rivit[2] = 0;
+        rivit[3] = -1;
+        rivit[4] = -1;
+        rivit[5] = 1;
+        rivit[6] = -1;
+        rivit[7] = 0;
+        int[] riviMaarat = new int[8];
+        riviMaarat[0] = 3;
+        riviMaarat[1] = 2;
+        riviMaarat[2] = 2;
+        riviMaarat[3] = 1;
+        riviMaarat[4] = 3;
+        riviMaarat[5] = 3;
+        riviMaarat[6] = 3;
+        riviMaarat[7] = 2;
+        ArrayList<Integer> siirrot = new ArrayList<>();
+        siirrot.add(3);
+        siirrot.add(6);
+        Object[] param = {rivit, riviMaarat, 3, siirrot};
+        assertFalse((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
+    }
+    
+    @Test
+    public void xVoittiPystyRivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("xVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[3] = 3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
+    }
+    
+    @Test 
+    public void xVoittiVaakaRivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("xVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[0] = 3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
+    }
+    
+    @Test 
+    public void xVoittiViisto1Rivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("xVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[6] = 3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
+    }
+    
+    @Test 
+    public void xVoittiViisto2Rivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("xVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[7] = 3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
+    }
+    
+    @Test 
+    public void xEiVoittanutRivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("xVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
         rivit[6] = 1;
-        assertTrue(algoritmi.xVoitti(rivit, 3));
+        Object[] param = {rivit, 3};
+        assertFalse((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
     }
     
     @Test 
-    public void xVoittiVaakaRivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
+    public void oVoittiPystyRivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("oVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[3] = -3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
     }
     
     @Test 
-    public void xVoittiViisto1Rivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(2, 2, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
+    public void oVoittiVaakaRivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("oVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[0] = -3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
     }
     
     @Test 
-    public void xVoittiViisto2Rivit() {
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.xVoitti(logiikka.getRivit()));
+    public void oVoittiViisto1Rivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("oVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[6] = -3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
     }
     
     @Test 
-    public void xEiVoittanutRivit() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        assertFalse(logiikka.xVoitti(logiikka.getRivit()));
+    public void oVoittiViisto2Rivit() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("oVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[7] = -3;
+        Object[] param = {rivit, 3};
+        assertTrue((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
     }
     
     @Test 
-    public void oVoittiPystyRivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(0, 2, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
+    public void oEiVoittanutRivit() throws InstantiationException, IllegalAccessException, InvocationTargetException {
+        metodit = algo.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("oVoitti")) {
+                indeksi = i;
+            }
+        }
+        int[] rivit = new int[8];
+        rivit[3] = -2;
+        Object[] param = {rivit, 3};
+        assertFalse((boolean) metodit[indeksi].invoke(algo.newInstance(), param));
     }
-    
-    @Test 
-    public void oVoittiVaakaRivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oVoittiViisto1Rivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oVoittiViisto2Rivit() {
-        logiikka.asetaSiirto(0, 2, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void oEiVoittanutRivit() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(1, 2, 2);
-        assertFalse(logiikka.oVoitti(logiikka.getRivit()));
-    }
-    
-    @Test 
-    public void xVoittiPystyArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(0, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void xVoittiVaakaArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void xVoittiViistoArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(2, 2, 1);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void xEiVoittanutArvioi() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 1, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        assertFalse(logiikka.arvioi(logiikka.getRivit()) == 10);
-    }
-    
-    @Test 
-    public void oVoittiPystyArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(0, 2, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void oVoittiVaakaArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void oVoittiViistoArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void oEiVoittanutArvioi() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(1, 2, 2);
-        assertFalse(logiikka.arvioi(logiikka.getRivit()) == -10);
-    }
-    
-    @Test 
-    public void kukaanEiVoittanutArvioi() {
-        assertTrue(logiikka.arvioi(logiikka.getRivit()) == 0);
-    }
-    
-    @Test 
-    public void minmax1() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 1);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] == 10);
-    }
-    
-    @Test 
-    public void minmax2() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 2);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] == -10);
-    }
-    
-    @Test 
-    public void minmax3() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 1);
-        logiikka.asetaSiirto(0, 1, 2);
-        logiikka.asetaSiirto(1, 1, 2);
-        logiikka.asetaSiirto(2, 1, 1);
-        logiikka.asetaSiirto(0, 2, 1);
-        logiikka.asetaSiirto(1, 2, 1);
-        logiikka.asetaSiirto(2, 2, 2);
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] == 0);
-    }
-    
-    @Test 
-    public void minmax4() {
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] != Integer.MAX_VALUE);
-    }
-    
-    @Test 
-    public void minmax5() {
-        assertTrue(logiikka.minmaxAlfaBeeta(logiikka.getRuudukko().getRuudukko(), logiikka.getRivit(), 0, 10, 1, Integer.MIN_VALUE, Integer.MAX_VALUE)[0] != Integer.MIN_VALUE);
-    }
-    
-    @Test
-    public void score1() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 1);
-        logiikka.asetaSiirto(2, 0, 1);
-        int pisteet = logiikka.score(logiikka.getRivit(), 1);
-        assertTrue(pisteet == 9);
-    }
-    
-    @Test
-    public void score2() {
-        logiikka.asetaSiirto(0, 0, 2);
-        logiikka.asetaSiirto(1, 0, 2);
-        logiikka.asetaSiirto(2, 0, 2);
-        int pisteet = logiikka.score(logiikka.getRivit(), 1);
-        assertTrue(pisteet == -9);
-    }
-    
-    @Test
-    public void asetaSiirtoMinMaxViisto1() {
-        logiikka.asetaSiirtoMinMax(logiikka.getRivit(), 0, 1);
-        assertTrue(logiikka.getRivit()[6] == 1);
-    }
-    
-    @Test
-    public void asetaSiirtoMinMaxViisto2() {
-        logiikka.asetaSiirtoMinMax(logiikka.getRivit(), 2, 1);
-        assertTrue(logiikka.getRivit()[7] == 1);
-    }
-    
-    @Test
-    public void poistaSiirtoMinMaxViisto1() {
-        logiikka.poistaSiirtoMinMax(logiikka.getRivit(), 0, 1);
-        assertTrue(logiikka.getRivit()[6] == -1);
-    }
-    
-    @Test
-    public void poistaSiirtoMinMaxViisto2() {
-        logiikka.poistaSiirtoMinMax(logiikka.getRivit(), 2, 1);
-        assertTrue(logiikka.getRivit()[7] == -1);
-    }
-    
-    @Test
-    public void vapaat() {
-        ArrayList<Integer> vapaat = logiikka.getVapaat(logiikka.getRuudukko().getRuudukko());
-        assertTrue(vapaat.size() == 9);
-    }*/
 }

@@ -5,9 +5,12 @@
  */
 package ristinolla.tests.logics;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import ristinolla.domain.ArrayList;
 import ristinolla.logics.Logiikka;
 
 /**
@@ -17,10 +20,13 @@ import ristinolla.logics.Logiikka;
 public class LogiikkaTesti {
     
     Logiikka logiikka;
+    Class logi;
+    Method[] metodit;
     
     @Before
     public void setUp() {
         logiikka = new Logiikka(3);
+        logi = logiikka.getClass();
     }
     
     @Test
@@ -190,15 +196,32 @@ public class LogiikkaTesti {
     }
     
     @Test 
-    public void peliOhiEiVoittomahdollisuutta() {
-        logiikka.asetaSiirto(0, 0, 1);
-        logiikka.asetaSiirto(1, 0, 2);
+    public void peliOhiEiVoittomahdollisuutta1() {
+        Logiikka log = new Logiikka(4);
+        log.asetaSiirto(0, 0, 1);
+        log.asetaSiirto(1, 0, 2);
+        log.asetaSiirto(2, 0, 1);
+        log.asetaSiirto(3, 0, 2);
+        log.asetaSiirto(1, 1, 2);
+        log.asetaSiirto(2, 1, 1);
+        log.asetaSiirto(3, 1, 1);
+        log.asetaSiirto(1, 2, 1);
+        log.asetaSiirto(2, 2, 2);
+        log.asetaSiirto(0, 3, 2);
+        log.asetaSiirto(3, 3, 1);
+        assertTrue(log.peliOhi());
+    }
+    
+    @Test 
+    public void peliOhiEiVoittomahdollisuutta2() {
+        logiikka.asetaSiirto(0, 0, 2);
+        logiikka.asetaSiirto(1, 0, 1);
         logiikka.asetaSiirto(2, 0, 1);
         logiikka.asetaSiirto(0, 1, 1);
         logiikka.asetaSiirto(1, 1, 2);
         logiikka.asetaSiirto(2, 1, 2);
-        logiikka.asetaSiirto(0, 2, 2);
-        logiikka.asetaSiirto(1, 2, 1);
+        logiikka.asetaSiirto(1, 2, 2);
+        logiikka.asetaSiirto(2, 2, 1);
         assertTrue(logiikka.peliOhi());
     }
     
@@ -365,6 +388,20 @@ public class LogiikkaTesti {
     }
     
     @Test 
+    public void pelataanPelastavaSiirto1() {
+        logiikka.asetaSiirto(1, 0, 1);
+        logiikka.asetaSiirto(1, 1, 1);
+        assertTrue(logiikka.pelaa(2) == 7);
+    }
+    
+    @Test 
+    public void pelataanPelastavaSiirto2() {
+        logiikka.asetaSiirto(1, 0, 2);
+        logiikka.asetaSiirto(1, 1, 2);
+        assertTrue(logiikka.pelaa(1) == 7);
+    }
+    
+    @Test 
     public void eiPelata() {
         logiikka.asetaSiirto(0, 0, 1);
         logiikka.asetaSiirto(1, 0, 2);
@@ -376,5 +413,33 @@ public class LogiikkaTesti {
         logiikka.asetaSiirto(1, 2, 1);
         logiikka.asetaSiirto(2, 2, 2);
         assertTrue(logiikka.pelaa(1) == -1);
+    }
+    
+    @Test
+    public void alitaulukko() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
+        metodit = logi.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("alitaulukko")) {
+                indeksi = i;
+            }
+        }
+        ArrayList<Integer> paikat = (ArrayList<Integer>) metodit[indeksi].invoke(logi.getDeclaredConstructor(int.class).newInstance(3));
+        assertTrue(paikat.contains(6) && paikat.contains(5) && paikat.contains(4));
+    }
+    
+    @Test
+    public void alitaulukko2() throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException {
+        metodit = logi.getDeclaredMethods();
+        int indeksi = -1;
+        for (int i = 0; i < metodit.length; i++) {
+            metodit[i].setAccessible(true);
+            if (metodit[i].getName().equals("alitaulukko")) {
+                indeksi = i;
+            }
+        }
+        ArrayList<Integer> paikat = (ArrayList<Integer>) metodit[indeksi].invoke(logi.getDeclaredConstructor(int.class).newInstance(2));
+        assertTrue(paikat.contains(-2));
     }
 }
