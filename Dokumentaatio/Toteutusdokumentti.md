@@ -28,7 +28,9 @@ Tulossa kurssin lopussa...
 
 ## Saavutettu suorituskyky
 
-Kuten [Testausdokumentissa](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Testausdokumentti.md) kuvaillaan, 
+[Testausdokumentissa](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Testausdokumentti.md) kuvaillaan saavutettua suorituskykyä perusteellisesti. Dokumentissa todetaan, että sovelluksen toiminta ja min-max-algoritmin laskenta on hyvin tehokasta: tietokonepelaaja ei anna koskaan käyttäjän voittaa, pelikierros päättyy joko tietokonepelaajan voittoon tai tasapeliin ja mallipelin tapauksessa jokainen lopputulema on tasapeli (tietokone pelaa mahdollisimman hyvin itseään vastaan). 
+
+Lisäksi testausdokumentissa todetaan, että hakualgoritmin suoritusaikaa mitattaessa keskiarvoksi jokaiselle tekoälyn suorittamalle siirrolle saadaan luku välillä 0-1ms, kun min-max-algoritmi ajetaan peliruudukosta muodostetulle 3x3-kokoiselle aliruudukolle. Isolla peliruudukolla hakemista vältellään, sillä peliruudukon kasvaessa algoritmin suoritusaika kasvaa merkittävästi. Toisaalta min-max-algoritmin ajaminen hakusyvyysrajoituksella aivan pelin alusta lähtien todettiin tällaista ratkaisua testatessa puutteelliseksi - menetelmä ei johtanut mielekkäisiin pelitilanteisiin.
 
 ## Työn puutteet ja parannusehdotukset
 
