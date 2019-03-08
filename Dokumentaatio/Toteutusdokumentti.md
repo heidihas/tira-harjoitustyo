@@ -24,7 +24,17 @@ Koska kuvatut pelitilanteet eivät voi tapahtua heti pelin alussa, on vastaaviin
 
 ## Saavutetut aika- ja tilavaativuudet
 
-Tulossa kurssin lopussa...
+Ohessa eritellään sovelluksen eri osien aika- ja tilavaativuuksia.
+
+### ArrayList
+
+Add-metodin aikavaativuus on yleensä vakio eli O(1), mutta tapauksissa, joissa listaa pitää kasvattaa, aikavaativuus on O(n). Kasvatuksen yhteydessä listan tilavaativuus kaksinkertaistuu.
+
+Replace-, clear-, get-, size-, isEmpty ja getCapacity-metodit ovat vakioaikaisia eli O(1).
+
+Metodit remove, get ja contains ovat aikavaativuuksiltaan O(n), sillä kunkin kohdalla pahimmassa tapauksessa joudutaan käymään for-loopilla läpi kaikki listan alkiot.
+
+ArrayList-olion tilavaativuus on O(n), sillä se riippuu listan kapasiteetista.
 
 ## Saavutettu suorituskyky
 
