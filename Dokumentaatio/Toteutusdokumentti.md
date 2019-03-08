@@ -58,7 +58,9 @@ Metodit asetaSiirtoMinMax ja poistaSiirtoMinMax ovat sekä aika- että tilavaati
 
 Metodit score ja arvioi ovat aikavaativuudeltaan O(n). Metodi score koostuu lähinnä vakioaikaisista komennoista, mutta metodin arvioi kutsuminen vaikuttaa merkittävästi sen kokonaisaikavaativuuteen. Metodin arvioi aikavaativuus on for-loopin vuoksi O(n).
 
-min max minmaxAlfaBeeta
+Kuten Määrittelydokumentissa todettiin, min-max-algoritmin toteuttaminen alfa-beta-karsinnalla on aikavaativuudeltaan edelleen eksponentiaalinen riippumatta siitä, että käytännössä suoritus nopeutuu. Aikavaativuus O(s^n), missä s kuvaa siirtomahdollisuuksia ja n hakupuun syvyyttä, nähdään toteutetusta koodista. Min-max-algoritmi on metodeista minmaxAlfaBeeta, max ja min koostuva kokonaisuus. Koodin selkeyden vuoksi ne on pilkottu omiksi osikseen. Jokaisen mahdollisen siirron osalta käydään hakupuuta läpi syvyyteen n asti. Syvyys n on tässä rajattu maxSyvyydeksi. Jos siirron muistiin tallentamiseen oletetaan kuluvan vakiomäärä aikaa v ja tiedetään, että pahimmassa tapauksessa alimmalla hakusyvyydellä siirtoja eli hakupuun lehtiä on määrä s^n, aikaa kuluu yhteensä v x s^n. Tällöin pahimman tapauksen aikavaativuus on O(v x s^n), joka saadaan muotoon O(s^n) v:n ollessa vakio. 
+
+MinmaxAlfaBeeta-metodin tilavaativuus on O(sn). Tämä nähdään siitä, että eri rekursiotasanteella siirtojen määrä on s. Jos yhden siirron oletettu tilavaativuus on vakio v, vievät mahdolliset siirrot yhdellä rekursiotasanteella tilaa sv. Tämä pitää vielä kertoa rekursioiden määrällä eli hakusyvyydellä n. Saadaan O(svn) = O(v x (sn)) mikä supistuu muotoon O(sn) v:n ollessa vakio.
 
 ### Logiikka
 
@@ -94,3 +96,4 @@ Työn yksikkötestien kattavuus on lähes täydellinen. Kuitenkin joistakin muta
 
 Tira-kurssin luentomateriaali (sivut 106-122, Lomitusjärjestäminen; sivut 394-400, Pelipuu)
 https://www.geeksforgeeks.org/merge-sort/ (luettu pe 8.3. klo 21:00)
+https://courses.cs.washington.edu/courses/cse573/12au/slides/04-minmax.pdf
