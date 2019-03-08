@@ -36,7 +36,21 @@ Metodit remove, get ja contains ovat aikavaativuuksiltaan O(n), sillä kunkin ko
 
 Merge-sort-järjestelymenetelmä eli lomitusjärjestäminen on aikavaativuudeltaan O(nlog n), sillä sen merge-osa saa for-loopin osalta aikavaativuudekseen O(n) ja sen rekursiosyvyys on log n, kuten Tira-kurssin materiaalissa todetaan. Tällöin kokonaisaikavaativuudeksi saadaan O(nlog n). Lomitusjärjestämisen tilavaativuus on puolestaan O(n), joka saadaan sen merge-osasta.
 
-ArrayList-olion tilavaativuus on O(n), sillä se riippuu listan kapasiteetista.
+ArrayList-luokan tilavaativuus on O(n), sillä se riippuu listan kapasiteetista.
+
+### Ruudukko
+
+Lähes kaikki Ruudukko-luokan metodit ovat vakioaikaisia eli aikavaativuudella O(1). Metodit tyhjenna ja tulosta käyvät läpi koko tallennettavan ruudukon, joten niiden aikavaativuudeksi saadaan O(n) ruudukkoon tallennettujen alkioiden määrän mukaan.
+
+Ruudukko-luokan tilavaativuus on O(n), sillä se riippuu ruudukkoon mahtuvista ruuduista.
+
+### Sijainti
+
+Sekä Sijainti-luokan tila- että aikavaativuus on vakio O(1).
+
+### Algoritmi
+
+### Logiikka
 
 ## Saavutettu suorituskyky
 
