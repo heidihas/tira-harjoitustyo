@@ -58,7 +58,17 @@ Metodit asetaSiirtoMinMax ja poistaSiirtoMinMax ovat sekä aika- että tilavaati
 
 Metodit score ja arvioi ovat aikavaativuudeltaan O(n). Metodi score koostuu lähinnä vakioaikaisista komennoista, mutta metodin arvioi kutsuminen vaikuttaa merkittävästi sen kokonaisaikavaativuuteen. Metodin arvioi aikavaativuus on for-loopin vuoksi O(n).
 
+min max minmaxAlfaBeeta
+
 ### Logiikka
+
+Metodien asetaSiirto, alitaulukko ja eli gettereiden aikavaativuus on vakio O(1). Näistä alitaulukko-metodin tilavaativuus on O(n) riippuen alitaulukkoon tallennettavien alkioiden määrästä (nyt määrä on vakio 9).
+
+Metodit peliOhi, xVoitti ja oVoitti vastaavat yllä käsitellyn Algoritmi-luokan vastaavannimisiä metodeja, jolloin ne saavat samat aika- ja tilavaativuudet. Myös metodin alustaAlitaulukko aikavaativuudeksi tulee for-loopin johdosta O(n).
+
+pelaa
+
+_Käyttöliittymän eli luokan RistinollaSovellus metodit jätetään käsittelemättä._
 
 ## Saavutettu suorituskyky
 
@@ -79,3 +89,6 @@ Mitä tulee sovelluksen graafiseen käyttöliittymään, mallipelissä olisi muk
 Työn yksikkötestien kattavuus on lähes täydellinen. Kuitenkin joistakin mutaatioista eroon pääseminen osoittautui hyvin hankalaksi. Tähän vaikutti se, että nämä mutaatiot liittyivät joko rekursiiviseen algoritmiin, privaattiin metodiin ja metodin sisäisiin apumuuttujiin.
 
 ## Lähteet
+
+Tira-kurssin luentomateriaali (sivut 106-122, Lomitusjärjestäminen; sivut 394-400, Pelipuu)
+https://www.geeksforgeeks.org/merge-sort/ (luettu pe 8.3. klo 21:00)
