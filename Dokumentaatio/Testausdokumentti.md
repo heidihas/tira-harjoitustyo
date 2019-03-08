@@ -73,7 +73,9 @@ Yllä kuvatut testit voidaan toistaa ajamalla ohjelmakoodia. Algoritmin oikeanla
 
 ### Checkstyle
 
-Koodin laatua ja kirjoitusasua testattiin Checkstyle-pluginilla. Tiedostoon [checkstyle.xml](https://github.com/heidihas/tira-harjoitustyo/blob/master/TiraHarjoitustyo/checkstyle.xml) määritellyt tarkistukset voidaan suorittaa komennolla
+Koodin laatua ja kirjoitusasua testattiin Checkstyle-pluginilla. Checkstylen antamasta raportista nähtiin, että koodi toteuttaa hyvin annettuja sääntöjä kirjoitusasusta. Raportti huomauttaa ainoastaan muutamasta metodista, jotka ovat poikkeuksellisen pitkiä mutta jotka toteuttavat vain yhtä tehtävää.
+
+Tiedostoon [checkstyle.xml](https://github.com/heidihas/tira-harjoitustyo/blob/master/TiraHarjoitustyo/checkstyle.xml) määritellyt tarkistukset voidaan suorittaa komennolla
 
 ```
  mvn jxr:jxr checkstyle:checkstyle
