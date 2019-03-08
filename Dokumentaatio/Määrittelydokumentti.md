@@ -7,7 +7,7 @@ Koska ristinollapeli on laajennettu eli pelialueen koon voi valita perinteistä 
 ## Käytettävät algoritmit
 Tyyppiesimerkki ristinollapelin tekoälyn toteuttamiseksi on käyttää min-max-algoritmia, jonka aikavaativuus on eksponentiaalinen eli O(s^n), missä s kuvaa siirtomahdollisuuksia ja n hakupuun syvyyttä. Vastaavasti algoritmin tilavaativuus on O(sn). Min-max-algoritmin hyödyntäminen sellaisenaan on perusteltua pienillä peliruudukoilla.
 
-Min-max-algoritmia voidaan nopeuttaa käyttämällä alfa-beeta-karsintaa, joka vähentää läpikäytävien hakupuun haarojen määrää. Vaikka alfa-beeta-karsinta nopeuttaa käytännössä huomattavasti algoritmin suoritusta, se ei poista kokonaisaikavaativuuden eksponentiaalisuutta.
+Min-max-algoritmia voidaan nopeuttaa käyttämällä alfa-beta-karsintaa, joka vähentää läpikäytävien hakupuun haarojen määrää. Vaikka alfa-beeta-karsinta nopeuttaa käytännössä huomattavasti algoritmin suoritusta, se ei poista kokonaisaikavaativuuden eksponentiaalisuutta.
 
 Nopeampien ratkaisualgoritmien löytämiseksi on harjoitustyökurssin aikana toteutettava lisää tutkimusta. Tällä hetkellä Monte Carlo Tree Search -menetelmä näyttää lupaavalta - nettilähteiden mukaan algoritmin käyttäminen nopeuttaa ohjelman suoritusta jopa enemmän kuin alfa-beeta-karsinta.
 
