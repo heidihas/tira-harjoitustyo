@@ -66,9 +66,11 @@ Metodien asetaSiirto, alitaulukko ja eli gettereiden aikavaativuus on vakio O(1)
 
 Metodit peliOhi, xVoitti ja oVoitti vastaavat yllä käsitellyn Algoritmi-luokan vastaavannimisiä metodeja, jolloin ne saavat samat aika- ja tilavaativuudet. Myös metodin alustaAlitaulukko aikavaativuudeksi tulee for-loopin johdosta O(n).
 
-pelaa
+Pelaa-metodi hyödyntää monia Logiikka-luokan metodeja sekä sovelluksen tietorakenteita. Kuitenkin näistä eniten aikaa vievä ja raskain on yllä käsitelty Algoritmi-luokan metodi minmaxAlfaBeeta, jolloin pelaa-metodin kokonaisaikavaativuudeksi saadaan minmaxAlfaBeeta-metodin aikavaativuus.
 
 _Käyttöliittymän eli luokan RistinollaSovellus metodit jätetään käsittelemättä._
+
+Koska kaikista suurin aikavaativuus on min-max-algoritmin suorituksella, on koko sovelluksen pyörittämisen aikavaativuus riippuvainen min-max-algoritmin aikavaativuudesta.
 
 ## Saavutettu suorituskyky
 
