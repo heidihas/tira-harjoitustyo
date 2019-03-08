@@ -95,5 +95,6 @@ Työn yksikkötestien kattavuus on lähes täydellinen. Kuitenkin joistakin muta
 ## Lähteet
 
 Tira-kurssin luentomateriaali (sivut 106-122, Lomitusjärjestäminen; sivut 394-400, Pelipuu)
-https://www.geeksforgeeks.org/merge-sort/ (luettu pe 8.3. klo 21:00)
-https://courses.cs.washington.edu/courses/cse573/12au/slides/04-minmax.pdf
+https://www.geeksforgeeks.org/merge-sort/ (luettu 8.3. klo 21:24)
+https://courses.cs.washington.edu/courses/cse573/12au/slides/04-minmax.pdf (luettu 8.3. klo 22:00)
+https://stackoverflow.com/questions/2080050/determining-time-and-space-complexity (luettu 8.3. klo 22:40)
