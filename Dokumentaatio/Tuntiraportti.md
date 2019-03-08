@@ -65,6 +65,6 @@ Päivämäärä       | Käytetty aika | Tehtyä |
 5.3. | 6h | Peliheurestiikan lisääminen, koodin muokkaaminen, sovelluslogiikan hiominen |
 6.3. | 12h   | Yksikkötestien kirjoittaminen, koodin pilkkominen ja siivoaminen, kommentoinnin viimeistely, Algoritmi-luokan luominen, sovelluksen testaaminen |
 7.3. | 6h   | Suorituskykytestaus, Testausdokumentin viimeistely, Käyttöohjeiden kirjoittaminen, Määrittelydokumentin muokkaaminen, Jarin luominen, JavaDocin luominen |
-8.3. | 4h   | Toteutusdokumentin viimeistely, yksikkötestien lisäys, koodin ja sovelluksen tarkistaminen |
+8.3. | 8h   | Toteutusdokumentin viimeistely, yksikkötestien lisäys, koodin ja sovelluksen tarkistaminen |
 
-## Yhteensä tunteja: 154,5h
+## Yhteensä tunteja: 158,5h
