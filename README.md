@@ -28,3 +28,6 @@ T채m채 projekti on osa Helsingin yliopistossa kev채채ll채 2019 j채rjestett채v채�
 
 ### Tuntiraportti
 [Tuntiraportti](https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Tuntiraportti.md)
+
+## Testikattavuus
+<img src="https://github.com/heidihas/tira-harjoitustyo/blob/master/Dokumentaatio/Kuvia/Testikattavuus-8-3.png" width="600">
