@@ -50,6 +50,14 @@ Sekä Sijainti-luokan tila- että aikavaativuus on vakio O(1).
 
 ### Algoritmi
 
+Metodien xVoitti ja oVoitti aikavaativuudet ovat muotoa O(2n+2) eli O(n), missä n kuvaa peliruudukon sivun pituutta. Samoin metodin peliOhi aikavaativuudeksi saadaan O(n), koska siinä on samankokoinen for-looppi kuin metodissa xVoitti tai oVoitti ja koska tämän for-loopin jälkeen vasta peräkkäin suoritetaan metodit xVoitti ja oVoitti mahdollisen voittajan selvittämiseksi. Metodin peliOhi tilavaativuus on O(n), sillä se riippuu voittomahdollisuuksien eli mahdollisten voittavien rivien määrästä.
+
+Metodin getVapaat aikavaativuus voidaan ilmaista joko O(nn), missä n kuvaa peliruudukon sivun pituutta, tai O(m), missä m kuvaa peliruudukon ruutujen määrää. Metodin tilavaativuus on myös O(nn) tai O(m).
+
+Metodit asetaSiirtoMinMax ja poistaSiirtoMinMax ovat sekä aika- että tilavaativuuksiltaan vakioita O(1), sillä metodit koostuvat vain ehtolauseista ja vakioaikaisista tallennustoimituksista sekä säilövät vain muutaman muuttujan verran tietoa.
+
+Metodit score ja arvioi ovat aikavaativuudeltaan O(n). Metodi score koostuu lähinnä vakioaikaisista komennoista, mutta metodin arvioi kutsuminen vaikuttaa merkittävästi sen kokonaisaikavaativuuteen. Metodin arvioi aikavaativuus on for-loopin vuoksi O(n).
+
 ### Logiikka
 
 ## Saavutettu suorituskyky
