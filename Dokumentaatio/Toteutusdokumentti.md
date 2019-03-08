@@ -12,6 +12,16 @@ Työhön toteutettiin tietorakenteet ArrayList, Ruudukko ja Sijainti. ArrayList 
 
 Näiden luotujen tietorakenteiden lisäksi pelilogiikka hyödyntää taulukkoja int[] rivit ja int[] riviMaarat pelitilanteen seuraamisessa. Kyseisiin taulukoihin tallennetaan tietoja liittyen peliruudukon riveihin: ensimmäinen taulukko kuvaa kunkin rivin pistetilannetta ja toinen taulukko kertoo kullakin rivillä olevien pelimerkkien määrän. Ensimmäisen taulukon pistetilanne lasketaan niin, että tyhjä rivi vastaa lukua 0, jokainen pelimerkki X kasvattaa arvoa yhdellä ja jokainen pelimerkki O vähentää arvoa yhdellä. Taulukoissa esiintyvät rivit ovat sekä vaakasuoraan, pystysuoraan tai viistoon kulkevia peliruudukon rivejä.
 
+Sovellukseen toteutettiin min-max-algoritmi alfa-beta-karsinnalla. Min-max-algoritmin toiminta perustuu pelin jokaisen mahdollisen lopputuloksen läpikäymiseen annetusta peliruudukon tilasta käsin. Oletuksena on, että kumpikin pelaaja pelaa mahdollisimman hyvin. Eri reittejä pitkin saadut lopputulokset pisteytetään (vaihtoehtoina X:n voitto, O:n voitto tai tasapeli) ja tekoälyn ohjaamalle tietokonepelaajalle valitaan annetussa pelitilanteessa otollisin siirto.
+
+Alfa-beta-karsinta nopeuttaa min-max-algoritmin läpikäyntiä, sillä se leikkaa pois ne hakupuun polut, joita pitkin ei päädyttäisi jo löydettyä parasta polkua parempaan lopputulokseen.
+
+Lisäksi sovelluksen suoritusta nopeutetaan siten, että isommilla peliruudukoilla pelatessa ison peliruudukon läpikäymisen sijaan ruudukosta valitaan 3x3-kokoinen aliruudukko läpikäytäväksi. Peliruudukkojen kasvaessa nimittäin myös peliruudukon läpikäynti ja sovelluksen suoritus hidastuisi eksponentiaalisesti. Aliruudukko valitaan viimeisimmän asetetun X-pelimerkin perusteella.
+
+Pelissä on myös tilanteita, jolloin yllä esitetty aliruudukkomenetelmä ei ole toimiva ratkaisu. Esimerkiksi aliruudukon ollessa täysi tai aliruudukon sisältäessä kolmen merkin pituisen "voittorivin" tekoäly ei antaisi tietokonepelaajalle uutta siirtoa, vaikka varsinaisessa isossa peliruudukossa olisi vielä mahdollisia siirtoja jäljellä. Toisaalta aliruudukkomenetelmä todettiin pulmalliseksi sellaisissa pelitilanteissa, joissa pelimerkillä O pelaava käyttäjä on yhtä merkkiä vaille voittamassa. 
+
+Koska kuvatut pelitilanteet eivät voi tapahtua heti pelin alussa, on vastaaviin pelitilanteisiin pääsemiseksi suoritettu jo jonkin verran siirtoja. Kun vapaina olevien siirtojen määrä on pienentynyt, voidaan min-max-algoritmi suorittaa isolle peliruudukolle. Siirtojen väheneminen nimittäin laskee min-max-algoritmin suoritukseen kuluvaa aikaa. Min-max-algoritmi suoritetaan isolle peliruudukolle kuitenkin rajoittaen hakusyvyys lukuun 4, jotta esimerkiksi 8x8-kokoisilla peliruudukoilla algoritmin suoritukseen kuluisi mielekäs määrä aikaa.
+
 ## Saavutetut aika- ja tilavaativuudet
 
 Tulossa kurssin lopussa...
