@@ -34,6 +34,8 @@ Replace-, clear-, get-, size-, isEmpty ja getCapacity-metodit ovat vakioaikaisia
 
 Metodit remove, get ja contains ovat aikavaativuuksiltaan O(n), sillä kunkin kohdalla pahimmassa tapauksessa joudutaan käymään for-loopilla läpi kaikki listan alkiot.
 
+Merge-sort-järjestelymenetelmä eli lomitusjärjestäminen on aikavaativuudeltaan O(nlog n), sillä sen merge-osa saa for-loopin osalta aikavaativuudekseen O(n) ja sen rekursiosyvyys on log n, kuten Tira-kurssin materiaalissa todetaan. Tällöin kokonaisaikavaativuudeksi saadaan O(nlog n). Lomitusjärjestämisen tilavaativuus on puolestaan O(n), joka saadaan sen merge-osasta.
+
 ArrayList-olion tilavaativuus on O(n), sillä se riippuu listan kapasiteetista.
 
 ## Saavutettu suorituskyky
